@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zippa Mobilidade — Sua viagem, suas regras | A Zippa</title>
+  <meta name="description" content="A Zippa Mobilidade oferece viagens seguras, preço justo e motoristas verificados. Passageiro ou motorista, a Zippa tem espaço para você." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* ===== HERO MOBILIDADE ===== */
+    .hero-mob {
+      min-height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+    .hero-mob-bg {
+      position: absolute;
+      inset: 0;
+      background: url('https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=1600&q=80') center/cover no-repeat;
+      z-index: 0;
+    }
+    .hero-mob-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, rgba(15,52,96,0.92) 0%, rgba(26,26,46,0.75) 60%, rgba(0,0,0,0.4) 100%);
+      z-index: 1;
+    }
+    .hero-mob-content {
+      position: relative;
+      z-index: 2;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 120px 24px 80px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+      width: 100%;
+    }
+    .hero-mob-text {}
+    .hero-mob-text .section-tag {
+      background: rgba(255,107,0,0.2);
+      color: #ffb380;
+    }
+    .hero-mob-text h1 {
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      font-weight: 900;
+      color: white;
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+    .hero-mob-text h1 span { color: var(--orange); }
+    .hero-mob-text p {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.7;
+      margin-bottom: 36px;
+      max-width: 480px;
+    }
+    .hero-mob-ctas { display: flex; gap: 16px; flex-wrap: wrap; }
+
+    .hero-mob-card {
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: var(--radius-lg);
+      padding: 36px 32px;
+      color: white;
+    }
+    .hero-mob-card h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .ride-form {}
+    .ride-form label {
+      display: block;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.6);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .ride-input {
+      width: 100%;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: var(--radius-sm);
+      padding: 12px 16px;
+      font-size: 0.95rem;
+      color: white;
+      margin-bottom: 14px;
+      transition: var(--transition);
+      font-family: var(--font);
+    }
+    .ride-input::placeholder { color: rgba(255,255,255,0.4); }
+    .ride-input:focus { outline: none; border-color: var(--orange); background: rgba(255,107,0,0.1); }
+
+    /* ===== PASSENGERS SECTION ===== */
+    .passengers-section {
+      padding: 96px 24px;
+      background: var(--white);
+    }
+    .passengers-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .pass-visual {
+      position: relative;
+    }
+    .pass-img-main {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      aspect-ratio: 4/3;
+      background: linear-gradient(135deg, #1a1a2e, #0f3460);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .pass-img-main img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .pass-badge {
+      position: absolute;
+      bottom: -20px;
+      right: -20px;
+      background: var(--orange);
+      color: white;
+      padding: 20px 24px;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-orange);
+      text-align: center;
+    }
+    .pass-badge strong { display: block; font-size: 1.8rem; font-weight: 900; }
+    .pass-badge span { font-size: 0.78rem; opacity: 0.85; }
+
+    /* ===== DRIVERS SECTION ===== */
+    .drivers-section {
+      padding: 96px 24px;
+      background: var(--dark);
+    }
+    .drivers-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .drivers-text .section-tag {
+      background: rgba(255,107,0,0.2);
+      color: #ffb380;
+    }
+    .drivers-text .section-title { color: white; }
+    .drivers-text .section-subtitle { color: rgba(255,255,255,0.6); }
+    .driver-benefits {
+      margin-top: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .benefit-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      background: rgba(255,255,255,0.06);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: var(--transition);
+    }
+    .benefit-item:hover { background: rgba(255,107,0,0.1); border-color: rgba(255,107,0,0.3); }
+    .benefit-icon {
+      width: 44px;
+      height: 44px;
+      min-width: 44px;
+      background: rgba(255,107,0,0.15);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+    }
+    .benefit-item h4 { font-size: 0.95rem; font-weight: 700; color: white; margin-bottom: 4px; }
+    .benefit-item p { font-size: 0.84rem; color: rgba(255,255,255,0.55); line-height: 1.5; }
+
+    .drivers-visual {
+      position: relative;
+    }
+    .driver-img {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      aspect-ratio: 3/4;
+      background: linear-gradient(135deg, #1a1a2e, #0f3460);
+    }
+    .driver-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .driver-earnings-card {
+      position: absolute;
+      bottom: 24px;
+      left: -24px;
+      background: var(--orange);
+      color: white;
+      padding: 20px 24px;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-orange);
+    }
+    .driver-earnings-card strong { display: block; font-size: 1.6rem; font-weight: 900; }
+    .driver-earnings-card span { font-size: 0.78rem; opacity: 0.9; }
+
+    /* ===== SAFETY SECTION ===== */
+    .safety-section {
+      padding: 96px 24px;
+      background: var(--gray-light);
+    }
+    .safety-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .safety-header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+    .safety-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    /* ===== TESTIMONIALS ===== */
+    .testimonials-section {
+      padding: 96px 24px;
+      background: white;
+    }
+    .test-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .test-header { text-align: center; margin-bottom: 48px; }
+    .test-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .test-card {
+      background: var(--gray-light);
+      border-radius: var(--radius-md);
+      padding: 28px 24px;
+      transition: var(--transition);
+    }
+    .test-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+    .test-stars { color: var(--orange); font-size: 0.9rem; margin-bottom: 12px; }
+    .test-text { font-size: 0.92rem; color: var(--gray-dark); line-height: 1.7; margin-bottom: 20px; font-style: italic; }
+    .test-author { display: flex; align-items: center; gap: 12px; }
+    .test-avatar {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: var(--orange); color: white;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 0.9rem;
+    }
+    .test-author strong { font-size: 0.88rem; display: block; }
+    .test-author span { font-size: 0.78rem; color: var(--gray-mid); }
+
+    /* ===== CTA DRIVER ===== */
+    .cta-driver {
+      padding: 96px 24px;
+      background: linear-gradient(135deg, var(--orange) 0%, var(--orange-dark) 100%);
+      text-align: center;
+    }
+    .cta-driver h2 { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 900; color: white; margin-bottom: 16px; }
+    .cta-driver p { font-size: 1rem; color: rgba(255,255,255,0.85); margin-bottom: 36px; max-width: 500px; margin-left: auto; margin-right: auto; line-height: 1.6; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      .hero-mob-content { grid-template-columns: 1fr; gap: 40px; padding-top: 100px; }
+      .passengers-inner { grid-template-columns: 1fr; gap: 48px; }
+      .drivers-inner { grid-template-columns: 1fr; gap: 48px; }
+      .safety-grid { grid-template-columns: 1fr 1fr; }
+      .test-grid { grid-template-columns: 1fr 1fr; }
+      .pass-badge { right: 0; bottom: -16px; }
+      .driver-earnings-card { left: 0; }
+    }
+    @media (max-width: 768px) {
+      .navbar-logo img { height: 44px !important; }
+      .navbar { padding: 10px 20px !important; }
+    }
+    @media (max-width: 600px) {
+      .safety-grid { grid-template-columns: 1fr; }
+      .test-grid { grid-template-columns: 1fr; }
+      .drivers-inner { grid-template-columns: 1fr; }
+      .pass-inner { grid-template-columns: 1fr; }
+      .drivers-visual { margin-top: 24px; }
+      .pass-visual { margin-top: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar" id="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-logo">
+        <img src="images/logo-zippa.png" alt="Zippa" style="height:72px;width:auto;" />
+      </a>
+      <ul class="navbar-links">
+        <li><a href="index.html">Início</a></li>
+        <li><a href="mobilidade.html" class="active">Mobilidade</a></li>
+        <li><a href="delivery.html">Delivery</a></li>
+        <li><a href="#motoristas">Para Motoristas</a></li>
+        <li><a href="#seguranca">Segurança</a></li>
+      </ul>
+      <div class="navbar-cta">
+        <a href="delivery.html" class="btn btn-outline" style="padding:10px 20px;font-size:0.85rem;"><i class="fas fa-utensils"></i> Delivery</a>
+        <a href="#passageiros" class="btn btn-primary" style="padding:10px 20px;font-size:0.85rem;"><i class="fas fa-car"></i> Baixar App</a>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ===== MOBILE MENU ===== -->
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-menu-close" id="menuClose"><i class="fas fa-times"></i></button>
+    <a href="index.html"><i class="fas fa-home"></i> Início</a>
+    <a href="mobilidade.html"><i class="fas fa-car"></i> Mobilidade</a>
+    <a href="delivery.html"><i class="fas fa-utensils"></i> Delivery</a>
+    <a href="#motoristas"><i class="fas fa-steering-wheel"></i> Para Motoristas</a>
+    <a href="https://wa.me/554431421244" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+  </div>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero-mob">
+    <div class="hero-mob-bg"></div>
+    <div class="hero-mob-overlay"></div>
+    <div class="hero-mob-content">
+      <div class="hero-mob-text anim-up">
+        <span class="section-tag">🚗 Zippa Mobilidade</span>
+        <h1>Sua viagem,<br><span>suas regras.</span><br>Preço justo.</h1>
+        <p>A Zippa garante conforto e segurança para ir a qualquer lugar da sua cidade. Motoristas verificados, preço transparente, sem surpresas.</p>
+        <div class="hero-mob-ctas">
+          <a href="#passageiros" class="btn btn-primary btn-lg"><i class="fas fa-mobile-alt"></i> Baixar App</a>
+          <a href="#motoristas" class="btn btn-outline" style="border-color:rgba(255,255,255,0.4);color:white;" onmouseover="this.style.background='rgba(255,255,255,0.1)'" onmouseout="this.style.background='transparent'">
+            <i class="fas fa-car-side"></i> Quero Dirigir
+          </a>
+        </div>
+      </div>
+      <div class="hero-mob-card anim-up anim-delay-2">
+        <h3><i class="fas fa-map-marker-alt" style="color:var(--orange)"></i> Para onde vamos?</h3>
+        <div class="ride-form">
+          <label>📍 Ponto de partida</label>
+          <input type="text" class="ride-input" placeholder="Sua localização atual" />
+          <label>🎯 Destino</label>
+          <input type="text" class="ride-input" placeholder="Para onde você quer ir?" />
+          <a href="#" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:4px;">
+            <i class="fas fa-search"></i> Ver motoristas disponíveis
+          </a>
+        </div>
+        <p style="font-size:0.75rem;color:rgba(255,255,255,0.45);margin-top:14px;text-align:center;">Disponível em breve via app. Baixe agora!</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PASSAGEIROS ===== -->
+  <section class="passengers-section" id="passageiros">
+    <div class="passengers-inner">
+      <div class="pass-visual anim-up">
+        <div class="pass-img-main">
+          <img src="images/passageiro.jpg" alt="Passageiro usando Zippa Mobilidade" loading="lazy" />
+        </div>
+        <div class="pass-badge">
+          <strong>4.9★</strong>
+          <span>Avaliação média</span>
+        </div>
+      </div>
+      <div class="pass-text anim-up anim-delay-1">
+        <span class="section-tag">Para Passageiros</span>
+        <h2 class="section-title">Viaje com <span>conforto e segurança</span><br>com a Zippa</h2>
+        <p class="section-subtitle">A Zippa sabe que cada corrida importa. Por isso, ela oferece controle total: veja o preço antes, escolha seu motorista e viaje tranquilo.</p>
+        <div class="features-grid" style="margin-top:32px; grid-template-columns: 1fr 1fr;">
+          <div class="feature-card">
+            <div class="feature-icon">💰</div>
+            <h3>Preço Fixo</h3>
+            <p>Sem surpresas. Você vê o valor antes de confirmar a viagem.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🔒</div>
+            <h3>Motoristas Verificados</h3>
+            <p>Todos os motoristas passam por checagem completa.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">⚡</div>
+            <h3>Chegada Rápida</h3>
+            <p>Motoristas próximos de você em tempo real.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">⭐</div>
+            <h3>Avalie sua Viagem</h3>
+            <p>Sua opinião melhora a experiência para todos.</p>
+          </div>
+        </div>
+        <div style="margin-top:32px;">
+          <p style="font-size:0.78rem;font-weight:700;color:var(--gray-mid);letter-spacing:1px;text-transform:uppercase;margin-bottom:12px;">📲 Baixe agora — escolha seu sistema:</p>
+          <div class="app-badges">
+            <a href="https://apps.apple.com/br/app/zippa/id6745717504" target="_blank" class="app-badge" style="background:#111;position:relative;">
+              <i class="fab fa-apple" style="font-size:1.6rem;"></i>
+              <div class="app-badge-text">
+                <small style="color:rgba(255,255,255,0.6);">iPhone / iPad</small>
+                <strong>App Store — iOS</strong>
+              </div>
+              <span style="position:absolute;top:-8px;right:-8px;background:#0071e3;color:white;font-size:0.6rem;font-weight:800;padding:2px 7px;border-radius:20px;">iOS</span>
+            </a>
+            <a href="https://play.google.com/store/apps/details?id=br.com.devbase.zippa" target="_blank" class="app-badge" style="background:#111;position:relative;">
+              <i class="fab fa-google-play" style="font-size:1.4rem;"></i>
+              <div class="app-badge-text">
+                <small style="color:rgba(255,255,255,0.6);">Celular Android</small>
+                <strong>Google Play — Android</strong>
+              </div>
+              <span style="position:absolute;top:-8px;right:-8px;background:#34a853;color:white;font-size:0.6rem;font-weight:800;padding:2px 7px;border-radius:20px;">Android</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MOTORISTAS ===== -->
+  <section class="drivers-section" id="motoristas">
+    <div class="drivers-inner">
+      <div class="drivers-text anim-up">
+        <span class="section-tag">Para Motoristas</span>
+        <h2 class="section-title">Seja o seu próprio<br><span>chefe com a Zippa.</span></h2>
+        <p class="section-subtitle">Ganhe dinheiro no seu tempo livre ou faça disso sua profissão. A Zippa oferece liberdade, transparência e suporte para você crescer.</p>
+        <div class="driver-benefits">
+          <div class="benefit-item">
+            <div class="benefit-icon">💸</div>
+            <div>
+              <h4>Ganhos Transparentes</h4>
+              <p>Você sabe exatamente quanto vai receber por cada corrida. Sem taxas escondidas.</p>
+            </div>
+          </div>
+          <div class="benefit-item">
+            <div class="benefit-icon">🕐</div>
+            <div>
+              <h4>Liberdade de Horários</h4>
+              <p>Trabalhe quando quiser. Ligue o app e comece a receber chamadas na hora.</p>
+            </div>
+          </div>
+          <div class="benefit-item">
+            <div class="benefit-icon">📱</div>
+            <div>
+              <h4>App Intuitivo</h4>
+              <p>Interface simples e fácil de usar. Em minutos você já está operando.</p>
+            </div>
+          </div>
+          <div class="benefit-item">
+            <div class="benefit-icon">🎯</div>
+            <div>
+              <h4>Comissão Justa</h4>
+              <p>A menor taxa do mercado. Você fica com a maior parte do que ganha.</p>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:32px;">
+          <a href="https://play.google.com/store/apps/details?id=br.com.devbase.zippa.prestador" target="_blank" class="btn btn-primary btn-lg" style="position:relative;">
+            <i class="fab fa-google-play"></i> Baixar App de Motorista
+            <span style="position:absolute;top:-10px;right:-10px;background:#34a853;color:white;font-size:0.6rem;font-weight:800;padding:2px 8px;border-radius:20px;">Android</span>
+          </a>
+          <div style="margin-top:14px;display:flex;align-items:flex-start;gap:10px;background:rgba(255,107,0,0.08);border:1px solid rgba(255,107,0,0.2);border-radius:12px;padding:14px 16px;">
+            <span style="font-size:1.2rem;">⚠️</span>
+            <p style="font-size:0.82rem;color:var(--gray-dark);line-height:1.6;margin:0;">
+              <strong>Atenção motoristas:</strong> o app de motorista está disponível <strong>somente para Android</strong>. Para ser motorista da Zippa, você precisa de um celular Android.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="drivers-visual anim-up anim-delay-2">
+        <div class="driver-img">
+          <img src="images/motorista.jpg" alt="Motorista Zippa sorrindo ao volante com passageiros" loading="lazy" />
+        </div>
+        <div class="driver-earnings-card">
+          <strong>R$ 3.200+</strong>
+          <span>Média mensal dos motoristas</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SEGURANÇA ===== -->
+  <section class="safety-section" id="seguranca">
+    <div class="safety-inner">
+      <div class="safety-header anim-up">
+        <span class="section-tag">Sua Segurança em 1º lugar</span>
+        <h2 class="section-title">Tecnologia que <span>protege você</span></h2>
+        <p class="section-subtitle" style="margin:0 auto;">Cada detalhe foi pensado para que você viaje com tranquilidade.</p>
+      </div>
+      <div class="safety-grid">
+        <div class="feature-card anim-up">
+          <div class="feature-icon">🆔</div>
+          <h3>Verificação de Identidade</h3>
+          <p>Todos os motoristas têm documentos verificados antes de começar a operar na plataforma.</p>
+        </div>
+        <div class="feature-card anim-up anim-delay-1">
+          <div class="feature-icon">📍</div>
+          <h3>Rastreamento em Tempo Real</h3>
+          <p>Acompanhe cada corrida ao vivo. Compartilhe sua rota com quem você confia.</p>
+        </div>
+        <div class="feature-card anim-up anim-delay-2">
+          <div class="feature-icon">🆘</div>
+          <h3>Botão de Emergência</h3>
+          <p>Em caso de necessidade, acione a central de segurança com um toque direto no app.</p>
+        </div>
+        <div class="feature-card anim-up">
+          <div class="feature-icon">⭐</div>
+          <h3>Sistema de Avaliações</h3>
+          <p>Motoristas e passageiros se avaliam mutuamente, mantendo a qualidade alta.</p>
+        </div>
+        <div class="feature-card anim-up anim-delay-1">
+          <div class="feature-icon">🔐</div>
+          <h3>Dados Protegidos</h3>
+          <p>Seus dados pessoais são criptografados e nunca compartilhados sem sua permissão.</p>
+        </div>
+        <div class="feature-card anim-up anim-delay-2">
+          <div class="feature-icon">💬</div>
+          <h3>Suporte 24/7</h3>
+          <p>A equipe da Zippa está disponível pelo WhatsApp a qualquer hora do dia ou da noite.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== DEPOIMENTOS ===== -->
+  <section class="testimonials-section">
+    <div class="test-inner">
+      <div class="test-header anim-up">
+        <span class="section-tag">O que dizem de nós</span>
+        <h2 class="section-title">Quem usa, <span>recomenda</span></h2>
+      </div>
+      <div class="test-grid">
+        <div class="test-card anim-up">
+          <div class="test-stars">★★★★★</div>
+          <p class="test-text">"Uso a Zippa todo dia para ir ao trabalho. O preço é sempre justo e os motoristas são super educados. Não troco por nada!"</p>
+          <div class="test-author">
+            <div class="test-avatar">AM</div>
+            <div><strong>Ana Maria S.</strong><span>Passageira — uso diário</span></div>
+          </div>
+        </div>
+        <div class="test-card anim-up anim-delay-1">
+          <div class="test-stars">★★★★★</div>
+          <p class="test-text">"Como motorista, o que me conquistou foi a transparência. Eu sei exatamente quanto vou ganhar antes de aceitar a corrida. Incrível!"</p>
+          <div class="test-author">
+            <div class="test-avatar">RC</div>
+            <div><strong>Roberto C.</strong><span>Motorista parceiro</span></div>
+          </div>
+        </div>
+        <div class="test-card anim-up anim-delay-2">
+          <div class="test-stars">★★★★★</div>
+          <p class="test-text">"Me sinto muito mais segura usando a Zippa. Saber que os motoristas são verificados e que tem o botão de emergência faz toda diferença."</p>
+          <div class="test-author">
+            <div class="test-avatar">JL</div>
+            <div><strong>Juliana L.</strong><span>Passageira frequente</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA FINAL ===== -->
+  <section class="cta-driver" id="cadastro">
+    <h2>A Zippa está pronta.<br><span style="text-decoration:underline;text-decoration-color:rgba(255,255,255,0.4)">E você?</span></h2>
+    <p>Deixe seu contato e nossa equipe fala com você pelo WhatsApp!</p>
+
+    <!-- FORMULÁRIO LEAD MOBILIDADE -->
+    <div style="max-width:500px;margin:0 auto 36px;background:rgba(255,255,255,0.1);backdrop-filter:blur(12px);border-radius:20px;padding:28px;border:1px solid rgba(255,255,255,0.2);">
+      <p style="font-size:0.75rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.55);margin-bottom:18px;">📬 Quero fazer parte da Zippa Mobilidade</p>
+      <form id="formLeadMob" onsubmit="enviarLeadMob(event)">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;">
+          <input id="mobNome" type="text" placeholder="Seu nome" required
+            style="background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.22);border-radius:10px;padding:12px 14px;color:white;font-size:0.88rem;font-family:inherit;width:100%;" />
+          <input id="mobTelefone" type="tel" placeholder="WhatsApp" required
+            style="background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.22);border-radius:10px;padding:12px 14px;color:white;font-size:0.88rem;font-family:inherit;width:100%;" />
+        </div>
+        <select id="mobPerfil" required
+          style="background:rgba(20,20,20,0.95);border:1px solid rgba(255,255,255,0.22);border-radius:10px;padding:12px 14px;color:white;font-size:0.88rem;font-family:inherit;width:100%;margin-bottom:14px;">
+          <option value="" disabled selected>Sou...</option>
+          <option value="Passageiro - Mobilidade">🚗 Passageiro — quero usar a Zippa</option>
+          <option value="Motorista - Mobilidade">🚙 Motorista — quero ser parceiro</option>
+        </select>
+        <button id="btnLeadMob" type="submit" data-label='<i class="fas fa-paper-plane"></i> Enviar meu contato'
+          class="btn btn-white btn-lg" style="width:100%;justify-content:center;">
+          <i class="fas fa-paper-plane"></i> Enviar meu contato
+        </button>
+      </form>
+      <div id="successLeadMob" style="display:none;align-items:center;gap:12px;background:rgba(39,174,96,0.2);border:1px solid rgba(39,174,96,0.4);border-radius:12px;padding:16px 20px;margin-top:4px;">
+        <span style="font-size:1.5rem;">🎉</span>
+        <div>
+          <strong style="color:white;display:block;">Recebemos seu contato!</strong>
+          <span style="font-size:0.82rem;color:rgba(255,255,255,0.7);">Nossa equipe fala com você em breve pelo WhatsApp.</span>
+        </div>
+      </div>
+      <p style="font-size:0.7rem;color:rgba(255,255,255,0.3);margin-top:10px;text-align:center;">
+        🔒 Protegido pela <a href="privacidade.html" style="color:rgba(255,255,255,0.45);text-decoration:underline;">LGPD</a>. Seus dados não são compartilhados.
+      </p>
+    </div>
+
+    <p>Ou baixe direto o app:</p>
+    <p style="font-size:0.78rem;font-weight:700;color:rgba(255,255,255,0.5);letter-spacing:1px;text-transform:uppercase;margin-bottom:12px;">📲 Escolha seu sistema:</p>
+    <div class="app-badges" style="justify-content:center; margin-bottom:28px;">
+      <a href="https://apps.apple.com/br/app/zippa/id6745717504" target="_blank" class="app-badge" style="position:relative;">
+        <i class="fab fa-apple" style="font-size:1.6rem;"></i>
+        <div class="app-badge-text"><small style="color:rgba(255,255,255,0.6);">iPhone / iPad</small><strong>App Store — iOS</strong></div>
+        <span style="position:absolute;top:-8px;right:-8px;background:#0071e3;color:white;font-size:0.6rem;font-weight:800;padding:2px 7px;border-radius:20px;">iOS</span>
+      </a>
+      <a href="https://play.google.com/store/apps/details?id=br.com.devbase.zippa" target="_blank" class="app-badge" style="position:relative;">
+        <i class="fab fa-google-play" style="font-size:1.4rem;"></i>
+        <div class="app-badge-text"><small style="color:rgba(255,255,255,0.6);">Celular Android</small><strong>Google Play — Android</strong></div>
+        <span style="position:absolute;top:-8px;right:-8px;background:#34a853;color:white;font-size:0.6rem;font-weight:800;padding:2px 7px;border-radius:20px;">Android</span>
+      </a>
+    </div>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+      <a href="https://wa.me/554431421244" target="_blank" class="btn btn-white btn-lg"><i class="fab fa-whatsapp" style="color:#25D366"></i> Quero ser Motorista</a>
+      <a href="delivery.html" class="btn btn-dark btn-lg"><i class="fas fa-utensils"></i> Ver Zippa Delivery</a>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="navbar-logo" style="display:inline-block;margin-bottom:4px;">
+            <img src="images/logo-zippa.png" alt="Zippa" style="height:64px;width:auto;" />
+          </a>
+          <p>O melhor de dois mundos: mobilidade e delivery na sua cidade, com segurança e preço justo.</p>
+          <div class="footer-socials" style="margin-top:20px;">
+            <a href="#" class="social-btn"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-btn"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-btn"><i class="fab fa-tiktok"></i></a>
+            <a href="https://wa.me/554431421244" class="social-btn"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Mobilidade</h4>
+          <ul>
+            <li><a href="#passageiros">Para Passageiros</a></li>
+            <li><a href="#motoristas">Para Motoristas</a></li>
+            <li><a href="#seguranca">Segurança</a></li>
+            <li><a href="#cadastro">Baixar App</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Empresa</h4>
+          <ul>
+            <li><a href="index.html#sobre">Sobre a Zippa</a></li>
+            <li><a href="delivery.html">Zippa Delivery</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Carreiras</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Suporte</h4>
+          <ul>
+            <li><a href="https://wa.me/554431421244">WhatsApp</a></li>
+            <li><a href="#">Central de Ajuda</a></li>
+            <li><a href="privacidade.html#termos">Termos de Uso</a></li>
+            <li><a href="privacidade.html#privacidade">Privacidade</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 Zippa. Desenvolvido por <strong>Nexa Labs</strong> — Todos os direitos reservados.</p>
+        <p><a href="privacidade.html#termos" style="color:rgba(255,255,255,0.5);text-decoration:underline;font-size:0.82rem;">Termos de Uso</a> · <a href="privacidade.html#privacidade" style="color:rgba(255,255,255,0.5);text-decoration:underline;font-size:0.82rem;">Privacidade</a> · <a href="privacidade.html#lgpd" style="color:rgba(255,255,255,0.5);text-decoration:underline;font-size:0.82rem;">LGPD</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/554431421244" target="_blank" class="whatsapp-float" title="Fale conosco">
+    <i class="fab fa-whatsapp"></i>
+    <span class="wa-label">Suporte</span>
+  </a>
+
+  <script src="js/axon-crm.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/cookies.js"></script>
+  <script>
+  async function enviarLeadMob(e) {
+    e.preventDefault();
+    await zippaEnviarLead(
+      'formLeadMob', 'btnLeadMob', 'successLeadMob',
+      {
+        nome:      document.getElementById('mobNome').value,
+        telefone:  document.getElementById('mobTelefone').value,
+        interesse: document.getElementById('mobPerfil').value,
+        tags:      ['site-zippa', 'mobilidade']
+      }
+    );
+  }
+  </script>
+</body>
+</html>

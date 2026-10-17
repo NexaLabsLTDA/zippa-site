@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zippa Delivery — Comida boa, entregue rápido | A Zippa</title>
+  <meta name="description" content="A Zippa Delivery traz os melhores restaurantes da sua cidade até a sua porta. Taxa justa, entrega rápida, comida quente." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* ===== HERO DELIVERY ===== */
+    .hero-del {
+      min-height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+    .hero-del-bg {
+      position: absolute;
+      inset: 0;
+      background: url('https://images.unsplash.com/photo-1565299507177-b0ac66763828?w=1600&q=80') center/cover no-repeat;
+      z-index: 0;
+    }
+    .hero-del-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, rgba(20,5,0,0.93) 0%, rgba(100,30,0,0.78) 50%, rgba(180,60,0,0.5) 100%);
+      z-index: 1;
+    }
+    .hero-del-content {
+      position: relative;
+      z-index: 2;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 120px 24px 80px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .hero-del-text .section-tag {
+      background: rgba(255,107,0,0.2);
+      color: #ffb380;
+    }
+    .hero-del-text h1 {
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      font-weight: 900;
+      color: white;
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+    .hero-del-text h1 span { color: var(--orange); }
+    .hero-del-text p {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.7;
+      margin-bottom: 36px;
+      max-width: 480px;
+    }
+    .hero-del-ctas { display: flex; gap: 16px; flex-wrap: wrap; }
+
+    /* Search Box */
+    .del-search-box {
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: var(--radius-lg);
+      padding: 36px 32px;
+      color: white;
+    }
+    .del-search-box h3 {
+      font-size: 1.1rem; font-weight: 700; margin-bottom: 20px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .del-search-input {
+      width: 100%;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: var(--radius-sm);
+      padding: 14px 16px;
+      font-size: 0.95rem;
+      color: white;
+      font-family: var(--font);
+      transition: var(--transition);
+    }
+    .del-search-input::placeholder { color: rgba(255,255,255,0.4); }
+    .del-search-input:focus { outline: none; border-color: var(--orange); background: rgba(255,107,0,0.1); }
+    .category-pills {
+      display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0;
+    }
+    .cat-pill {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: white;
+      padding: 6px 14px;
+      border-radius: 40px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .cat-pill:hover, .cat-pill.active {
+      background: var(--orange);
+      border-color: var(--orange);
+    }
+
+    /* ===== CATEGORIES ===== */
+    .categories-section {
+      padding: 80px 24px;
+      background: white;
+    }
+    .cat-inner { max-width: 1200px; margin: 0 auto; }
+    .cat-header { text-align: center; margin-bottom: 48px; }
+    .cat-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 16px;
+    }
+    .cat-card {
+      background: var(--gray-light);
+      border-radius: var(--radius-md);
+      padding: 24px 16px;
+      text-align: center;
+      cursor: pointer;
+      transition: var(--transition);
+      border: 2px solid transparent;
+    }
+    .cat-card:hover {
+      border-color: var(--orange);
+      background: white;
+      box-shadow: var(--shadow);
+      transform: translateY(-4px);
+    }
+    .cat-card .emoji { font-size: 2.2rem; margin-bottom: 10px; }
+    .cat-card span { font-size: 0.82rem; font-weight: 700; color: var(--gray-dark); }
+
+    /* ===== HOW DELIVERY ===== */
+    .how-del-section {
+      padding: 96px 24px;
+      background: var(--gray-light);
+    }
+    .how-del-inner { max-width: 1200px; margin: 0 auto; }
+    .how-del-header { text-align: center; margin-bottom: 56px; }
+    .how-del-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+      position: relative;
+    }
+    .how-del-steps::before {
+      content: '';
+      position: absolute;
+      top: 28px;
+      left: calc(12.5% + 8px);
+      right: calc(12.5% + 8px);
+      height: 2px;
+      background: linear-gradient(to right, var(--orange), rgba(255,107,0,0.15));
+    }
+    .hdel-step { text-align: center; position: relative; }
+    .hdel-num {
+      width: 56px; height: 56px;
+      background: var(--orange); color: white;
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem; margin: 0 auto 20px;
+      position: relative; z-index: 2;
+      box-shadow: var(--shadow-orange);
+    }
+    .hdel-step h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 8px; }
+    .hdel-step p { font-size: 0.84rem; color: var(--gray-mid); line-height: 1.6; }
+
+    /* ===== CUSTOMERS SECTION ===== */
+    .customers-section {
+      padding: 96px 24px;
+      background: white;
+    }
+    .cust-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: center;
+    }
+    .cust-text {}
+    .cust-visual {
+      position: relative;
+    }
+    .cust-img {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      aspect-ratio: 4/3;
+    }
+    .cust-img img { width: 100%; height: 100%; object-fit: cover; }
+    .cust-badge {
+      position: absolute;
+      bottom: -16px; right: -16px;
+      background: var(--orange);
+      color: white;
+      padding: 18px 22px;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-orange);
+      text-align: center;
+    }
+    .cust-badge strong { display: block; font-size: 1.6rem; font-weight: 900; }
+    .cust-badge span { font-size: 0.75rem; opacity: 0.9; }
+    .delivery-perks {
+      margin-top: 32px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .perk-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .perk-icon {
+      width: 40px; height: 40px; min-width: 40px;
+      background: rgba(255,107,0,0.1);
+      border-radius: var(--radius-sm);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+    }
+    .perk-item h4 { font-size: 0.88rem; font-weight: 700; margin-bottom: 3px; }
+    .perk-item p { font-size: 0.8rem; color: var(--gray-mid); line-height: 1.5; }
+
+    /* ===== RESTAURANTS B2B ===== */
+    .restaurants-section {
+      padding: 96px 24px;
+      background: var(--dark);
+    }
+    .rest-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: center;
+    }
+    .rest-text .section-tag { background: rgba(255,107,0,0.2); color: #ffb380; }
+    .rest-text .section-title { color: white; }
+    .rest-text .section-subtitle { color: rgba(255,255,255,0.6); }
+    .rest-args {
+      margin-top: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .rest-arg {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      background: rgba(255,255,255,0.06);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: var(--transition);
+    }
+    .rest-arg:hover { background: rgba(255,107,0,0.1); border-color: rgba(255,107,0,0.3); }
+    .rest-arg-icon {
+      width: 44px; height: 44px; min-width: 44px;
+      background: rgba(255,107,0,0.15);
+      border-radius: var(--radius-sm);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+    }
+    .rest-arg h4 { font-size: 0.95rem; font-weight: 700; color: white; margin-bottom: 4px; }
+    .rest-arg p { font-size: 0.84rem; color: rgba(255,255,255,0.55); line-height: 1.5; }
+    .rest-visual {
+      position: relative;
+    }
+    .rest-img {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      aspect-ratio: 3/4;
+      background: linear-gradient(135deg, #3d1500, #7c2d00);
+    }
+    .rest-img img { width: 100%; height: 100%; object-fit: cover; }
+    .rest-stats {
+      position: absolute;
+      bottom: 24px; left: -24px;
+      background: var(--orange);
+      color: white;
+      padding: 20px 24px;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-orange);
+    }
+    .rest-stats strong { display: block; font-size: 1.6rem; font-weight: 900; }
+    .rest-stats span { font-size: 0.78rem; opacity: 0.9; }
+
+    /* ===== PROMO BANNER ===== */
+    .promo-section {
+      padding: 48px 24px;
+      background: var(--orange);
+    }
+    .promo-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; align-items: center;
+      justify-content: space-between; gap: 24px; flex-wrap: wrap;
+    }
+    .promo-text h3 { font-size: 1.5rem; font-weight: 800; color: white; }
+    .promo-text p { font-size: 0.92rem; color: rgba(255,255,255,0.85); margin-top: 4px; }
+
+    /* ===== TESTIMONIALS ===== */
+    .del-testimonials {
+      padding: 96px 24px;
+      background: var(--gray-light);
+    }
+    .del-test-inner { max-width: 1200px; margin: 0 auto; }
+    .del-test-header { text-align: center; margin-bottom: 48px; }
+    .del-test-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .del-test-card {
+      background: white;
+      border-radius: var(--radius-md);
+      padding: 28px 24px;
+      transition: var(--transition);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    }
+    .del-test-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+    .del-test-card .stars { color: var(--orange); font-size: 0.9rem; margin-bottom: 12px; }
+    .del-test-card .quote { font-size: 0.92rem; color: var(--gray-dark); line-height: 1.7; font-style: italic; margin-bottom: 20px; }
+    .del-test-card .author { display: flex; align-items: center; gap: 12px; }
+    .del-test-card .avatar {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: var(--orange); color: white;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 0.9rem;
+    }
+    .del-test-card .author strong { font-size: 0.88rem; display: block; }
+    .del-test-card .author span { font-size: 0.78rem; color: var(--gray-mid); }
+
+    /* ===== CTA FINAL ===== */
+    .cta-del {
+      padding: 96px 24px;
+      background: linear-gradient(135deg, #2d0a00 0%, #7c2d00 50%, var(--orange) 100%);
+      text-align: center;
+    }
+    .cta-del h2 { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 900; color: white; margin-bottom: 16px; }
+    .cta-del p { font-size: 1rem; color: rgba(255,255,255,0.85); margin-bottom: 36px; max-width: 500px; margin-left: auto; margin-right: auto; line-height: 1.6; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .cat-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 900px) {
+      .hero-del-content { grid-template-columns: 1fr; gap: 40px; padding-top: 100px; }
+      .cust-inner { grid-template-columns: 1fr; gap: 48px; }
+      .rest-inner { grid-template-columns: 1fr; gap: 48px; }
+      .how-del-steps { grid-template-columns: repeat(2, 1fr); }
+      .how-del-steps::before { display: none; }
+      .del-test-grid { grid-template-columns: 1fr 1fr; }
+      .cust-badge { right: 0; bottom: -16px; }
+      .rest-stats { left: 0; }
+    }
+    @media (max-width: 768px) {
+      .navbar-logo img { height: 44px !important; }
+      .navbar { padding: 10px 20px !important; }
+    }
+    @media (max-width: 600px) {
+      .cat-grid { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+      .how-del-steps { grid-template-columns: 1fr; }
+      .del-test-grid { grid-template-columns: 1fr; }
+      .delivery-perks { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar" id="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-logo">
+        <img src="images/logo-zippa-delivery.png" alt="Zippa Delivery" style="height:72px;width:auto;" />
+      </a>
+      <ul class="navbar-links">
+        <li><a href="index.html">Início</a></li>
+        <li><a href="mobilidade.html">Mobilidade</a></li>
+        <li><a href="delivery.html" class="active">Delivery</a></li>
+        <li><a href="#restaurantes">Para Restaurantes</a></li>
+        <li><a href="#como-funciona">Como Funciona</a></li>
+      </ul>
+      <div class="navbar-cta">
+        <a href="mobilidade.html" class="btn btn-outline" style="padding:10px 20px;font-size:0.85rem;"><i class="fas fa-car"></i> Mobilidade</a>
+        <a href="#pedido" class="btn btn-primary" style="padding:10px 20px;font-size:0.85rem;"><i class="fas fa-utensils"></i> Pedir Agora</a>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ===== MOBILE MENU ===== -->
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-menu-close" id="menuClose"><i class="fas fa-times"></i></button>
+    <a href="index.html"><i class="fas fa-home"></i> Início</a>
+    <a href="mobilidade.html"><i class="fas fa-car"></i> Mobilidade</a>
+    <a href="delivery.html"><i class="fas fa-utensils"></i> Delivery</a>
+    <a href="#restaurantes"><i class="fas fa-store"></i> Para Restaurantes</a>
+    <a href="https://wa.me/554431421244" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+  </div>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero-del" id="pedido">
+    <div class="hero-del-bg"></div>
+    <div class="hero-del-overlay"></div>
+    <div class="hero-del-content">
+      <div class="hero-del-text anim-up">
+        <span class="section-tag">🍔 Zippa Delivery</span>
+        <h1>Os melhores<br>restaurantes,<br><span>à distância de<br>um toque.</span></h1>
+        <p>A Zippa garante entrega rápida, comida quente e taxa justa. Porque você merece comer bem sem pagar caro.</p>
+        <div class="hero-del-ctas">
+          <a href="#" class="btn btn-primary btn-lg"><i class="fas fa-mobile-alt"></i> Baixar App</a>
+          <a href="#restaurantes" class="btn btn-outline" style="border-color:rgba(255,255,255,0.4);color:white;" onmouseover="this.style.background='rgba(255,255,255,0.1)'" onmouseout="this.style.background='transparent'">
+            <i class="fas fa-store"></i> Sou Restaurante
+          </a>
+        </div>
+      </div>
+      <div class="del-search-box anim-up anim-delay-2">
+        <h3><i class="fas fa-search" style="color:var(--orange)"></i> O que você quer comer?</h3>
+        <input type="text" class="del-search-input" placeholder="🔍 Buscar restaurante ou prato..." style="margin-bottom:16px;" />
+        <p style="font-size:0.78rem;color:rgba(255,255,255,0.5);margin-bottom:10px;">Categorias populares:</p>
+        <div class="category-pills">
+          <span class="cat-pill active">🍔 Lanches</span>
+          <span class="cat-pill">🍕 Pizza</span>
+          <span class="cat-pill">🍣 Sushi</span>
+          <span class="cat-pill">🍗 Frango</span>
+          <span class="cat-pill">🥗 Saudável</span>
+          <span class="cat-pill">🍦 Sobremesas</span>
+          <span class="cat-pill">☕ Café</span>
+          <span class="cat-pill">🌮 Mexicano</span>
+        </div>
+        <a href="#" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:8px;">
+          <i class="fas fa-utensils"></i> Ver restaurantes disponíveis
+        </a>
+        <p style="font-size:0.72rem;color:rgba(255,255,255,0.4);margin-top:12px;text-align:center;">Disponível para iPhone e Android. Baixe agora!</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CATEGORIES ===== -->
+  <section class="categories-section">
+    <div class="cat-inner">
+      <div class="cat-header anim-up">
+        <span class="section-tag">Explore o cardápio</span>
+        <h2 class="section-title">Qual é a <span>sua vontade</span> hoje?</h2>
+      </div>
+      <div class="cat-grid">
+        <div class="cat-card anim-up">
+          <div class="emoji">🍔</div>
+          <span>Lanches</span>
+        </div>
+        <div class="cat-card anim-up anim-delay-1">
+          <div class="emoji">🍕</div>
+          <span>Pizza</span>
+        </div>
+        <div class="cat-card anim-up anim-delay-1">
+          <div class="emoji">🍣</div>
+          <span>Sushi</span>
+        </div>
+        <div class="cat-card anim-up anim-delay-2">
+          <div class="emoji">🍗</div>
+          <span>Frango</span>
+        </div>
+        <div class="cat-card anim-up anim-delay-2">
+          <div class="emoji">🥗</div>
+          <span>Saudável</span>
+        </div>
+        <div class="cat-card anim-up anim-delay-3">
+          <div class="emoji">🌮</div>
+          <span>Mexicano</span>
+        </div>
+        <div class="cat-card anim-up anim-delay-3">
+          <div class="emoji">🍦</div>
+          <span>Sobremesas</span>
+        </div>
+        <div class="cat-card anim-up">
+          <div class="emoji">☕</div>
+          <span>Café & Bolos</span>
+        </div>
+        <div class="cat-card anim-up anim-delay-1">
+          <div class="emoji">🍝</div>
+          <span>Massas</span>
+        </div>
+        <div class="cat-card anim-up anim-delay-1">
+          <div class="emoji">🥩</div>
+          <span>Carnes</span>
+        </div>
+        <div class="cat-card anim-up anim-delay-2">
+          <div class="emoji">🥐</div>
+          <span>Padaria</span>
+        </div>
+        <div class="cat-card anim-up anim-delay-2">
+          <div class="emoji">🧃</div>
+          <span>Bebidas</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PROMO BANNER ===== -->
+  <div class="promo-section">
+    <div class="promo-inner">
+      <div class="promo-text">
+        <h3>🎉 Frete grátis na primeira entrega!</h3>
+        <p>Baixe o app agora e aproveite o frete grátis no seu primeiro pedido.</p>
+      </div>
+      <div class="app-badges">
+        <a href="https://apps.apple.com/br/app/zippa-delivery/id6821483597" target="_blank" class="app-badge" style="background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.3);">
+          <i class="fab fa-apple"></i>
+          <div class="app-badge-text"><small>Disponível na</small><strong>App Store</strong></div>
+        </a>
+        <a href="https://play.google.com/store/apps/details?id=app.zippa.cliente" target="_blank" class="app-badge" style="background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.3);">
+          <i class="fab fa-google-play"></i>
+          <div class="app-badge-text"><small>Disponível no</small><strong>Google Play</strong></div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== HOW IT WORKS ===== -->
+  <section class="how-del-section" id="como-funciona">
+    <div class="how-del-inner">
+      <div class="how-del-header anim-up">
+        <span class="section-tag">Simples assim</span>
+        <h2 class="section-title">Pedir é <span>fácil demais</span></h2>
+        <p class="section-subtitle" style="margin:0 auto;">Em menos de 3 minutos seu pedido já está a caminho.</p>
+      </div>
+      <div class="how-del-steps" style="margin-top:48px;">
+        <div class="hdel-step anim-up">
+          <div class="hdel-num">1</div>
+          <h4>Baixe o App</h4>
+          <p>Disponível gratuitamente para iOS e Android. Cadastro em 1 minuto.</p>
+        </div>
+        <div class="hdel-step anim-up anim-delay-1">
+          <div class="hdel-num">2</div>
+          <h4>Escolha o Restaurante</h4>
+          <p>Filtre por categoria, distância ou avaliação. Você no controle.</p>
+        </div>
+        <div class="hdel-step anim-up anim-delay-2">
+          <div class="hdel-num">3</div>
+          <h4>Monte seu Pedido</h4>
+          <p>Adicione ao carrinho, personalize os itens e confirme com segurança.</p>
+        </div>
+        <div class="hdel-step anim-up anim-delay-3">
+          <div class="hdel-num">4</div>
+          <h4>Receba em Casa!</h4>
+          <p>Acompanhe a entrega em tempo real. Comida quentinha na sua porta.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CUSTOMERS ===== -->
+  <section class="customers-section">
+    <div class="cust-inner">
+      <div class="cust-visual anim-up">
+        <div class="cust-img">
+          <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80" alt="Comida deliciosa entregue pela Zippa" loading="lazy" />
+        </div>
+        <div class="cust-badge">
+          <strong>&lt;30min</strong>
+          <span>Tempo médio de entrega</span>
+        </div>
+      </div>
+      <div class="cust-text anim-up anim-delay-1">
+        <span class="section-tag">Para Você</span>
+        <h2 class="section-title">Entrega rápida,<br>comida <span>quentinha</span>,<br>taxa justa.</h2>
+        <p class="section-subtitle">Chega de pagar mais pelo frete do que pela comida. A Zippa mantém a taxa de entrega sempre transparente e justa.</p>
+        <div class="delivery-perks">
+          <div class="perk-item">
+            <div class="perk-icon">⚡</div>
+            <div>
+              <h4>Entrega Rápida</h4>
+              <p>Média de 25 a 35 min para a maioria dos pedidos.</p>
+            </div>
+          </div>
+          <div class="perk-item">
+            <div class="perk-icon">💰</div>
+            <div>
+              <h4>Taxa Justa</h4>
+              <p>Sem taxas escondidas. O que você vê é o que paga.</p>
+            </div>
+          </div>
+          <div class="perk-item">
+            <div class="perk-icon">🔥</div>
+            <div>
+              <h4>Comida Quente</h4>
+              <p>Embalagens térmicas para manter tudo quentinho.</p>
+            </div>
+          </div>
+          <div class="perk-item">
+            <div class="perk-icon">📍</div>
+            <div>
+              <h4>Rastreamento</h4>
+              <p>Acompanhe seu pedido em tempo real no mapa.</p>
+            </div>
+          </div>
+          <div class="perk-item">
+            <div class="perk-icon">🏆</div>
+            <div>
+              <h4>Melhores Restaurantes</h4>
+              <p>Curadoria rigorosa de parceiros verificados.</p>
+            </div>
+          </div>
+          <div class="perk-item">
+            <div class="perk-icon">💳</div>
+            <div>
+              <h4>Pague como Quiser</h4>
+              <p>Cartão, Pix ou dinheiro. Você escolhe.</p>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:32px;">
+          <p style="font-size:0.78rem;font-weight:700;color:var(--gray-mid);letter-spacing:1px;text-transform:uppercase;margin-bottom:12px;">📲 Baixe agora — escolha seu sistema:</p>
+          <div class="app-badges">
+            <a href="https://apps.apple.com/br/app/zippa-delivery/id6821483597" target="_blank" class="app-badge" style="position:relative;">
+              <i class="fab fa-apple" style="font-size:1.6rem;"></i>
+              <div class="app-badge-text">
+                <small style="color:rgba(255,255,255,0.6);">iPhone / iPad</small>
+                <strong>App Store — iOS</strong>
+              </div>
+              <span style="position:absolute;top:-8px;right:-8px;background:#0071e3;color:white;font-size:0.6rem;font-weight:800;padding:2px 7px;border-radius:20px;">iOS</span>
+            </a>
+            <a href="https://play.google.com/store/apps/details?id=app.zippa.cliente" target="_blank" class="app-badge" style="position:relative;">
+              <i class="fab fa-google-play" style="font-size:1.4rem;"></i>
+              <div class="app-badge-text">
+                <small style="color:rgba(255,255,255,0.6);">Celular Android</small>
+                <strong>Google Play — Android</strong>
+              </div>
+              <span style="position:absolute;top:-8px;right:-8px;background:#34a853;color:white;font-size:0.6rem;font-weight:800;padding:2px 7px;border-radius:20px;">Android</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== RESTAURANTS B2B ===== -->
+  <section class="restaurants-section" id="restaurantes">
+    <div class="rest-inner">
+      <div class="rest-text anim-up">
+        <span class="section-tag">Para Restaurantes</span>
+        <h2 class="section-title">Aumente suas vendas<br><span>sem taxas abusivas.</span></h2>
+        <p class="section-subtitle">A Zippa sabe que comissões altas destroem a margem do restaurante. Por isso, ela pratica a menor taxa do mercado.</p>
+        <div class="rest-args">
+          <div class="rest-arg">
+            <div class="rest-arg-icon">🚫</div>
+            <div>
+              <h4>Sem Mensalidade</h4>
+              <p>Você não paga nada para entrar. Só fatura quando vende.</p>
+            </div>
+          </div>
+          <div class="rest-arg">
+            <div class="rest-arg-icon">💸</div>
+            <div>
+              <h4>Comissão Justa</h4>
+              <p>A menor taxa do mercado, com total transparência nos repasses.</p>
+            </div>
+          </div>
+          <div class="rest-arg">
+            <div class="rest-arg-icon">🛵</div>
+            <div>
+              <h4>Nós Tratamos da Entrega</h4>
+              <p>Você faz o que sabe: cozinhar. Nós cuidamos do resto.</p>
+            </div>
+          </div>
+          <div class="rest-arg">
+            <div class="rest-arg-icon">📊</div>
+            <div>
+              <h4>Painel de Gestão</h4>
+              <p>Acompanhe pedidos, faturamento e avaliações em tempo real.</p>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:32px;display:flex;gap:12px;flex-wrap:wrap;align-items:center;">
+          <a href="https://wa.me/554431421244" target="_blank" class="btn btn-primary btn-lg">
+            <i class="fab fa-whatsapp"></i> Falar com a Zippa
+          </a>
+        </div>
+
+        <!-- App Restaurante Parceiro -->
+        <div style="margin-top:20px;padding:20px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:16px;">
+          <p style="font-size:0.78rem;font-weight:700;color:rgba(255,255,255,0.5);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:14px;">🏪 Sou Restaurante Parceiro — baixar app:</p>
+          <div style="display:flex;gap:12px;flex-wrap:wrap;">
+            <a href="https://play.google.com/store/apps/details?id=app.zippa.lojista" target="_blank" class="app-badge" style="position:relative;">
+              <i class="fab fa-google-play" style="font-size:1.4rem;"></i>
+              <div class="app-badge-text">
+                <small style="color:rgba(255,255,255,0.6);">Celular Android</small>
+                <strong>Google Play — Android</strong>
+              </div>
+              <span style="position:absolute;top:-8px;right:-8px;background:#34a853;color:white;font-size:0.6rem;font-weight:800;padding:2px 7px;border-radius:20px;">Android</span>
+            </a>
+            <a href="https://apps.apple.com/br/app/zippa-lojistas/id6822031474" target="_blank" class="app-badge" style="position:relative;">
+              <i class="fab fa-apple" style="font-size:1.6rem;"></i>
+              <div class="app-badge-text">
+                <small style="color:rgba(255,255,255,0.6);">iPhone / iPad</small>
+                <strong>App Store — iOS</strong>
+              </div>
+              <span style="position:absolute;top:-8px;right:-8px;background:#0071e3;color:white;font-size:0.6rem;font-weight:800;padding:2px 7px;border-radius:20px;">iOS</span>
+            </a>
+          </div>
+          <div style="margin-top:12px;display:flex;align-items:flex-start;gap:8px;background:rgba(255,107,0,0.1);border:1px solid rgba(255,107,0,0.25);border-radius:10px;padding:12px 14px;">
+            <span style="font-size:1rem;">⚠️</span>
+            <p style="font-size:0.78rem;color:rgba(255,255,255,0.65);line-height:1.6;margin:0;">
+              <strong style="color:white;">Atenção restaurantes:</strong> o app de lojista está disponível para <strong style="color:white;">Android e iPhone</strong>.
+            </p>
+          </div>
+        </div>
+
+        <!-- App Entregador -->
+        <div style="margin-top:28px;padding:20px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:16px;">
+          <p style="font-size:0.78rem;font-weight:700;color:rgba(255,255,255,0.5);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:14px;">🛵 Sou Entregador — baixar app:</p>
+          <div style="display:flex;gap:12px;flex-wrap:wrap;">
+            <a href="https://play.google.com/store/apps/details?id=app.zippa.entregador" target="_blank" class="app-badge" style="position:relative;">
+              <i class="fab fa-google-play" style="font-size:1.4rem;"></i>
+              <div class="app-badge-text">
+                <small style="color:rgba(255,255,255,0.6);">Celular Android</small>
+                <strong>Google Play — Android</strong>
+              </div>
+              <span style="position:absolute;top:-8px;right:-8px;background:#34a853;color:white;font-size:0.6rem;font-weight:800;padding:2px 7px;border-radius:20px;">Android</span>
+            </a>
+            <a href="#" class="app-badge" style="position:relative;opacity:0.5;cursor:not-allowed;">
+              <i class="fab fa-apple" style="font-size:1.6rem;"></i>
+              <div class="app-badge-text">
+                <small style="color:rgba(255,255,255,0.6);">iPhone / iPad</small>
+                <strong>App Store — iOS</strong>
+              </div>
+              <span style="position:absolute;top:-8px;right:-8px;background:#666;color:white;font-size:0.6rem;font-weight:800;padding:2px 7px;border-radius:20px;">Em breve</span>
+            </a>
+          </div>
+          <div style="margin-top:12px;display:flex;align-items:flex-start;gap:8px;background:rgba(255,107,0,0.1);border:1px solid rgba(255,107,0,0.25);border-radius:10px;padding:12px 14px;">
+            <span style="font-size:1rem;">⚠️</span>
+            <p style="font-size:0.78rem;color:rgba(255,255,255,0.65);line-height:1.6;margin:0;">
+              <strong style="color:white;">Atenção entregadores:</strong> o app de entregador está disponível <strong style="color:white;">somente para Android</strong>. É necessário um celular Android para trabalhar como entregador da Zippa.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="rest-visual anim-up anim-delay-2">
+        <div class="rest-img">
+          <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=700&q=80" alt="Restaurante parceiro Zippa" loading="lazy" />
+        </div>
+        <div class="rest-stats">
+          <strong>+500</strong>
+          <span>Restaurantes parceiros</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TESTIMONIALS ===== -->
+  <section class="del-testimonials">
+    <div class="del-test-inner">
+      <div class="del-test-header anim-up">
+        <span class="section-tag">Quem pede, volta sempre</span>
+        <h2 class="section-title">A cidade toda está <span>amando</span></h2>
+      </div>
+      <div class="del-test-grid">
+        <div class="del-test-card anim-up">
+          <div class="stars">★★★★★</div>
+          <p class="quote">"Pedi uma pizza e chegou em 22 minutos, ainda quentinha! A taxa de entrega foi super justa. Nunca mais vou usar outro app."</p>
+          <div class="author">
+            <div class="avatar">CS</div>
+            <div><strong>Carla S.</strong><span>Cliente desde 2024</span></div>
+          </div>
+        </div>
+        <div class="del-test-card anim-up anim-delay-1">
+          <div class="stars">★★★★★</div>
+          <p class="quote">"Como dono de restaurante, o que me convenceu foi a comissão. É a metade do que eu pagava nas outras plataformas. Vale muito!"</p>
+          <div class="author">
+            <div class="avatar">MP</div>
+            <div><strong>Marcos P.</strong><span>Restaurante parceiro</span></div>
+          </div>
+        </div>
+        <div class="del-test-card anim-up anim-delay-2">
+          <div class="stars">★★★★★</div>
+          <p class="quote">"Uso todo dia no almoço. A variedade é incrível e o app é muito fácil. O rastreamento em tempo real me deixa tranquila esperando."</p>
+          <div class="author">
+            <div class="avatar">FL</div>
+            <div><strong>Fernanda L.</strong><span>Usuária frequente</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA FINAL ===== -->
+  <section class="cta-del">
+    <h2>Bateu a fome? A <strong>Zippa</strong> entrega! 🍔</h2>
+    <p>Deixe seu contato e nossa equipe fala com você pelo WhatsApp!</p>
+
+    <!-- FORMULÁRIO LEAD DELIVERY -->
+    <div style="max-width:500px;margin:0 auto 36px;background:rgba(255,255,255,0.1);backdrop-filter:blur(12px);border-radius:20px;padding:28px;border:1px solid rgba(255,255,255,0.2);">
+      <p style="font-size:0.75rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.55);margin-bottom:18px;">📬 Quero fazer parte da Zippa Delivery</p>
+      <form id="formLeadDel" onsubmit="enviarLeadDel(event)">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;">
+          <input id="delNome" type="text" placeholder="Seu nome" required
+            style="background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.22);border-radius:10px;padding:12px 14px;color:white;font-size:0.88rem;font-family:inherit;width:100%;" />
+          <input id="delTelefone" type="tel" placeholder="WhatsApp" required
+            style="background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.22);border-radius:10px;padding:12px 14px;color:white;font-size:0.88rem;font-family:inherit;width:100%;" />
+        </div>
+        <select id="delPerfil" required
+          style="background:rgba(20,20,20,0.95);border:1px solid rgba(255,255,255,0.22);border-radius:10px;padding:12px 14px;color:white;font-size:0.88rem;font-family:inherit;width:100%;margin-bottom:14px;">
+          <option value="" disabled selected>Sou...</option>
+          <option value="Cliente - Delivery">🍔 Cliente — quero pedir comida</option>
+          <option value="Restaurante - Delivery">🏪 Restaurante — quero ser parceiro</option>
+          <option value="Entregador - Delivery">🛵 Entregador — quero trabalhar</option>
+        </select>
+        <button id="btnLeadDel" type="submit" data-label='<i class="fas fa-paper-plane"></i> Enviar meu contato'
+          class="btn btn-white btn-lg" style="width:100%;justify-content:center;">
+          <i class="fas fa-paper-plane"></i> Enviar meu contato
+        </button>
+      </form>
+      <div id="successLeadDel" style="display:none;align-items:center;gap:12px;background:rgba(39,174,96,0.2);border:1px solid rgba(39,174,96,0.4);border-radius:12px;padding:16px 20px;margin-top:4px;">
+        <span style="font-size:1.5rem;">🎉</span>
+        <div>
+          <strong style="color:white;display:block;">Recebemos seu contato!</strong>
+          <span style="font-size:0.82rem;color:rgba(255,255,255,0.7);">Nossa equipe fala com você em breve pelo WhatsApp.</span>
+        </div>
+      </div>
+      <p style="font-size:0.7rem;color:rgba(255,255,255,0.3);margin-top:10px;text-align:center;">
+        🔒 Protegido pela <a href="privacidade.html" style="color:rgba(255,255,255,0.45);text-decoration:underline;">LGPD</a>. Seus dados não são compartilhados.
+      </p>
+    </div>
+
+    <p>Ou baixe direto o app:</p>
+    <p style="font-size:0.78rem;font-weight:700;color:rgba(255,255,255,0.5);letter-spacing:1px;text-transform:uppercase;margin-bottom:12px;">📲 Escolha seu sistema:</p>
+    <div class="app-badges" style="justify-content:center; margin-bottom:28px;">
+      <a href="https://apps.apple.com/br/app/zippa-delivery/id6821483597" target="_blank" class="app-badge" style="position:relative;">
+        <i class="fab fa-apple" style="font-size:1.6rem;"></i>
+        <div class="app-badge-text"><small style="color:rgba(255,255,255,0.6);">iPhone / iPad</small><strong>App Store — iOS</strong></div>
+        <span style="position:absolute;top:-8px;right:-8px;background:#0071e3;color:white;font-size:0.6rem;font-weight:800;padding:2px 7px;border-radius:20px;">iOS</span>
+      </a>
+      <a href="https://play.google.com/store/apps/details?id=app.zippa.cliente" target="_blank" class="app-badge" style="position:relative;">
+        <i class="fab fa-google-play" style="font-size:1.4rem;"></i>
+        <div class="app-badge-text"><small style="color:rgba(255,255,255,0.6);">Celular Android</small><strong>Google Play — Android</strong></div>
+        <span style="position:absolute;top:-8px;right:-8px;background:#34a853;color:white;font-size:0.6rem;font-weight:800;padding:2px 7px;border-radius:20px;">Android</span>
+      </a>
+    </div>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+      <a href="https://wa.me/554431421244" target="_blank" class="btn btn-white btn-lg"><i class="fab fa-whatsapp" style="color:#25D366"></i> Falar com Suporte</a>
+      <a href="mobilidade.html" class="btn btn-dark btn-lg"><i class="fas fa-car"></i> Ver Zippa Mobilidade</a>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="navbar-logo" style="display:inline-block;margin-bottom:4px;">
+            <img src="images/logo-zippa-delivery.png" alt="Zippa Delivery" style="height:64px;width:auto;" />
+          </a>
+          <p>O melhor de dois mundos: mobilidade e delivery na sua cidade, com segurança e preço justo.</p>
+          <div class="footer-socials" style="margin-top:20px;">
+            <a href="#" class="social-btn"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-btn"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-btn"><i class="fab fa-tiktok"></i></a>
+            <a href="https://wa.me/554431421244" class="social-btn"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Delivery</h4>
+          <ul>
+            <li><a href="#pedido">Fazer Pedido</a></li>
+            <li><a href="#como-funciona">Como Funciona</a></li>
+            <li><a href="#restaurantes">Seja Parceiro</a></li>
+            <li><a href="#">Baixar App</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Empresa</h4>
+          <ul>
+            <li><a href="index.html#sobre">Sobre a Zippa</a></li>
+            <li><a href="mobilidade.html">Zippa Mobilidade</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Carreiras</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Suporte</h4>
+          <ul>
+            <li><a href="https://wa.me/554431421244">WhatsApp</a></li>
+            <li><a href="#">Central de Ajuda</a></li>
+            <li><a href="privacidade.html#termos">Termos de Uso</a></li>
+            <li><a href="privacidade.html#privacidade">Privacidade</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 Zippa. Desenvolvido por <strong>Nexa Labs</strong> — Todos os direitos reservados.</p>
+        <p><a href="privacidade.html#termos" style="color:rgba(255,255,255,0.5);text-decoration:underline;font-size:0.82rem;">Termos de Uso</a> · <a href="privacidade.html#privacidade" style="color:rgba(255,255,255,0.5);text-decoration:underline;font-size:0.82rem;">Privacidade</a> · <a href="privacidade.html#lgpd" style="color:rgba(255,255,255,0.5);text-decoration:underline;font-size:0.82rem;">LGPD</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/554431421244" target="_blank" class="whatsapp-float" title="Fale conosco">
+    <i class="fab fa-whatsapp"></i>
+    <span class="wa-label">Suporte</span>
+  </a>
+
+  <script src="js/axon-crm.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/cookies.js"></script>
+  <script>
+  async function enviarLeadDel(e) {
+    e.preventDefault();
+    await zippaEnviarLead(
+      'formLeadDel', 'btnLeadDel', 'successLeadDel',
+      {
+        nome:      document.getElementById('delNome').value,
+        telefone:  document.getElementById('delTelefone').value,
+        interesse: document.getElementById('delPerfil').value,
+        tags:      ['site-zippa', 'delivery']
+      }
+    );
+  }
+  </script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"4edd5f8ec12a48cfa682ab8261b80a79","spa":2}' crossorigin="anonymous"></script>
+</body>
+</html>

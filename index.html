@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zippa — Mobilidade e Delivery na sua cidade</title>
+  <meta name="description" content="Zippa oferece serviços de mobilidade urbana e delivery de comida. Sua viagem, suas regras. Sua fome, resolvida." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* ===== HERO SPLIT SCREEN ===== */
+    .hero-split {
+      height: 100vh;
+      min-height: 600px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      overflow: hidden;
+    }
+
+    .hero-side {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 48px;
+      text-align: center;
+      overflow: hidden;
+      cursor: pointer;
+      transition: flex 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .hero-side::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      transition: background 0.4s ease;
+      z-index: 1;
+    }
+
+    .hero-side:hover::before { background: rgba(0,0,0,0.35); }
+
+    .hero-side-bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      transition: transform 0.7s ease;
+      z-index: 0;
+    }
+
+    .hero-side:hover .hero-side-bg { transform: scale(1.05); }
+
+    .hero-side-content {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .hero-side-icon {
+      width: 140px;
+      height: 140px;
+      background: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .hero-side-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 8px 24px rgba(0,0,0,0.4));
+      transition: all 0.3s ease;
+    }
+
+    .hero-side:hover .hero-side-icon img {
+      transform: scale(1.12) translateY(-4px);
+      filter: drop-shadow(0 16px 32px rgba(255,107,0,0.5));
+    }
+
+    .hero-side-tag {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+    }
+
+    .hero-side h2 {
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 800;
+      color: white;
+      line-height: 1.25;
+      max-width: 400px;
+    }
+
+    .hero-side p {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.8);
+      max-width: 320px;
+      line-height: 1.6;
+    }
+
+    .hero-divider {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 10;
+      width: 64px;
+      height: 64px;
+      background: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+    }
+
+    .hero-divider .logo-icon-hero {
+      width: 48px;
+      height: 48px;
+      background: var(--orange);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      font-weight: 900;
+      color: white;
+    }
+
+    /* Mobility side bg */
+    .hero-mobility .hero-side-bg {
+      background-image: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    }
+
+    /* Delivery side bg */
+    .hero-delivery .hero-side-bg {
+      background-image: linear-gradient(135deg, #2d1206 0%, #7c2d00 50%, #c44b0a 100%);
+    }
+
+    /* ===== BRAND STRIP ===== */
+    .brand-strip {
+      background: var(--orange);
+      padding: 18px 24px;
+      text-align: center;
+    }
+
+    .brand-strip p {
+      color: white;
+      font-size: 0.9rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    /* ===== ABOUT SECTION ===== */
+    .about-section {
+      padding: 96px 24px;
+      background: var(--white);
+    }
+
+    .about-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .about-visual {
+      position: relative;
+    }
+
+    .about-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .about-card {
+      background: var(--gray-light);
+      border-radius: var(--radius-md);
+      padding: 28px 24px;
+      text-align: center;
+      transition: var(--transition);
+      border: 2px solid transparent;
+    }
+
+    .about-card:hover {
+      border-color: var(--orange);
+      background: white;
+      box-shadow: var(--shadow);
+      transform: translateY(-4px);
+    }
+
+    .about-card .icon {
+      font-size: 2rem;
+      margin-bottom: 12px;
+    }
+
+    .about-card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .about-card p {
+      font-size: 0.82rem;
+      color: var(--gray-mid);
+    }
+
+    .about-card.featured {
+      grid-column: 1 / -1;
+      background: var(--orange);
+      color: white;
+    }
+
+    .about-card.featured h3,
+    .about-card.featured p { color: white; }
+
+    .about-card.featured:hover { border-color: var(--orange-dark); background: var(--orange-dark); transform: translateY(-4px); }
+
+    /* ===== SERVICES SECTION ===== */
+    .services-section {
+      padding: 96px 24px;
+      background: var(--gray-light);
+    }
+
+    .services-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .services-header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+
+    .service-card {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      position: relative;
+      min-height: 420px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .service-card:hover { transform: translateY(-6px); box-shadow: 0 24px 64px rgba(0,0,0,0.2); }
+
+    .service-card-bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      transition: transform 0.5s ease;
+    }
+
+    .service-card:hover .service-card-bg { transform: scale(1.04); }
+
+    .service-card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 60%, transparent 100%);
+    }
+
+    .service-card-content {
+      position: relative;
+      z-index: 2;
+      padding: 36px;
+      color: white;
+    }
+
+    .service-card-tag {
+      display: inline-block;
+      background: var(--orange);
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 40px;
+      margin-bottom: 12px;
+    }
+
+    .service-card h3 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+      line-height: 1.2;
+    }
+
+    .service-card p {
+      font-size: 0.92rem;
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+
+    /* mobility card bg */
+    .sc-mobility .service-card-bg {
+      background-image: linear-gradient(135deg, #1a1a2e, #0f3460);
+    }
+
+    /* delivery card bg */
+    .sc-delivery .service-card-bg {
+      background-image: linear-gradient(135deg, #7c2d00, #c44b0a);
+    }
+
+    /* ===== STATS SECTION ===== */
+    .stats-section {
+      padding: 72px 24px;
+      background: var(--dark);
+    }
+
+    .stats-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+      text-align: center;
+    }
+
+    .stat-item h3 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 900;
+      color: var(--orange);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .stat-item p {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.6);
+      font-weight: 500;
+    }
+
+    /* ===== HOW IT WORKS ===== */
+    .how-section {
+      padding: 96px 24px;
+      background: white;
+    }
+
+    .how-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .how-header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+
+    .how-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+      position: relative;
+    }
+
+    .how-steps::before {
+      content: '';
+      position: absolute;
+      top: 28px;
+      left: calc(12.5% + 8px);
+      right: calc(12.5% + 8px);
+      height: 2px;
+      background: linear-gradient(to right, var(--orange), rgba(255,107,0,0.2));
+    }
+
+    .how-step {
+      text-align: center;
+      position: relative;
+    }
+
+    .step-num {
+      width: 56px;
+      height: 56px;
+      background: var(--orange);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      font-weight: 900;
+      margin: 0 auto 20px;
+      position: relative;
+      z-index: 2;
+      box-shadow: var(--shadow-orange);
+    }
+
+    .how-step h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--black);
+    }
+
+    .how-step p {
+      font-size: 0.84rem;
+      color: var(--gray-mid);
+      line-height: 1.6;
+    }
+
+    /* ===== CTA FINAL ===== */
+    .cta-section {
+      padding: 96px 24px;
+      background: linear-gradient(135deg, #FF6B00 0%, #E05A00 100%);
+      text-align: center;
+    }
+
+    .cta-section h2 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 900;
+      color: white;
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+
+    .cta-section p {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.85);
+      margin-bottom: 40px;
+      max-width: 520px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      .hero-split { grid-template-columns: 1fr; grid-template-rows: 1fr 1fr; height: 100svh; }
+      .hero-divider { display: none; }
+      .about-inner { grid-template-columns: 1fr; gap: 40px; }
+      .services-grid { grid-template-columns: 1fr; gap: 20px; }
+      .service-card { min-height: 320px; }
+      .stats-inner { grid-template-columns: repeat(2,1fr); gap: 24px; }
+      .how-steps { grid-template-columns: repeat(2,1fr); }
+      .how-steps::before { display: none; }
+      .hero-side-icon { width: 100px; height: 100px; }
+    }
+
+    @media (max-width: 600px) {
+      .hero-side { padding: 24px 20px; }
+      .hero-side h2 { font-size: 1.4rem; }
+      .stats-inner { grid-template-columns: repeat(2,1fr); }
+      .how-steps { grid-template-columns: 1fr; }
+      .about-cards { grid-template-columns: 1fr; }
+      .about-card.featured { grid-column: 1; }
+      .hero-side-icon { width: 80px; height: 80px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar" id="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-logo">
+        <img src="images/logo-zippa.png" alt="Zippa" style="height:72px;width:auto;" />
+      </a>
+      <ul class="navbar-links">
+        <li><a href="index.html" class="active">Início</a></li>
+        <li><a href="mobilidade.html">Mobilidade</a></li>
+        <li><a href="delivery.html">Delivery</a></li>
+        <li><a href="#como-funciona">Como Funciona</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+      <div class="navbar-cta">
+        <a href="mobilidade.html" class="btn btn-outline" style="padding:10px 20px;font-size:0.85rem;">
+          <i class="fas fa-car"></i> Mobilidade
+        </a>
+        <a href="delivery.html" class="btn btn-primary" style="padding:10px 20px;font-size:0.85rem;">
+          <i class="fas fa-utensils"></i> Delivery
+        </a>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ===== MOBILE MENU ===== -->
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-menu-close" id="menuClose"><i class="fas fa-times"></i></button>
+    <a href="index.html"><i class="fas fa-home"></i> Início</a>
+    <a href="mobilidade.html"><i class="fas fa-car"></i> Mobilidade</a>
+    <a href="delivery.html"><i class="fas fa-utensils"></i> Delivery</a>
+    <a href="#como-funciona"><i class="fas fa-info-circle"></i> Como Funciona</a>
+    <a href="https://wa.me/554431421244" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+  </div>
+
+  <!-- ===== HERO SPLIT SCREEN ===== -->
+  <section class="hero-split">
+
+    <!-- Mobilidade -->
+    <div class="hero-side hero-mobility" onclick="location.href='mobilidade.html'">
+      <div class="hero-side-bg" style="background-image: url('https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1200&q=80'); background-blend-mode: overlay; background-color: rgba(15,52,96,0.6);"></div>
+      <div class="hero-side-content">
+        <div class="hero-side-icon"><img src="images/carro-3d.png" alt="Carro Zippa Mobilidade" /></div>
+        <span class="hero-side-tag">Zippa Mobilidade</span>
+        <h2>Precisa de uma carona? Vai de Zippa.</h2>
+        <p>Viagens seguras, preço justo e motoristas verificados na sua cidade.</p>
+        <a href="mobilidade.html" class="btn btn-primary btn-lg">
+          Descobrir Mobilidade <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- Divider Logo -->
+    <div class="hero-divider">
+      <img src="images/logo-zippa.png" alt="Zippa" style="width:44px;height:44px;object-fit:contain;border-radius:50%;" />
+    </div>
+
+    <!-- Delivery -->
+    <div class="hero-side hero-delivery" onclick="location.href='delivery.html'">
+      <div class="hero-side-bg" style="background-image: url('https://images.unsplash.com/photo-1565299507177-b0ac66763828?w=1200&q=80'); background-blend-mode: overlay; background-color: rgba(124,45,0,0.55);"></div>
+      <div class="hero-side-content">
+        <div class="hero-side-icon">🍔</div>
+        <span class="hero-side-tag">Zippa Delivery</span>
+        <h2>Bateu a fome? A Zippa entrega.</h2>
+        <p>Os melhores restaurantes da cidade chegando até você, quentinhos e rápido.</p>
+        <a href="delivery.html" class="btn btn-primary btn-lg">
+          Descobrir Delivery <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== BRAND STRIP ===== -->
+  <div class="brand-strip">
+    <p>
+      <i class="fas fa-bolt"></i> Mais de <strong>5.000 usuários</strong> já confiam na Zippa &nbsp;·&nbsp;
+      <i class="fas fa-star"></i> Avaliação <strong>4.9 ★</strong> na App Store &nbsp;·&nbsp;
+      <i class="fas fa-shield-alt"></i> Motoristas e entregadores <strong>100% verificados</strong>
+    </p>
+  </div>
+
+  <!-- ===== SOBRE ===== -->
+  <section class="about-section" id="sobre">
+    <div class="about-inner">
+      <div class="about-text anim-up">
+        <span class="section-tag">Por que a Zippa?</span>
+        <h2 class="section-title">O melhor de <span>dois mundos</span>, numa só plataforma.</h2>
+        <p class="section-subtitle">A Zippa foi criada para resolver dois problemas do dia a dia: sua locomoção e sua refeição. Simples, segura e justa.</p>
+        <div style="margin-top:32px; display:flex; gap:24px; flex-wrap:wrap;">
+          <div>
+            <div style="font-size:2rem;font-weight:900;color:var(--orange);">+5K</div>
+            <div style="font-size:0.82rem;color:var(--gray-mid);">usuários ativos</div>
+          </div>
+          <div>
+            <div style="font-size:2rem;font-weight:900;color:var(--orange);">+100</div>
+            <div style="font-size:0.82rem;color:var(--gray-mid);">parceiros ativos</div>
+          </div>
+          <div>
+            <div style="font-size:2rem;font-weight:900;color:var(--orange);">&lt;30min</div>
+            <div style="font-size:0.82rem;color:var(--gray-mid);">tempo médio de entrega</div>
+          </div>
+        </div>
+        <div style="margin-top:36px; display:flex; gap:12px; flex-wrap:wrap;">
+          <a href="mobilidade.html" class="btn btn-primary"><i class="fas fa-car"></i> Ver Mobilidade</a>
+          <a href="delivery.html" class="btn btn-outline"><i class="fas fa-utensils"></i> Ver Delivery</a>
+        </div>
+      </div>
+      <div class="about-visual anim-up anim-delay-2">
+        <div class="about-cards">
+          <div class="about-card">
+            <div class="icon">🚗</div>
+            <h3>Mobilidade</h3>
+            <p>Viagens sob demanda com preço transparente</p>
+          </div>
+          <div class="about-card">
+            <div class="icon">🍔</div>
+            <h3>Delivery</h3>
+            <p>Comida dos seus restaurantes favoritos</p>
+          </div>
+          <div class="about-card">
+            <div class="icon">🔒</div>
+            <h3>Segurança</h3>
+            <p>Motoristas e entregadores verificados</p>
+          </div>
+          <div class="about-card">
+            <div class="icon">💰</div>
+            <h3>Preço Justo</h3>
+            <p>Sem taxas abusivas. Transparência total.</p>
+          </div>
+          <div class="about-card featured">
+            <div class="icon">⚡</div>
+            <h3>Rápido e Confiável</h3>
+            <p>Tecnologia que conecta você ao que precisa em segundos</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SERVICES ===== -->
+  <section class="services-section">
+    <div class="services-inner">
+      <div class="services-header anim-up">
+        <span class="section-tag">Nossos Serviços</span>
+        <h2 class="section-title">Escolha o que você <span>precisa agora</span></h2>
+        <p class="section-subtitle" style="margin:0 auto;">Dois serviços. Uma experiência. Clique e descubra.</p>
+      </div>
+      <div class="services-grid">
+        <!-- Mobilidade -->
+        <div class="service-card sc-mobility anim-up anim-delay-1" onclick="location.href='mobilidade.html'">
+          <div class="service-card-bg" style="background-image: url('images/mobilidade-bg.jpg'); background-blend-mode: overlay;"></div>
+          <div class="service-card-overlay"></div>
+          <div class="service-card-content">
+            <span class="service-card-tag">🚗 Mobilidade</span>
+            <h3>Sua viagem, suas regras.</h3>
+            <p>Conforto, segurança e preço justo para ir a qualquer lugar da cidade.</p>
+            <a href="mobilidade.html" class="btn btn-primary">Ver Mobilidade <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+        <!-- Delivery -->
+        <div class="service-card sc-delivery anim-up anim-delay-2" onclick="location.href='delivery.html'">
+          <div class="service-card-bg" style="background-image: url('https://images.unsplash.com/photo-1565299507177-b0ac66763828?w=900&q=80'); background-blend-mode: overlay;"></div>
+          <div class="service-card-overlay"></div>
+          <div class="service-card-content">
+            <span class="service-card-tag">🍔 Delivery</span>
+            <h3>Comida boa, entregue rápido.</h3>
+            <p>Os melhores restaurantes da cidade, à distância de um toque.</p>
+            <a href="delivery.html" class="btn btn-primary">Ver Delivery <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== STATS ===== -->
+  <section class="stats-section">
+    <div class="stats-inner">
+      <div class="stat-item anim-up">
+        <h3>5K+</h3>
+        <p>Usuários na Plataforma</p>
+      </div>
+      <div class="stat-item anim-up anim-delay-1">
+        <h3>100+</h3>
+        <p>Parceiros Ativos</p>
+      </div>
+      <div class="stat-item anim-up anim-delay-2">
+        <h3>4.8★</h3>
+        <p>Avaliação nas lojas</p>
+      </div>
+      <div class="stat-item anim-up anim-delay-3">
+        <h3>96%</h3>
+        <p>Clientes satisfeitos</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== HOW IT WORKS ===== -->
+  <section class="how-section" id="como-funciona">
+    <div class="how-inner">
+      <div class="how-header anim-up">
+        <span class="section-tag">Simples assim</span>
+        <h2 class="section-title">Como a <span>Zippa</span> funciona</h2>
+        <p class="section-subtitle" style="margin:0 auto;">Em menos de 3 minutos você já está sendo atendido.</p>
+      </div>
+      <div class="how-steps" style="margin-top:48px;">
+        <div class="how-step anim-up">
+          <div class="step-num">1</div>
+          <h4>Baixe o App</h4>
+          <p>Disponível gratuitamente na App Store e Google Play.</p>
+        </div>
+        <div class="how-step anim-up anim-delay-1">
+          <div class="step-num">2</div>
+          <h4>Crie sua Conta</h4>
+          <p>Cadastro rápido em menos de 1 minuto. Só o básico.</p>
+        </div>
+        <div class="how-step anim-up anim-delay-2">
+          <div class="step-num">3</div>
+          <h4>Escolha o Serviço</h4>
+          <p>Mobilidade ou Delivery? Você decide o que precisa agora.</p>
+        </div>
+        <div class="how-step anim-up anim-delay-3">
+          <div class="step-num">4</div>
+          <h4>Aproveite!</h4>
+          <p>Sua viagem ou seu pedido chegando com rapidez e segurança.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== LEAD CAPTURE + CTA FINAL ===== -->
+  <section class="cta-section" id="contato">
+    <h2>Pronta para te levar<br>e te alimentar — <strong>Zippa</strong>.</h2>
+    <p>Deixe seu contato e nossa equipe entra em touch. Seja passageiro, motorista, cliente ou restaurante!</p>
+
+    <!-- FORMULÁRIO DE LEAD -->
+    <div style="max-width:520px;margin:0 auto 36px;background:rgba(255,255,255,0.1);backdrop-filter:blur(12px);border-radius:20px;padding:32px;border:1px solid rgba(255,255,255,0.2);">
+      <p style="font-size:0.78rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.6);margin-bottom:20px;">📬 Fique por dentro — cadastre-se</p>
+      <form id="formLead" onsubmit="enviarLeadHome(event)">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;">
+          <input id="leadNome" type="text" placeholder="Seu nome" required
+            style="background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.25);border-radius:10px;padding:12px 14px;color:white;font-size:0.9rem;font-family:inherit;width:100%;" />
+          <input id="leadTelefone" type="tel" placeholder="WhatsApp" required
+            style="background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.25);border-radius:10px;padding:12px 14px;color:white;font-size:0.9rem;font-family:inherit;width:100%;" />
+        </div>
+        <input id="leadEmail" type="email" placeholder="Seu e-mail (opcional)"
+          style="background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.25);border-radius:10px;padding:12px 14px;color:white;font-size:0.9rem;font-family:inherit;width:100%;margin-bottom:12px;" />
+        <select id="leadInteresse" required
+          style="background:rgba(30,30,30,0.9);border:1px solid rgba(255,255,255,0.25);border-radius:10px;padding:12px 14px;color:white;font-size:0.9rem;font-family:inherit;width:100%;margin-bottom:16px;">
+          <option value="" disabled selected>Tenho interesse em...</option>
+          <option value="Passageiro - Mobilidade">🚗 Usar a Zippa como Passageiro</option>
+          <option value="Motorista - Mobilidade">🚙 Ser Motorista Parceiro</option>
+          <option value="Cliente - Delivery">🍔 Pedir comida pelo Delivery</option>
+          <option value="Restaurante - Delivery">🏪 Cadastrar meu Restaurante</option>
+          <option value="Entregador - Delivery">🛵 Ser Entregador Parceiro</option>
+        </select>
+        <button id="btnLeadHome" type="submit" data-label='<i class="fas fa-paper-plane"></i> Quero me cadastrar'
+          class="btn btn-white btn-lg" style="width:100%;justify-content:center;">
+          <i class="fas fa-paper-plane"></i> Quero me cadastrar
+        </button>
+      </form>
+      <!-- Sucesso -->
+      <div id="successLeadHome" style="display:none;align-items:center;gap:12px;background:rgba(39,174,96,0.2);border:1px solid rgba(39,174,96,0.4);border-radius:12px;padding:16px 20px;">
+        <span style="font-size:1.5rem;">🎉</span>
+        <div>
+          <strong style="color:white;display:block;">Cadastro recebido!</strong>
+          <span style="font-size:0.85rem;color:rgba(255,255,255,0.7);">Nossa equipe vai entrar em contato em breve pelo WhatsApp.</span>
+        </div>
+      </div>
+      <p style="font-size:0.72rem;color:rgba(255,255,255,0.35);margin-top:12px;text-align:center;">
+        🔒 Seus dados são protegidos pela <a href="privacidade.html" style="color:rgba(255,255,255,0.5);text-decoration:underline;">LGPD</a>. Nunca compartilhamos com terceiros.
+      </p>
+    </div>
+
+    <div class="cta-buttons">
+      <a href="mobilidade.html" class="btn btn-white btn-lg"><i class="fas fa-car"></i> Zippa Mobilidade</a>
+      <a href="delivery.html" class="btn btn-dark btn-lg"><i class="fas fa-utensils"></i> Zippa Delivery</a>
+    </div>
+  </section>
+
+  <script>
+  async function enviarLeadHome(e) {
+    e.preventDefault();
+    await zippaEnviarLead(
+      'formLead', 'btnLeadHome', 'successLeadHome',
+      {
+        nome:      document.getElementById('leadNome').value,
+        telefone:  document.getElementById('leadTelefone').value,
+        email:     document.getElementById('leadEmail').value,
+        interesse: document.getElementById('leadInteresse').value,
+        tags:      ['site-zippa', 'homepage']
+      }
+    );
+  }
+  </script>
+
+  <!-- ===== FOOTER ===== -->
+  <footer id="footer">
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="navbar-logo" style="display:inline-block;margin-bottom:4px;">
+            <img src="images/logo-zippa.png" alt="Zippa" style="height:64px;width:auto;" />
+          </a>
+          <p>O melhor de dois mundos: mobilidade e delivery na sua cidade, com segurança e preço justo.</p>
+          <div class="footer-socials" style="margin-top:20px;">
+            <a href="#" class="social-btn"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-btn"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-btn"><i class="fab fa-tiktok"></i></a>
+            <a href="https://wa.me/554431421244" class="social-btn"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Serviços</h4>
+          <ul>
+            <li><a href="mobilidade.html">Zippa Mobilidade</a></li>
+            <li><a href="delivery.html">Zippa Delivery</a></li>
+            <li><a href="mobilidade.html#motoristas">Seja Motorista</a></li>
+            <li><a href="delivery.html#restaurantes">Restaurante Parceiro</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Empresa</h4>
+          <ul>
+            <li><a href="#sobre">Sobre a Zippa</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Carreiras</a></li>
+            <li><a href="#">Imprensa</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Suporte</h4>
+          <ul>
+            <li><a href="https://wa.me/554431421244">WhatsApp</a></li>
+            <li><a href="#">Central de Ajuda</a></li>
+            <li><a href="privacidade.html#termos">Termos de Uso</a></li>
+            <li><a href="privacidade.html#privacidade">Privacidade</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 Zippa. Desenvolvido por <strong>Nexa Labs</strong> — Todos os direitos reservados.</p>
+        <p><a href="privacidade.html#termos" style="color:rgba(255,255,255,0.5);text-decoration:underline;font-size:0.82rem;">Termos de Uso</a> · <a href="privacidade.html#privacidade" style="color:rgba(255,255,255,0.5);text-decoration:underline;font-size:0.82rem;">Privacidade</a> · <a href="privacidade.html#lgpd" style="color:rgba(255,255,255,0.5);text-decoration:underline;font-size:0.82rem;">LGPD</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== WHATSAPP FLOAT ===== -->
+  <a href="https://wa.me/554431421244" target="_blank" class="whatsapp-float" title="Fale conosco no WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+    <span class="wa-label">Suporte</span>
+  </a>
+
+  <script src="js/axon-crm.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/cookies.js"></script>
+</body>
+</html>

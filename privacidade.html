@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Termos de Uso, Privacidade e LGPD — Zippa</title>
+  <meta name="description" content="Política de Privacidade, Termos de Uso e conformidade com a LGPD da Zippa." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .legal-hero {
+      background: linear-gradient(135deg, #111111 0%, #1a1a2e 100%);
+      padding: 140px 24px 64px;
+      text-align: center;
+    }
+    .legal-hero h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 900;
+      color: white;
+      margin-bottom: 16px;
+    }
+    .legal-hero h1 span { color: var(--orange); }
+    .legal-hero p {
+      color: rgba(255,255,255,0.55);
+      font-size: 0.95rem;
+      max-width: 560px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* Tabs */
+    .legal-tabs {
+      background: white;
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+      position: sticky;
+      top: 64px;
+      z-index: 100;
+    }
+    .legal-tabs-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .legal-tabs-inner::-webkit-scrollbar { display: none; }
+    .tab-btn {
+      padding: 18px 28px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--gray-mid);
+      border: none;
+      background: none;
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      transition: var(--transition);
+      white-space: nowrap;
+    }
+    .tab-btn:hover { color: var(--orange); }
+    .tab-btn.active { color: var(--orange); border-bottom-color: var(--orange); }
+
+    /* Content */
+    .legal-content {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 56px 24px 96px;
+    }
+    .legal-section {
+      display: none;
+    }
+    .legal-section.active {
+      display: block;
+    }
+    .legal-section h2 {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--black);
+      margin-bottom: 8px;
+      margin-top: 48px;
+    }
+    .legal-section h2:first-child { margin-top: 0; }
+    .legal-section h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--black);
+      margin: 28px 0 10px;
+    }
+    .legal-section p {
+      font-size: 0.93rem;
+      color: var(--gray-mid);
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+    .legal-section ul {
+      padding-left: 20px;
+      margin-bottom: 16px;
+    }
+    .legal-section ul li {
+      font-size: 0.93rem;
+      color: var(--gray-mid);
+      line-height: 1.8;
+      margin-bottom: 6px;
+    }
+    .legal-section ul li strong { color: var(--black); }
+    .legal-divider {
+      border: none;
+      border-top: 1px solid rgba(0,0,0,0.08);
+      margin: 40px 0;
+    }
+    .legal-highlight {
+      background: rgba(255,107,0,0.06);
+      border-left: 4px solid var(--orange);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      padding: 16px 20px;
+      margin: 20px 0;
+    }
+    .legal-highlight p {
+      margin: 0;
+      color: var(--gray-dark);
+      font-size: 0.9rem;
+    }
+    .legal-highlight strong { color: var(--orange); }
+    .update-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--gray-light);
+      color: var(--gray-mid);
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 40px;
+      margin-bottom: 32px;
+    }
+    .contact-box {
+      background: var(--gray-light);
+      border-radius: var(--radius-md);
+      padding: 28px 24px;
+      margin-top: 40px;
+      text-align: center;
+    }
+    .contact-box h4 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+    .contact-box p { font-size: 0.88rem; color: var(--gray-mid); margin-bottom: 16px; }
+
+    /* LGPD rights cards */
+    .rights-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 24px 0;
+    }
+    .right-card {
+      background: var(--gray-light);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      border: 1px solid transparent;
+      transition: var(--transition);
+    }
+    .right-card:hover { border-color: var(--orange); background: white; box-shadow: var(--shadow); }
+    .right-card .icon { font-size: 1.5rem; margin-bottom: 10px; }
+    .right-card h4 { font-size: 0.9rem; font-weight: 700; margin-bottom: 4px; color: var(--black); }
+    .right-card p { font-size: 0.82rem; color: var(--gray-mid); line-height: 1.5; margin: 0; }
+
+    @media (max-width: 600px) {
+      .rights-grid { grid-template-columns: 1fr; }
+      .tab-btn { padding: 14px 18px; font-size: 0.82rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar scrolled" id="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-logo">
+        <img src="images/logo-zippa.png" alt="Zippa" style="height:72px;width:auto;" />
+      </a>
+      <ul class="navbar-links">
+        <li><a href="index.html">Início</a></li>
+        <li><a href="mobilidade.html">Mobilidade</a></li>
+        <li><a href="delivery.html">Delivery</a></li>
+      </ul>
+      <div class="navbar-cta">
+        <a href="index.html" class="btn btn-primary" style="padding:10px 20px;font-size:0.85rem;"><i class="fas fa-home"></i> Voltar ao Site</a>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-menu-close" id="menuClose"><i class="fas fa-times"></i></button>
+    <a href="index.html"><i class="fas fa-home"></i> Início</a>
+    <a href="mobilidade.html"><i class="fas fa-car"></i> Mobilidade</a>
+    <a href="delivery.html"><i class="fas fa-utensils"></i> Delivery</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="legal-hero">
+    <span class="section-tag" style="background:rgba(255,107,0,0.2);color:#ffb380;">Transparência e Segurança</span>
+    <h1>Termos, Privacidade<br>e <span>LGPD</span></h1>
+    <p>A Zippa se compromete com a transparência total sobre como coletamos, usamos e protegemos seus dados pessoais.</p>
+  </section>
+
+  <!-- TABS -->
+  <div class="legal-tabs">
+    <div class="legal-tabs-inner">
+      <button class="tab-btn active" onclick="showTab('termos')"><i class="fas fa-file-contract"></i> Termos de Uso</button>
+      <button class="tab-btn" onclick="showTab('privacidade')"><i class="fas fa-shield-alt"></i> Política de Privacidade</button>
+      <button class="tab-btn" onclick="showTab('lgpd')"><i class="fas fa-user-shield"></i> LGPD</button>
+      <button class="tab-btn" onclick="showTab('cookies')"><i class="fas fa-cookie-bite"></i> Política de Cookies</button>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="legal-content">
+
+    <!-- ===== TERMOS DE USO ===== -->
+    <div id="termos" class="legal-section active">
+      <span class="update-badge"><i class="fas fa-calendar"></i> Última atualização: Janeiro de 2025</span>
+
+      <h2>Termos de Uso da Zippa</h2>
+      <p>Bem-vindo à <strong>Zippa</strong>! Ao utilizar nossos serviços de mobilidade e delivery, você concorda com os presentes Termos de Uso. Leia com atenção antes de usar a plataforma.</p>
+
+      <div class="legal-highlight">
+        <p><strong>Atenção:</strong> O uso da plataforma Zippa implica na aceitação integral destes Termos. Caso não concorde com alguma cláusula, não utilize nossos serviços.</p>
+      </div>
+
+      <hr class="legal-divider" />
+
+      <h3>1. Sobre a Zippa</h3>
+      <p>A Zippa é uma plataforma tecnológica desenvolvida pela <strong>Nexa Labs</strong> que conecta usuários a motoristas parceiros (Zippa Mobilidade) e a restaurantes e entregadores parceiros (Zippa Delivery). A Zippa não é uma empresa de transporte nem de alimentação, mas sim uma intermediária tecnológica.</p>
+
+      <h3>2. Elegibilidade</h3>
+      <p>Para utilizar os serviços da Zippa, você deve:</p>
+      <ul>
+        <li>Ter no mínimo <strong>18 anos de idade</strong></li>
+        <li>Possuir capacidade legal para celebrar contratos</li>
+        <li>Fornecer informações verdadeiras no cadastro</li>
+        <li>Possuir um dispositivo compatível com nossos aplicativos</li>
+      </ul>
+
+      <h3>3. Cadastro e Conta</h3>
+      <p>Ao criar uma conta na Zippa, você é responsável por:</p>
+      <ul>
+        <li>Manter a confidencialidade de sua senha</li>
+        <li>Todas as atividades realizadas com sua conta</li>
+        <li>Notificar imediatamente a Zippa sobre qualquer uso não autorizado</li>
+        <li>Fornecer informações cadastrais verdadeiras e atualizadas</li>
+      </ul>
+
+      <h3>4. Zippa Mobilidade — Regras de Uso</h3>
+      <p>Para o serviço de mobilidade, aplicam-se as seguintes regras:</p>
+      <ul>
+        <li>O preço da corrida é exibido antes da confirmação e não poderá ser alterado</li>
+        <li>O passageiro deve estar no local indicado no horário combinado</li>
+        <li>É proibido transportar substâncias ilegais, armas ou materiais perigosos</li>
+        <li>O comportamento abusivo, agressivo ou discriminatório resulta em banimento da plataforma</li>
+        <li>Cancelamentos excessivos podem acarretar cobrança de taxa</li>
+      </ul>
+
+      <h3>5. Zippa Delivery — Regras de Uso</h3>
+      <ul>
+        <li>Os pedidos confirmados não podem ser cancelados após o início do preparo</li>
+        <li>O tempo de entrega é estimado e pode variar por condições externas</li>
+        <li>Problemas com pedidos devem ser reportados em até 30 minutos após o recebimento</li>
+        <li>A Zippa não se responsabiliza por alergias não informadas pelo restaurante parceiro</li>
+      </ul>
+
+      <h3>6. Pagamentos</h3>
+      <p>A Zippa aceita pagamento via cartão de crédito, débito, Pix e dinheiro (quando disponível). Todas as transações são processadas por gateways de pagamento certificados e seguros.</p>
+
+      <h3>7. Responsabilidades</h3>
+      <p>A Zippa não se responsabiliza por:</p>
+      <ul>
+        <li>Danos causados por motoristas ou entregadores parceiros autônomos</li>
+        <li>Qualidade dos alimentos fornecidos pelos restaurantes parceiros</li>
+        <li>Falhas de conectividade ou indisponibilidade temporária do aplicativo</li>
+        <li>Atos de terceiros ou situações de força maior</li>
+      </ul>
+
+      <h3>8. Propriedade Intelectual</h3>
+      <p>Todos os conteúdos da plataforma Zippa, incluindo marca, logotipo, design, textos e tecnologia, são de propriedade exclusiva da <strong>Nexa Labs</strong> e estão protegidos pelas leis de propriedade intelectual. É proibida qualquer reprodução sem autorização prévia e expressa.</p>
+
+      <h3>9. Suspensão e Encerramento</h3>
+      <p>A Zippa reserva-se o direito de suspender ou encerrar contas que violem estes Termos, pratiquem fraude, abuso ou qualquer conduta prejudicial à plataforma ou a outros usuários.</p>
+
+      <h3>10. Alterações nos Termos</h3>
+      <p>A Zippa pode atualizar estes Termos a qualquer momento. Notificaremos os usuários sobre mudanças significativas pelo app ou e-mail. O uso continuado da plataforma após as alterações constitui aceitação dos novos Termos.</p>
+
+      <h3>11. Foro e Legislação</h3>
+      <p>Estes Termos são regidos pela legislação brasileira. Fica eleito o foro da comarca de Maringá/PR para dirimir quaisquer controvérsias decorrentes deste instrumento.</p>
+
+      <div class="contact-box">
+        <h4>Dúvidas sobre os Termos?</h4>
+        <p>Entre em contato com nossa equipe jurídica e de suporte.</p>
+        <a href="https://wa.me/554431421244" target="_blank" class="btn btn-primary"><i class="fab fa-whatsapp"></i> Falar com Suporte</a>
+      </div>
+    </div>
+
+    <!-- ===== POLÍTICA DE PRIVACIDADE ===== -->
+    <div id="privacidade" class="legal-section">
+      <span class="update-badge"><i class="fas fa-calendar"></i> Última atualização: Janeiro de 2025</span>
+
+      <h2>Política de Privacidade</h2>
+      <p>A <strong>Zippa</strong>, desenvolvida pela <strong>Nexa Labs</strong>, respeita e valoriza a privacidade dos seus usuários. Esta Política descreve como coletamos, usamos, armazenamos e protegemos seus dados pessoais.</p>
+
+      <div class="legal-highlight">
+        <p><strong>Resumo:</strong> Coletamos apenas os dados necessários para prestar nossos serviços. Nunca vendemos seus dados a terceiros. Você tem controle total sobre suas informações.</p>
+      </div>
+
+      <hr class="legal-divider" />
+
+      <h3>1. Dados que Coletamos</h3>
+      <p><strong>Dados fornecidos por você:</strong></p>
+      <ul>
+        <li>Nome completo e data de nascimento</li>
+        <li>E-mail e número de telefone</li>
+        <li>CPF (para verificação de identidade)</li>
+        <li>Endereço de entrega</li>
+        <li>Dados de pagamento (processados de forma segura por terceiros)</li>
+        <li>Foto de perfil (opcional)</li>
+      </ul>
+      <p><strong>Dados coletados automaticamente:</strong></p>
+      <ul>
+        <li>Localização GPS (apenas durante uso ativo do app)</li>
+        <li>Dados de uso e navegação no aplicativo</li>
+        <li>Modelo do dispositivo e sistema operacional</li>
+        <li>Endereço IP</li>
+        <li>Histórico de corridas e pedidos</li>
+      </ul>
+
+      <h3>2. Como Usamos seus Dados</h3>
+      <ul>
+        <li><strong>Prestação do serviço:</strong> conectar passageiros a motoristas e clientes a restaurantes</li>
+        <li><strong>Comunicação:</strong> envio de notificações, atualizações e suporte</li>
+        <li><strong>Segurança:</strong> verificação de identidade e prevenção a fraudes</li>
+        <li><strong>Melhorias:</strong> análise de uso para aprimorar a experiência</li>
+        <li><strong>Legal:</strong> cumprimento de obrigações legais e regulatórias</li>
+      </ul>
+
+      <h3>3. Compartilhamento de Dados</h3>
+      <p>Seus dados podem ser compartilhados com:</p>
+      <ul>
+        <li><strong>Motoristas e entregadores parceiros:</strong> nome e localização, apenas durante a prestação do serviço</li>
+        <li><strong>Restaurantes parceiros:</strong> nome e endereço de entrega para execução do pedido</li>
+        <li><strong>Processadores de pagamento:</strong> dados financeiros de forma segura e criptografada</li>
+        <li><strong>Autoridades públicas:</strong> quando exigido por lei ou ordem judicial</li>
+      </ul>
+      <p><strong>Não vendemos, alugamos ou comercializamos seus dados pessoais com terceiros.</strong></p>
+
+      <h3>4. Armazenamento e Segurança</h3>
+      <p>Seus dados são armazenados em servidores seguros com criptografia de ponta a ponta. Adotamos medidas técnicas e organizacionais para proteger suas informações contra acesso não autorizado, perda ou destruição.</p>
+
+      <h3>5. Retenção de Dados</h3>
+      <p>Mantemos seus dados enquanto sua conta estiver ativa ou pelo prazo necessário para cumprimento de obrigações legais. Após solicitação de exclusão, os dados são removidos em até <strong>30 dias</strong>, exceto quando há obrigação legal de retenção.</p>
+
+      <h3>6. Seus Direitos</h3>
+      <p>Como titular dos dados, você tem direito a:</p>
+      <ul>
+        <li>Acessar seus dados pessoais</li>
+        <li>Corrigir dados incorretos ou incompletos</li>
+        <li>Solicitar a exclusão de seus dados</li>
+        <li>Revogar consentimentos dados anteriormente</li>
+        <li>Portabilidade dos seus dados</li>
+      </ul>
+
+      <h3>7. Contato do DPO</h3>
+      <p>Para exercer seus direitos ou esclarecer dúvidas sobre privacidade, entre em contato com nosso Encarregado de Proteção de Dados (DPO):</p>
+      <ul>
+        <li><strong>E-mail:</strong> privacidade@zippa.com.br</li>
+        <li><strong>WhatsApp:</strong> (44) 3142-1244</li>
+      </ul>
+
+      <div class="contact-box">
+        <h4>Quer exercer seus direitos de privacidade?</h4>
+        <p>Entre em contato com nosso time. Respondemos em até 15 dias úteis.</p>
+        <a href="https://wa.me/554431421244" target="_blank" class="btn btn-primary"><i class="fab fa-whatsapp"></i> Falar com DPO</a>
+      </div>
+    </div>
+
+    <!-- ===== LGPD ===== -->
+    <div id="lgpd" class="legal-section">
+      <span class="update-badge"><i class="fas fa-calendar"></i> Em conformidade com a Lei nº 13.709/2018</span>
+
+      <h2>Lei Geral de Proteção de Dados — LGPD</h2>
+      <p>A <strong>Zippa</strong> opera em total conformidade com a <strong>Lei Geral de Proteção de Dados Pessoais (LGPD) — Lei nº 13.709/2018</strong>. Esta seção descreve como aplicamos os princípios da LGPD no nosso dia a dia.</p>
+
+      <div class="legal-highlight">
+        <p><strong>Compromisso Zippa:</strong> A proteção dos seus dados pessoais é uma prioridade. Seguimos todos os princípios da LGPD: finalidade, adequação, necessidade, livre acesso, qualidade, transparência, segurança, prevenção, não discriminação e responsabilização.</p>
+      </div>
+
+      <hr class="legal-divider" />
+
+      <h3>Bases Legais para Tratamento de Dados</h3>
+      <p>Tratamos seus dados pessoais com base nas seguintes hipóteses legais previstas na LGPD:</p>
+      <ul>
+        <li><strong>Consentimento (Art. 7º, I):</strong> para envio de comunicações de marketing e uso de cookies não essenciais</li>
+        <li><strong>Execução de contrato (Art. 7º, V):</strong> para prestação dos serviços de mobilidade e delivery</li>
+        <li><strong>Obrigação legal (Art. 7º, II):</strong> para cumprimento de exigências fiscais e regulatórias</li>
+        <li><strong>Legítimo interesse (Art. 7º, IX):</strong> para prevenção a fraudes e melhoria dos serviços</li>
+        <li><strong>Proteção ao crédito (Art. 7º, X):</strong> para análise e prevenção de inadimplência</li>
+      </ul>
+
+      <h3>Seus Direitos como Titular (Art. 18 da LGPD)</h3>
+      <p>A LGPD garante a você os seguintes direitos, que a Zippa se compromete a respeitar integralmente:</p>
+
+      <div class="rights-grid">
+        <div class="right-card">
+          <div class="icon">👁️</div>
+          <h4>Confirmação e Acesso</h4>
+          <p>Confirmar se tratamos seus dados e acessar uma cópia completa das informações que temos sobre você.</p>
+        </div>
+        <div class="right-card">
+          <div class="icon">✏️</div>
+          <h4>Correção</h4>
+          <p>Solicitar a correção de dados incompletos, inexatos ou desatualizados a qualquer momento.</p>
+        </div>
+        <div class="right-card">
+          <div class="icon">🗑️</div>
+          <h4>Eliminação</h4>
+          <p>Pedir a exclusão dos seus dados tratados com base no consentimento, quando não houver outra base legal.</p>
+        </div>
+        <div class="right-card">
+          <div class="icon">🚫</div>
+          <h4>Oposição</h4>
+          <p>Opor-se ao tratamento de dados realizado com base em outras hipóteses legais que não o consentimento.</p>
+        </div>
+        <div class="right-card">
+          <div class="icon">📦</div>
+          <h4>Portabilidade</h4>
+          <p>Solicitar a portabilidade dos seus dados para outro fornecedor de serviço, conforme regulamentação.</p>
+        </div>
+        <div class="right-card">
+          <div class="icon">ℹ️</div>
+          <h4>Informação</h4>
+          <p>Ser informado sobre com quais entidades públicas e privadas seus dados são compartilhados.</p>
+        </div>
+        <div class="right-card">
+          <div class="icon">↩️</div>
+          <h4>Revogação de Consentimento</h4>
+          <p>Revogar o consentimento dado anteriormente a qualquer momento, de forma gratuita e facilitada.</p>
+        </div>
+        <div class="right-card">
+          <div class="icon">⚖️</div>
+          <h4>Revisão de Decisões Automatizadas</h4>
+          <p>Solicitar revisão de decisões tomadas exclusivamente com base em tratamento automatizado de dados.</p>
+        </div>
+      </div>
+
+      <h3>Como Exercer seus Direitos</h3>
+      <p>Para exercer qualquer um dos direitos acima, entre em contato com nosso <strong>Encarregado de Proteção de Dados (DPO)</strong>:</p>
+      <ul>
+        <li><strong>E-mail:</strong> privacidade@zippa.com.br</li>
+        <li><strong>WhatsApp:</strong> (44) 3142-1244</li>
+        <li><strong>Prazo de resposta:</strong> até 15 dias úteis</li>
+      </ul>
+
+      <h3>Transferência Internacional de Dados</h3>
+      <p>Caso seus dados sejam transferidos para outros países (ex.: servidores em nuvem), garantimos que as transferências ocorrem apenas para países com nível de proteção adequado ou mediante garantias contratuais específicas, em conformidade com o Art. 33 da LGPD.</p>
+
+      <h3>Encarregado de Proteção de Dados (DPO)</h3>
+      <p>A Zippa designou um Encarregado de Proteção de Dados responsável por:</p>
+      <ul>
+        <li>Orientar os colaboradores sobre a LGPD</li>
+        <li>Receber e atender às solicitações dos titulares</li>
+        <li>Comunicar incidentes de segurança à ANPD quando necessário</li>
+        <li>Manter o Registro de Operações de Tratamento atualizado</li>
+      </ul>
+
+      <h3>Relatório de Impacto (RIPD)</h3>
+      <p>Para operações de alto risco, a Zippa elabora Relatórios de Impacto à Proteção de Dados Pessoais (RIPD), conforme exigido pelo Art. 38 da LGPD, garantindo que identificamos e mitigamos riscos antes de iniciar novos tratamentos.</p>
+
+      <div class="contact-box">
+        <h4>Dúvidas sobre seus direitos na LGPD?</h4>
+        <p>Nossa equipe está pronta para te ajudar. Você também pode registrar reclamações na <strong>ANPD (Autoridade Nacional de Proteção de Dados)</strong>.</p>
+        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+          <a href="https://wa.me/554431421244" target="_blank" class="btn btn-primary"><i class="fab fa-whatsapp"></i> Falar com DPO</a>
+          <a href="https://www.gov.br/anpd" target="_blank" class="btn btn-outline"><i class="fas fa-external-link-alt"></i> Site da ANPD</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== COOKIES ===== -->
+    <div id="cookies" class="legal-section">
+      <span class="update-badge"><i class="fas fa-calendar"></i> Última atualização: Janeiro de 2025</span>
+
+      <h2>Política de Cookies</h2>
+      <p>Esta política explica como a <strong>Zippa</strong> utiliza cookies e tecnologias similares para melhorar sua experiência na plataforma.</p>
+
+      <div class="legal-highlight">
+        <p><strong>Você está no controle:</strong> Pode aceitar, recusar ou personalizar o uso de cookies a qualquer momento pelo banner exibido ao acessar o site.</p>
+      </div>
+
+      <hr class="legal-divider" />
+
+      <h3>O que são Cookies?</h3>
+      <p>Cookies são pequenos arquivos de texto armazenados no seu dispositivo quando você visita um site. Eles permitem que o site "lembre" de você e das suas preferências, tornando a experiência mais personalizada e eficiente.</p>
+
+      <h3>Tipos de Cookies que Usamos</h3>
+
+      <h3>🔧 Cookies Essenciais (Obrigatórios)</h3>
+      <p>São estritamente necessários para o funcionamento do site. Sem eles, funcionalidades básicas não funcionariam. <strong>Não podem ser desativados.</strong></p>
+      <ul>
+        <li><strong>Sessão de login:</strong> mantém você autenticado durante o uso</li>
+        <li><strong>Preferências de segurança:</strong> proteção contra ataques CSRF</li>
+        <li><strong>Aceite de cookies:</strong> armazena sua preferência sobre cookies</li>
+      </ul>
+
+      <h3>📊 Cookies Analíticos (Opcionais)</h3>
+      <p>Nos ajudam a entender como os usuários interagem com o site, permitindo melhorias contínuas. Coletam dados de forma anônima e agregada.</p>
+      <ul>
+        <li><strong>Google Analytics:</strong> análise de tráfego e comportamento</li>
+        <li><strong>Firebase Analytics:</strong> métricas de uso do aplicativo</li>
+      </ul>
+
+      <h3>🎯 Cookies de Marketing (Opcionais)</h3>
+      <p>Usados para exibir anúncios relevantes para você em outras plataformas. Podem ser desativados sem impacto no funcionamento do site.</p>
+      <ul>
+        <li><strong>Meta Pixel:</strong> rastreamento para anúncios no Instagram/Facebook</li>
+        <li><strong>Google Ads:</strong> rastreamento de conversões em campanhas</li>
+      </ul>
+
+      <h3>Como Gerenciar seus Cookies</h3>
+      <p>Você pode gerenciar suas preferências de cookies de três formas:</p>
+      <ul>
+        <li><strong>Banner do site:</strong> ao acessar o site pela primeira vez, um banner permite aceitar ou personalizar cookies</li>
+        <li><strong>Configurações do navegador:</strong> acesse as configurações do seu navegador e gerencie ou exclua cookies armazenados</li>
+        <li><strong>Contato direto:</strong> entre em contato com nossa equipe pelo WhatsApp</li>
+      </ul>
+
+      <h3>Cookies de Terceiros</h3>
+      <p>Alguns cookies são definidos por terceiros (Google, Meta, Firebase). O uso desses cookies está sujeito às políticas de privacidade dessas empresas. A Zippa não controla esses cookies diretamente.</p>
+
+      <h3>Validade dos Cookies</h3>
+      <ul>
+        <li><strong>Cookies de sessão:</strong> expiram quando você fecha o navegador</li>
+        <li><strong>Cookies persistentes:</strong> permanecem por até 12 meses ou até você excluí-los</li>
+      </ul>
+
+      <div class="contact-box">
+        <h4>Dúvidas sobre Cookies?</h4>
+        <p>Entre em contato com nossa equipe de privacidade.</p>
+        <a href="https://wa.me/554431421244" target="_blank" class="btn btn-primary"><i class="fab fa-whatsapp"></i> Falar com Suporte</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="navbar-logo" style="display:inline-block;margin-bottom:4px;">
+            <img src="images/logo-zippa.png" alt="Zippa" style="height:64px;width:auto;" />
+          </a>
+          <p>O melhor de dois mundos: mobilidade e delivery na sua cidade, com segurança e preço justo.</p>
+          <div class="footer-socials" style="margin-top:20px;">
+            <a href="#" class="social-btn"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-btn"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-btn"><i class="fab fa-tiktok"></i></a>
+            <a href="https://wa.me/554431421244" class="social-btn"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="privacidade.html" onclick="showTab('termos')">Termos de Uso</a></li>
+            <li><a href="privacidade.html" onclick="showTab('privacidade')">Política de Privacidade</a></li>
+            <li><a href="privacidade.html" onclick="showTab('lgpd')">LGPD</a></li>
+            <li><a href="privacidade.html" onclick="showTab('cookies')">Política de Cookies</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Serviços</h4>
+          <ul>
+            <li><a href="mobilidade.html">Zippa Mobilidade</a></li>
+            <li><a href="delivery.html">Zippa Delivery</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Suporte</h4>
+          <ul>
+            <li><a href="https://wa.me/554431421244">WhatsApp</a></li>
+            <li><a href="mailto:privacidade@zippa.com.br">E-mail DPO</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 Zippa. Desenvolvido por <strong>Nexa Labs</strong> — Todos os direitos reservados.</p>
+        <p><a href="privacidade.html" style="color:rgba(255,255,255,0.5);text-decoration:underline;font-size:0.82rem;">Termos de Uso · Privacidade · LGPD</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/554431421244" target="_blank" class="whatsapp-float">
+    <i class="fab fa-whatsapp"></i>
+    <span class="wa-label">Suporte</span>
+  </a>
+
+  <script>
+    function showTab(id) {
+      document.querySelectorAll('.legal-section').forEach(s => s.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      const tabs = ['termos','privacidade','lgpd','cookies'];
+      const idx = tabs.indexOf(id);
+      document.querySelectorAll('.tab-btn')[idx].classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Navbar scroll
+    window.addEventListener('scroll', () => {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 40) navbar.classList.add('scrolled');
+      else navbar.classList.remove('scrolled');
+    });
+
+    // Mobile menu
+    document.getElementById('hamburger').addEventListener('click', () => {
+      document.getElementById('mobileMenu').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+    document.getElementById('menuClose').addEventListener('click', () => {
+      document.getElementById('mobileMenu').classList.remove('open');
+      document.body.style.overflow = '';
+    });
+
+    // Ativar tab via URL hash
+    document.addEventListener('DOMContentLoaded', () => {
+      const hash = window.location.hash.replace('#','');
+      if (['termos','privacidade','lgpd','cookies'].includes(hash)) showTab(hash);
+    });
+  </script>
+</body>
+</html>

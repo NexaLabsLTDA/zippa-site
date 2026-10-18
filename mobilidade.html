@@ -653,40 +653,23 @@
   <!-- ===== CTA FINAL ===== -->
   <section class="cta-driver" id="cadastro">
     <h2>A Zippa está pronta.<br><span style="text-decoration:underline;text-decoration-color:rgba(255,255,255,0.4)">E você?</span></h2>
-    <p>Deixe seu contato e nossa equipe fala com você pelo WhatsApp!</p>
+    <p>Fale agora com a <strong>Central Zippa</strong> no WhatsApp — primeiro atendimento e encaminhamento na hora.</p>
 
     <!-- FORMULÁRIO LEAD MOBILIDADE -->
-    <div style="max-width:500px;margin:0 auto 36px;background:rgba(255,255,255,0.1);backdrop-filter:blur(12px);border-radius:20px;padding:28px;border:1px solid rgba(255,255,255,0.2);">
-      <p style="font-size:0.75rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.55);margin-bottom:18px;">📬 Quero fazer parte da Zippa Mobilidade</p>
-      <form id="formLeadMob" onsubmit="enviarLeadMob(event)">
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;">
-          <input id="mobNome" type="text" placeholder="Seu nome" required
-            style="background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.22);border-radius:10px;padding:12px 14px;color:white;font-size:0.88rem;font-family:inherit;width:100%;" />
-          <input id="mobTelefone" type="tel" placeholder="WhatsApp" required
-            style="background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.22);border-radius:10px;padding:12px 14px;color:white;font-size:0.88rem;font-family:inherit;width:100%;" />
-        </div>
-        <select id="mobPerfil" required
-          style="background:rgba(20,20,20,0.95);border:1px solid rgba(255,255,255,0.22);border-radius:10px;padding:12px 14px;color:white;font-size:0.88rem;font-family:inherit;width:100%;margin-bottom:14px;">
-          <option value="" disabled selected>Sou...</option>
-          <option value="Passageiro - Mobilidade">🚗 Passageiro — quero usar a Zippa</option>
-          <option value="Motorista - Mobilidade">🚙 Motorista — quero ser parceiro</option>
-        </select>
-        <button id="btnLeadMob" type="submit" data-label='<i class="fas fa-paper-plane"></i> Enviar meu contato'
-          class="btn btn-white btn-lg" style="width:100%;justify-content:center;">
-          <i class="fas fa-paper-plane"></i> Enviar meu contato
-        </button>
-      </form>
-      <div id="successLeadMob" style="display:none;align-items:center;gap:12px;background:rgba(39,174,96,0.2);border:1px solid rgba(39,174,96,0.4);border-radius:12px;padding:16px 20px;margin-top:4px;">
-        <span style="font-size:1.5rem;">🎉</span>
-        <div>
-          <strong style="color:white;display:block;">Recebemos seu contato!</strong>
-          <span style="font-size:0.82rem;color:rgba(255,255,255,0.7);">Nossa equipe fala com você em breve pelo WhatsApp.</span>
-        </div>
+    <!-- CENTRAL ZIPPA (WhatsApp) -->
+    <div style="max-width:560px;margin:0 auto 36px;background:rgba(255,255,255,0.1);backdrop-filter:blur(12px);border-radius:20px;padding:30px;border:1px solid rgba(255,255,255,0.2);text-align:center;">
+      <div style="width:58px;height:58px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">
+        <i class="fab fa-whatsapp" style="font-size:1.9rem;color:#fff;"></i>
       </div>
-      <p style="font-size:0.7rem;color:rgba(255,255,255,0.3);margin-top:10px;text-align:center;">
-        🔒 Protegido pela <a href="privacidade.html" style="color:rgba(255,255,255,0.45);text-decoration:underline;">LGPD</a>. Seus dados não são compartilhados.
-      </p>
+      <p style="font-size:0.75rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-bottom:10px;">Central Zippa</p>
+      <h3 style="font-size:1.3rem;color:#fff;margin-bottom:10px;">Fale com a gente pelo WhatsApp</h3>
+      <p style="font-size:0.92rem;color:rgba(255,255,255,0.75);margin-bottom:20px;line-height:1.6;">A Central Zippa faz o primeiro atendimento e encaminha você para o time certo — passageiro, motorista, entregador, restaurante, franquia ou anúncio.</p>
+      <a class="btn btn-white btn-lg" style="width:100%;justify-content:center;" href="https://wa.me/554431421244?text=Ola%21%20Quero%20falar%20sobre%20a%20Zippa%20Mobilidade." target="_blank" rel="noopener">
+        <i class="fab fa-whatsapp"></i> Abrir conversa no WhatsApp
+      </a>
+      <p style="font-size:0.78rem;color:rgba(255,255,255,0.5);margin-top:14px;">WhatsApp e telefone: (44) 3142-1244</p>
     </div>
+>
 
     <p>Ou baixe direto o app:</p>
     <p style="font-size:0.78rem;font-weight:700;color:rgba(255,255,255,0.5);letter-spacing:1px;text-transform:uppercase;margin-bottom:12px;">📲 Escolha seu sistema:</p>
@@ -762,23 +745,7 @@
     <i class="fab fa-whatsapp"></i>
     <span class="wa-label">Suporte</span>
   </a>
-
-  <script src="js/axon-crm.js?v=2"></script>
   <script src="js/main.js?v=2"></script>
   <script src="js/cookies.js?v=2"></script>
-  <script>
-  async function enviarLeadMob(e) {
-    e.preventDefault();
-    await zippaEnviarLead(
-      'formLeadMob', 'btnLeadMob', 'successLeadMob',
-      {
-        nome:      document.getElementById('mobNome').value,
-        telefone:  document.getElementById('mobTelefone').value,
-        interesse: document.getElementById('mobPerfil').value,
-        tags:      ['site-zippa', 'mobilidade']
-      }
-    );
-  }
-  </script>
 </body>
 </html>

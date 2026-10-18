@@ -233,28 +233,19 @@
     <div class="container" style="max-width:760px;">
       <div class="lead-box">
         <h2>Quero anunciar na Zippa</h2>
-        <p>Conte o que você quer alcançar e o time comercial monta uma proposta para a sua cidade.</p>
-        <form id="formAnuncio" onsubmit="enviarAnuncio(event)">
-          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:0 18px;">
-            <div>
-              <label for="anuNome">Seu nome *</label>
-              <input id="anuNome" type="text" placeholder="Nome completo" required />
-            </div>
-            <div>
-              <label for="anuTelefone">WhatsApp *</label>
-              <input id="anuTelefone" type="tel" placeholder="(00) 00000-0000" required />
-            </div>
-            <div style="grid-column:1/-1;">
-              <label for="anuEmpresa">Empresa / marca *</label>
-              <input id="anuEmpresa" type="text" placeholder="Nome da empresa ou marca" required />
-            </div>
-          </div>
-          <button id="btnAnuncio" type="submit" class="btn btn-primary btn-lg" style="width:100%;justify-content:center;margin-top:6px;">
-            <i class="fas fa-paper-plane"></i> Quero falar com o comercial
-          </button>
-          <p id="successAnuncio" style="display:none;color:#7CE38B;font-weight:700;margin-top:16px;text-align:center;">Recebemos seus dados! Em breve o nosso time entra em contato.</p>
-          <p style="font-size:0.78rem;color:rgba(255,255,255,0.45);margin-top:14px;text-align:center;">Ao enviar, você concorda com a nossa <a href="privacidade.html#privacidade" style="color:rgba(255,255,255,0.75);text-decoration:underline;">Política de Privacidade</a>.</p>
-        </form>
+        <p>A Central Zippa faz o primeiro atendimento e encaminha você para o time comercial.</p>
+        <div style="max-width:560px;margin:0 auto 36px;background:rgba(255,255,255,0.1);backdrop-filter:blur(12px);border-radius:20px;padding:30px;border:1px solid rgba(255,255,255,0.2);text-align:center;">
+      <div style="width:58px;height:58px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">
+        <i class="fab fa-whatsapp" style="font-size:1.9rem;color:#fff;"></i>
+      </div>
+      <p style="font-size:0.75rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-bottom:10px;">Central Zippa</p>
+      <h3 style="font-size:1.3rem;color:#fff;margin-bottom:10px;">Fale com a gente pelo WhatsApp</h3>
+      <p style="font-size:0.92rem;color:rgba(255,255,255,0.75);margin-bottom:20px;line-height:1.6;">A Central Zippa faz o primeiro atendimento e encaminha você para o time certo — passageiro, motorista, entregador, restaurante, franquia ou anúncio.</p>
+      <a class="btn btn-white btn-lg" style="width:100%;justify-content:center;" href="https://wa.me/554431421244?text=Ola%21%20Quero%20anunciar%20na%20Zippa." target="_blank" rel="noopener">
+        <i class="fab fa-whatsapp"></i> Abrir conversa no WhatsApp
+      </a>
+      <p style="font-size:0.78rem;color:rgba(255,255,255,0.5);margin-top:14px;">WhatsApp e telefone: (44) 3142-1244</p>
+    </div>
       </div>
     </div>
   </section>
@@ -312,23 +303,7 @@
     <i class="fab fa-whatsapp"></i>
     <span class="wa-label">Suporte</span>
   </a>
-
-  <script src="js/axon-crm.js?v=2"></script>
   <script src="js/main.js?v=2"></script>
   <script src="js/cookies.js?v=2"></script>
-  <script>
-  async function enviarAnuncio(e) {
-    e.preventDefault();
-    await zippaEnviarLead(
-      'formAnuncio', 'btnAnuncio', 'successAnuncio',
-      {
-        nome:      document.getElementById('anuNome').value,
-        telefone:  document.getElementById('anuTelefone').value,
-        interesse: document.getElementById('anuEmpresa').value,
-        tags:      ['site-zippa', 'anuncio']
-      }
-    );
-  }
-  </script>
 </body>
 </html>

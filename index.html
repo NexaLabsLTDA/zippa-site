@@ -825,68 +825,29 @@
   <!-- ===== LEAD CAPTURE + CTA FINAL ===== -->
   <section class="cta-section" id="contato">
     <h2>Pronta para te levar<br>e te alimentar — <strong>Zippa</strong>.</h2>
-    <p>Deixe seu contato e nossa equipe entra em touch. Seja passageiro, motorista, cliente ou restaurante!</p>
+    <p>Fale agora com a <strong>Central Zippa</strong> no WhatsApp — a gente faz o primeiro atendimento e encaminha você para o time certo.</p>
 
     <!-- FORMULÁRIO DE LEAD -->
-    <div style="max-width:520px;margin:0 auto 36px;background:rgba(255,255,255,0.1);backdrop-filter:blur(12px);border-radius:20px;padding:32px;border:1px solid rgba(255,255,255,0.2);">
-      <p style="font-size:0.78rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.6);margin-bottom:20px;">📬 Fique por dentro — cadastre-se</p>
-      <form id="formLead" onsubmit="enviarLeadHome(event)">
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;">
-          <input id="leadNome" type="text" placeholder="Seu nome" required
-            style="background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.25);border-radius:10px;padding:12px 14px;color:white;font-size:0.9rem;font-family:inherit;width:100%;" />
-          <input id="leadTelefone" type="tel" placeholder="WhatsApp" required
-            style="background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.25);border-radius:10px;padding:12px 14px;color:white;font-size:0.9rem;font-family:inherit;width:100%;" />
-        </div>
-        <input id="leadEmail" type="email" placeholder="Seu e-mail (opcional)"
-          style="background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.25);border-radius:10px;padding:12px 14px;color:white;font-size:0.9rem;font-family:inherit;width:100%;margin-bottom:12px;" />
-        <select id="leadInteresse" required
-          style="background:rgba(30,30,30,0.9);border:1px solid rgba(255,255,255,0.25);border-radius:10px;padding:12px 14px;color:white;font-size:0.9rem;font-family:inherit;width:100%;margin-bottom:16px;">
-          <option value="" disabled selected>Tenho interesse em...</option>
-          <option value="Passageiro - Mobilidade">🚗 Usar a Zippa como Passageiro</option>
-          <option value="Motorista - Mobilidade">🚙 Ser Motorista Parceiro</option>
-          <option value="Cliente - Delivery">🍔 Pedir comida pelo Delivery</option>
-          <option value="Restaurante - Delivery">🏪 Cadastrar meu Restaurante</option>
-          <option value="Entregador - Delivery">🛵 Ser Entregador Parceiro</option>
-        </select>
-        <button id="btnLeadHome" type="submit" data-label='<i class="fas fa-paper-plane"></i> Quero me cadastrar'
-          class="btn btn-white btn-lg" style="width:100%;justify-content:center;">
-          <i class="fas fa-paper-plane"></i> Quero me cadastrar
-        </button>
-      </form>
-      <!-- Sucesso -->
-      <div id="successLeadHome" style="display:none;align-items:center;gap:12px;background:rgba(39,174,96,0.2);border:1px solid rgba(39,174,96,0.4);border-radius:12px;padding:16px 20px;">
-        <span style="font-size:1.5rem;">🎉</span>
-        <div>
-          <strong style="color:white;display:block;">Cadastro recebido!</strong>
-          <span style="font-size:0.85rem;color:rgba(255,255,255,0.7);">Nossa equipe vai entrar em contato em breve pelo WhatsApp.</span>
-        </div>
+    <!-- CENTRAL ZIPPA (WhatsApp) -->
+    <div style="max-width:560px;margin:0 auto 36px;background:rgba(255,255,255,0.1);backdrop-filter:blur(12px);border-radius:20px;padding:30px;border:1px solid rgba(255,255,255,0.2);text-align:center;">
+      <div style="width:58px;height:58px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">
+        <i class="fab fa-whatsapp" style="font-size:1.9rem;color:#fff;"></i>
       </div>
-      <p style="font-size:0.72rem;color:rgba(255,255,255,0.35);margin-top:12px;text-align:center;">
-        🔒 Seus dados são protegidos pela <a href="privacidade.html" style="color:rgba(255,255,255,0.5);text-decoration:underline;">LGPD</a>. Nunca compartilhamos com terceiros.
-      </p>
+      <p style="font-size:0.75rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-bottom:10px;">Central Zippa</p>
+      <h3 style="font-size:1.3rem;color:#fff;margin-bottom:10px;">Fale com a gente pelo WhatsApp</h3>
+      <p style="font-size:0.92rem;color:rgba(255,255,255,0.75);margin-bottom:20px;line-height:1.6;">A Central Zippa faz o primeiro atendimento e encaminha você para o time certo — passageiro, motorista, entregador, restaurante, franquia ou anúncio.</p>
+      <a class="btn btn-white btn-lg" style="width:100%;justify-content:center;" href="https://wa.me/554431421244?text=Ola%21%20Vim%20pelo%20site%20da%20Zippa%20e%20quero%20atendimento." target="_blank" rel="noopener">
+        <i class="fab fa-whatsapp"></i> Abrir conversa no WhatsApp
+      </a>
+      <p style="font-size:0.78rem;color:rgba(255,255,255,0.5);margin-top:14px;">WhatsApp e telefone: (44) 3142-1244</p>
     </div>
+>
 
     <div class="cta-buttons">
       <a href="mobilidade.html" class="btn btn-white btn-lg"><i class="fas fa-car"></i> Zippa Mobilidade</a>
       <a href="delivery.html" class="btn btn-dark btn-lg"><i class="fas fa-utensils"></i> Zippa Delivery</a>
     </div>
   </section>
-
-  <script>
-  async function enviarLeadHome(e) {
-    e.preventDefault();
-    await zippaEnviarLead(
-      'formLead', 'btnLeadHome', 'successLeadHome',
-      {
-        nome:      document.getElementById('leadNome').value,
-        telefone:  document.getElementById('leadTelefone').value,
-        email:     document.getElementById('leadEmail').value,
-        interesse: document.getElementById('leadInteresse').value,
-        tags:      ['site-zippa', 'homepage']
-      }
-    );
-  }
-  </script>
 
   <!-- ===== FOOTER ===== -->
   <footer id="footer">
@@ -999,8 +960,6 @@
       iniciar();
     })();
   </script>
-
-  <script src="js/axon-crm.js?v=2"></script>
   <script src="js/main.js?v=2"></script>
   <script src="js/cookies.js?v=2"></script>
 </body>

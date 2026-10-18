@@ -363,6 +363,67 @@
       .delivery-perks { grid-template-columns: 1fr; }
     }
   </style>
+
+  <!-- ===== SEO / COMPARTILHAMENTO ===== -->
+  <link rel="canonical" href="https://zippa.com.br/delivery.html" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <meta name="author" content="Nexa Labs" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <meta name="theme-color" content="#F6771A" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Zippa" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:title" content="Zippa Delivery — Comida boa, entregue rápido" />
+  <meta property="og:description" content="A Zippa Delivery traz os melhores restaurantes da sua cidade até a sua porta. Taxa justa, entrega rápida, comida quente." />
+  <meta property="og:url" content="https://zippa.com.br/delivery.html" />
+  <meta property="og:image" content="https://zippa.com.br/images/og-zippa.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Zippa — Mobilidade e Delivery" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Zippa Delivery — Comida boa, entregue rápido" />
+  <meta name="twitter:description" content="A Zippa Delivery traz os melhores restaurantes da sua cidade até a sua porta. Taxa justa, entrega rápida, comida quente." />
+  <meta name="twitter:image" content="https://zippa.com.br/images/og-zippa.jpg" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Zippa",
+  "alternateName": "Zippa Mobilidade e Delivery",
+  "url": "https://zippa.com.br/",
+  "logo": "https://zippa.com.br/images/logo-zippa.png",
+  "description": "Zippa — mobilidade urbana e delivery de comida. Viagens com preço justo e entregas rápidas em Araruna, Peabiru e Campo Mourão (PR).",
+  "email": "contato@zippa.app",
+  "telephone": "+55-44-3142-1244",
+  "areaServed": [
+    {
+      "@type": "City",
+      "name": "Araruna, PR"
+    },
+    {
+      "@type": "City",
+      "name": "Peabiru, PR"
+    },
+    {
+      "@type": "City",
+      "name": "Campo Mourão, PR"
+    }
+  ],
+  "contactPoint": [
+    {
+      "@type": "ContactPoint",
+      "contactType": "customer support",
+      "email": "contato@zippa.app",
+      "telephone": "+55-44-3142-1244",
+      "areaServed": "BR",
+      "availableLanguage": "Portuguese"
+    }
+  ]
+}
+  </script>
 </head>
 <body>
 
@@ -409,7 +470,7 @@
         <h1>Os melhores<br>restaurantes,<br><span>à distância de<br>um toque.</span></h1>
         <p>A Zippa garante entrega rápida, comida quente e taxa justa. Porque você merece comer bem sem pagar caro.</p>
         <div class="hero-del-ctas">
-          <a href="#" class="btn btn-primary btn-lg"><i class="fas fa-mobile-alt"></i> Baixar App</a>
+          <a href="#apps" class="btn btn-primary btn-lg"><i class="fas fa-mobile-alt"></i> Baixar App</a>
           <a href="#restaurantes" class="btn btn-outline" style="border-color:rgba(255,255,255,0.4);color:white;" onmouseover="this.style.background='rgba(255,255,255,0.1)'" onmouseout="this.style.background='transparent'">
             <i class="fas fa-store"></i> Sou Restaurante
           </a>
@@ -429,7 +490,7 @@
           <span class="cat-pill">☕ Café</span>
           <span class="cat-pill">🌮 Mexicano</span>
         </div>
-        <a href="#" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:8px;">
+        <a href="#apps" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:8px;">
           <i class="fas fa-utensils"></i> Ver restaurantes disponíveis
         </a>
         <p style="font-size:0.72rem;color:rgba(255,255,255,0.4);margin-top:12px;text-align:center;">Disponível para iPhone e Android. Baixe agora!</p>
@@ -504,7 +565,7 @@
         <h3>🎉 Frete grátis na primeira entrega!</h3>
         <p>Baixe o app agora e aproveite o frete grátis no seu primeiro pedido.</p>
       </div>
-      <div class="app-badges">
+      <div class="app-badges" id="apps">
         <a href="https://apps.apple.com/br/app/zippa-delivery/id6821483597" target="_blank" class="app-badge" style="background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.3);">
           <i class="fab fa-apple"></i>
           <div class="app-badge-text"><small>Disponível na</small><strong>App Store</strong></div>
@@ -852,10 +913,8 @@
             <img src="images/logo-zippa-delivery.png" alt="Zippa Delivery" style="height:64px;width:auto;" />
           </a>
           <p>O melhor de dois mundos: mobilidade e delivery na sua cidade, com segurança e preço justo.</p>
+          <p style="margin-top:12px;font-size:0.9rem;opacity:0.8;">📍 Atendemos <strong>Araruna</strong>, <strong>Peabiru</strong> e <strong>Campo Mourão</strong> — PR</p>
           <div class="footer-socials" style="margin-top:20px;">
-            <a href="#" class="social-btn"><i class="fab fa-instagram"></i></a>
-            <a href="#" class="social-btn"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" class="social-btn"><i class="fab fa-tiktok"></i></a>
             <a href="https://wa.me/554431421244" class="social-btn"><i class="fab fa-whatsapp"></i></a>
           </div>
         </div>
@@ -865,7 +924,7 @@
             <li><a href="#pedido">Fazer Pedido</a></li>
             <li><a href="#como-funciona">Como Funciona</a></li>
             <li><a href="#restaurantes">Seja Parceiro</a></li>
-            <li><a href="#">Baixar App</a></li>
+            <li><a href="#apps">Baixar App</a></li>
           </ul>
         </div>
         <div class="footer-col">
@@ -873,22 +932,20 @@
           <ul>
             <li><a href="index.html#sobre">Sobre a Zippa</a></li>
             <li><a href="mobilidade.html">Zippa Mobilidade</a></li>
-            <li><a href="#">Blog</a></li>
-            <li><a href="#">Carreiras</a></li>
           </ul>
         </div>
         <div class="footer-col">
           <h4>Suporte</h4>
           <ul>
             <li><a href="https://wa.me/554431421244">WhatsApp</a></li>
-            <li><a href="#">Central de Ajuda</a></li>
+            <li><a href="mailto:contato@zippa.app">contato@zippa.app</a></li>
             <li><a href="privacidade.html#termos">Termos de Uso</a></li>
             <li><a href="privacidade.html#privacidade">Privacidade</a></li>
           </ul>
         </div>
       </div>
       <div class="footer-bottom">
-        <p>© 2025 Zippa. Desenvolvido por <strong>Nexa Labs</strong> — Todos os direitos reservados.</p>
+        <p>© 2026 Zippa. Desenvolvido por <strong>Nexa Labs</strong> — Todos os direitos reservados.</p>
         <p><a href="privacidade.html#termos" style="color:rgba(255,255,255,0.5);text-decoration:underline;font-size:0.82rem;">Termos de Uso</a> · <a href="privacidade.html#privacidade" style="color:rgba(255,255,255,0.5);text-decoration:underline;font-size:0.82rem;">Privacidade</a> · <a href="privacidade.html#lgpd" style="color:rgba(255,255,255,0.5);text-decoration:underline;font-size:0.82rem;">LGPD</a></p>
       </div>
     </div>

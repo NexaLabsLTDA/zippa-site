@@ -243,6 +243,99 @@
     </div>
   </section>
 
+  <!-- ===== SIMULADOR DO ENTREGADOR ===== -->
+  <section class="p-sec alt" id="entregador">
+    <div class="container" style="max-width:920px;">
+      <div style="text-align:center;">
+        <span class="section-tag">Para entregador</span>
+        <h2 class="section-title">Uma lanchonete só tem os pedidos <span>dela</span>.<br>O app tem os pedidos da cidade.</h2>
+        <p style="color:#5a5a66;max-width:700px;margin:0 auto;font-size:1.02rem;line-height:1.7;">Na Zippa o entregador <strong>não paga nada para rodar</strong>: cada entrega rende <strong>R$ 5,00 livres</strong>, sem desconto. Monte a sua noite e compare com o fixo de uma lanchonete.</p>
+      </div>
+
+      <div class="sim-card" style="margin-top:40px;">
+        <div class="sim-row">
+          <div class="sim-row-top">
+            <label for="entEntregas">Entregas por noite</label>
+            <span class="sim-val" id="entEntregasVal">18</span>
+          </div>
+          <input type="range" class="sim-range" id="entEntregas" min="1" max="40" step="1" value="18" aria-label="Entregas por noite">
+        </div>
+
+        <div class="sim-row">
+          <div class="sim-row-top">
+            <label for="entNoites">Noites por semana</label>
+            <span class="sim-val" id="entNoitesVal">5</span>
+          </div>
+          <input type="range" class="sim-range" id="entNoites" min="1" max="7" step="1" value="5" aria-label="Noites por semana">
+        </div>
+
+        <div class="sim-out" aria-live="polite">
+          <div><small>Por noite</small><strong id="entNoite">R$ 90,00</strong></div>
+          <div><small>Por semana</small><strong id="entSemana">R$ 450,00</strong></div>
+          <div class="hi"><small>Por mês</small><strong id="entMes">R$ 1.950,00</strong></div>
+        </div>
+
+        <div style="margin-top:32px;">
+          <p style="font-size:0.72rem;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:#8a8a96;margin:0 0 18px;">A sua noite comparada ao fixo</p>
+
+          <div style="margin-bottom:20px;">
+            <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;">
+              <span style="font-size:0.92rem;font-weight:700;color:#111;">Rodando com a Zippa</span>
+              <span style="font-size:1.05rem;font-weight:900;color:#FF6B00;" id="cmpZippa">R$ 90,00</span>
+            </div>
+            <div style="height:14px;background:#ECECF1;border-radius:99px;overflow:hidden;">
+              <div id="cmpZippaBar" style="height:100%;width:82%;background:linear-gradient(90deg,#FF6B00,#ff9500);border-radius:99px;transition:width .25s ease;"></div>
+            </div>
+          </div>
+
+          <div>
+            <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;">
+              <span style="font-size:0.92rem;font-weight:700;color:#111;">Fixo na lanchonete</span>
+              <span style="font-size:1.05rem;font-weight:900;color:#7a7a86;">R$ 80,00 &ndash; R$ 100,00</span>
+            </div>
+            <div style="height:14px;background:#ECECF1;border-radius:99px;overflow:hidden;">
+              <div id="cmpFixoBar" style="height:100%;width:82%;background:#C9C9D1;border-radius:99px;transition:width .25s ease;"></div>
+            </div>
+          </div>
+
+          <p id="entVeredito" style="margin:24px 0 0;text-align:center;font-size:1rem;font-weight:800;color:#0F9D58;"></p>
+        </div>
+
+        <div style="overflow-x:auto;margin-top:36px;">
+          <table style="width:100%;border-collapse:collapse;min-width:520px;">
+            <thead>
+              <tr>
+                <th style="text-align:left;padding:0 14px 12px;font-size:0.7rem;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:#8a8a96;border-bottom:1px solid #ECECF1;"></th>
+                <th style="text-align:left;padding:0 14px 12px;font-size:0.7rem;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:#FF6B00;border-bottom:1px solid #ECECF1;">Com a Zippa</th>
+                <th style="text-align:left;padding:0 14px 12px;font-size:0.7rem;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:#8a8a96;border-bottom:1px solid #ECECF1;">Fixo na lanchonete</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td style="padding:14px 14px;border-bottom:1px solid #F1F1F4;color:#3d3d4a;font-size:0.9rem;font-weight:700;line-height:1.55;vertical-align:top;">Custo para rodar</td><td style="padding:14px 14px;border-bottom:1px solid #F1F1F4;color:#111;font-size:0.9rem;line-height:1.55;vertical-align:top;"><strong>Nada.</strong> Os R$ 5,00 são livres, sem desconto nenhum</td><td style="padding:14px 14px;border-bottom:1px solid #F1F1F4;color:#5a5a66;font-size:0.9rem;line-height:1.55;vertical-align:top;">—</td></tr>
+              <tr><td style="padding:14px 14px;border-bottom:1px solid #F1F1F4;color:#3d3d4a;font-size:0.9rem;font-weight:700;line-height:1.55;vertical-align:top;">Quanto entra por noite</td><td style="padding:14px 14px;border-bottom:1px solid #F1F1F4;color:#111;font-size:0.9rem;line-height:1.55;vertical-align:top;"><strong>R$ 5,00 por entrega</strong></td><td style="padding:14px 14px;border-bottom:1px solid #F1F1F4;color:#5a5a66;font-size:0.9rem;line-height:1.55;vertical-align:top;">R$ 80,00 a R$ 100,00, o mesmo valor sempre</td></tr>
+              <tr><td style="padding:14px 14px;border-bottom:1px solid #F1F1F4;color:#3d3d4a;font-size:0.9rem;font-weight:700;line-height:1.55;vertical-align:top;">Quem decide o seu horário</td><td style="padding:14px 14px;border-bottom:1px solid #F1F1F4;color:#111;font-size:0.9rem;line-height:1.55;vertical-align:top;"><strong>Você</strong></td><td style="padding:14px 14px;border-bottom:1px solid #F1F1F4;color:#5a5a66;font-size:0.9rem;line-height:1.55;vertical-align:top;">A escala do lanchote</td></tr>
+              <tr><td style="padding:14px 14px;border-bottom:1px solid #F1F1F4;color:#3d3d4a;font-size:0.9rem;font-weight:700;line-height:1.55;vertical-align:top;">Para quem você entrega</td><td style="padding:14px 14px;border-bottom:1px solid #F1F1F4;color:#111;font-size:0.9rem;line-height:1.55;vertical-align:top;">Todos os restaurantes da Zippa</td><td style="padding:14px 14px;border-bottom:1px solid #F1F1F4;color:#5a5a66;font-size:0.9rem;line-height:1.55;vertical-align:top;">Só aquele lanchote</td></tr>
+              <tr><td style="padding:14px 14px;border-bottom:1px solid #F1F1F4;color:#3d3d4a;font-size:0.9rem;font-weight:700;line-height:1.55;vertical-align:top;">Quando a noite enche</td><td style="padding:14px 14px;border-bottom:1px solid #F1F1F4;color:#111;font-size:0.9rem;line-height:1.55;vertical-align:top;">Cada entrega a mais são R$ 5,00 no seu bolso</td><td style="padding:14px 14px;border-bottom:1px solid #F1F1F4;color:#5a5a66;font-size:0.9rem;line-height:1.55;vertical-align:top;">Continua o mesmo valor</td></tr>
+              <tr><td style="padding:14px 14px;border-bottom:1px solid #F1F1F4;color:#3d3d4a;font-size:0.9rem;font-weight:700;line-height:1.55;vertical-align:top;">Quando a noite esvazia</td><td style="padding:14px 14px;border-bottom:1px solid #F1F1F4;color:#111;font-size:0.9rem;line-height:1.55;vertical-align:top;">Você ganha pelas entregas que fizer</td><td style="padding:14px 14px;border-bottom:1px solid #F1F1F4;color:#5a5a66;font-size:0.9rem;line-height:1.55;vertical-align:top;">Você recebe o combinado</td></tr>
+              <tr><td style="padding:14px 14px;border-bottom:1px solid #F1F1F4;color:#3d3d4a;font-size:0.9rem;font-weight:700;line-height:1.55;vertical-align:top;">Se você quiser parar</td><td style="padding:14px 14px;border-bottom:1px solid #F1F1F4;color:#111;font-size:0.9rem;line-height:1.55;vertical-align:top;">Só sair do app</td><td style="padding:14px 14px;border-bottom:1px solid #F1F1F4;color:#5a5a66;font-size:0.9rem;line-height:1.55;vertical-align:top;">Você perde a vaga</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div style="margin-top:30px;background:rgba(255,107,0,0.07);border:1px solid rgba(255,107,0,0.2);border-radius:16px;padding:22px 24px;">
+          <p style="margin:0;font-size:0.94rem;line-height:1.7;color:#3d3d4a;"><strong>Não precisa largar o fixo hoje.</strong> Baixe o app, rode só nas noites em que o lanchote está fechado e compare o que caiu no seu bolso. Se valer a pena, você decide o resto.</p>
+        </div>
+
+        <div style="text-align:center;margin-top:28px;">
+          <a href="https://play.google.com/store/apps/details?id=app.zippa.entregador" class="btn btn-primary btn-lg" target="_blank" rel="noopener"><i class="fab fa-google-play"></i> Baixar o app de entregador</a>
+          <a href="https://wa.me/554431421244?text=Ola%21%20Quero%20rodar%20como%20entregador%20Zippa." class="btn btn-outline btn-lg" style="margin-left:12px;" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Falar com a Central</a>
+        </div>
+
+        <p style="font-size:0.78rem;color:#8a8a96;text-align:center;margin:20px 0 0;line-height:1.7;">Simulação com <b>R$ 5,00 livres por entrega</b> &mdash; o entregador não paga taxa para rodar. O fixo de <b>R$ 80,00 a R$ 100,00 por noite</b> é a média paga pelos lanchotes da região. São valores <b>brutos</b>: não descontam combustível, manutenção nem impostos, e não incluem gorjetas. O quanto você faz por noite depende do movimento da cidade &mdash; a Central Zippa confirma os números com você.</p>
+      </div>
+    </div>
+  </section>
+
   <!-- ===== APLICATIVOS ===== -->
   <section id="apps" style="background:#fff;padding:84px 0;">
     <div style="max-width:1140px;margin:0 auto;padding:0 24px;">
@@ -425,6 +518,74 @@
 
       c.addEventListener('input', calc);
       d.addEventListener('input', calc);
+      calc();
+    })();
+  </script>
+
+  <script>
+    (function () {
+      var POR_ENTREGA = 5.00;
+      var FIXO_MIN = 80.00;
+      var FIXO_MED = 90.00;
+      var FIXO_MAX = 100.00;
+
+      var e = document.getElementById('entEntregas');
+      var n = document.getElementById('entNoites');
+      if (!e || !n) return;
+
+      var outNoite = document.getElementById('entNoite');
+      var outSemana = document.getElementById('entSemana');
+      var outMes = document.getElementById('entMes');
+      var cmpZippa = document.getElementById('cmpZippa');
+      var barZippa = document.getElementById('cmpZippaBar');
+      var barFixo = document.getElementById('cmpFixoBar');
+      var veredito = document.getElementById('entVeredito');
+
+      function brl(v) {
+        return 'R$ ' + v.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      }
+
+      function calc() {
+        var ne = Number(e.value);
+        var nn = Number(n.value);
+        var noite = ne * POR_ENTREGA;
+        var semana = noite * nn;
+
+        document.getElementById('entEntregasVal').textContent = ne;
+        document.getElementById('entNoitesVal').textContent = nn;
+        outNoite.textContent = brl(noite);
+        outSemana.textContent = brl(semana);
+        outMes.textContent = brl(semana * 52 / 12);
+        cmpZippa.textContent = brl(noite);
+
+        var escala = Math.max(noite, FIXO_MAX) * 1.1;
+        barZippa.style.width = Math.min(100, (noite / escala) * 100) + '%';
+        barFixo.style.width = Math.min(100, (FIXO_MED / escala) * 100) + '%';
+
+        var msg, cor;
+        if (noite > FIXO_MAX) {
+          msg = 'Você passou o teto do fixo: ' + brl(noite - FIXO_MAX) + ' a mais na noite.';
+          cor = '#0F9D58';
+        } else if (noite >= FIXO_MAX) {
+          msg = 'Você bateu o teto do fixo (R$ 100,00) — e sem patrão.';
+          cor = '#0F9D58';
+        } else if (noite >= FIXO_MED) {
+          msg = 'Você já bateu a média do fixo (R$ 90,00) — e sem patrão.';
+          cor = '#0F9D58';
+        } else if (noite >= FIXO_MIN) {
+          msg = 'Você já entrou na faixa do fixo (R$ 80,00 a R$ 100,00).';
+          cor = '#0F9D58';
+        } else {
+          var faltam = Math.ceil((FIXO_MIN - noite) / POR_ENTREGA);
+          msg = 'Faltam ' + faltam + (faltam === 1 ? ' entrega' : ' entregas') + ' para chegar em R$ 80,00.';
+          cor = '#8a8a96';
+        }
+        veredito.textContent = msg;
+        veredito.style.color = cor;
+      }
+
+      e.addEventListener('input', calc);
+      n.addEventListener('input', calc);
       calc();
     })();
   </script>

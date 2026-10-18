@@ -82,30 +82,6 @@
       align-items: center;
       gap: 10px;
     }
-    .ride-form {}
-    .ride-form label {
-      display: block;
-      font-size: 0.78rem;
-      font-weight: 600;
-      color: rgba(255,255,255,0.6);
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      margin-bottom: 6px;
-    }
-    .ride-input {
-      width: 100%;
-      background: rgba(255,255,255,0.12);
-      border: 1px solid rgba(255,255,255,0.2);
-      border-radius: var(--radius-sm);
-      padding: 12px 16px;
-      font-size: 0.95rem;
-      color: white;
-      margin-bottom: 14px;
-      transition: var(--transition);
-      font-family: var(--font);
-    }
-    .ride-input::placeholder { color: rgba(255,255,255,0.4); }
-    .ride-input:focus { outline: none; border-color: var(--orange); background: rgba(255,107,0,0.1); }
 
     /* ===== PASSENGERS SECTION ===== */
     .passengers-section {
@@ -426,24 +402,26 @@
         <h1>Sua viagem,<br><span>suas regras.</span><br>Preço justo.</h1>
         <p>A Zippa garante conforto e segurança para ir a qualquer lugar da sua cidade. Motoristas verificados, preço transparente, sem surpresas.</p>
         <div class="hero-mob-ctas">
-          <a href="#passageiros" class="btn btn-primary btn-lg"><i class="fas fa-mobile-alt"></i> Baixar App</a>
+          <a href="#apps" class="btn btn-primary btn-lg"><i class="fas fa-mobile-alt"></i> Baixar App</a>
           <a href="#motoristas" class="btn btn-outline" style="border-color:rgba(255,255,255,0.4);color:white;" onmouseover="this.style.background='rgba(255,255,255,0.1)'" onmouseout="this.style.background='transparent'">
             <i class="fas fa-car-side"></i> Quero Dirigir
           </a>
         </div>
       </div>
       <div class="hero-mob-card anim-up anim-delay-2">
-        <h3><i class="fas fa-map-marker-alt" style="color:var(--orange)"></i> Para onde vamos?</h3>
-        <div class="ride-form">
-          <label>📍 Ponto de partida</label>
-          <input type="text" class="ride-input" placeholder="Sua localização atual" />
-          <label>🎯 Destino</label>
-          <input type="text" class="ride-input" placeholder="Para onde você quer ir?" />
-          <a href="#cadastro" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:4px;">
-            <i class="fas fa-search"></i> Ver motoristas disponíveis
-          </a>
+        <h3><i class="fas fa-mobile-alt" style="color:var(--orange)"></i> Peça sua corrida pelo app</h3>
+        <p style="font-size:0.86rem;color:rgba(255,255,255,0.62);line-height:1.6;margin:0 0 18px;">Veja o valor antes de confirmar e acompanhe o motorista até a sua porta.</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+          <a href="https://play.google.com/store/apps/details?id=br.com.devbase.zippa" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:center;gap:9px;background:#FF6B00;color:#fff;border-radius:12px;padding:14px 12px;font-size:0.86rem;font-weight:700;text-decoration:none;"><i class="fab fa-google-play"></i> Google Play</a>
+          <a href="https://apps.apple.com/br/app/zippa/id6745717504" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:center;gap:9px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.28);color:#fff;border-radius:12px;padding:14px 12px;font-size:0.86rem;font-weight:700;text-decoration:none;"><i class="fab fa-apple"></i> App Store</a>
         </div>
-        <p style="font-size:0.75rem;color:rgba(255,255,255,0.45);margin-top:14px;text-align:center;">Baixe o app Zippa e chame seu motorista agora mesmo.</p>
+        <div style="border-top:1px solid rgba(255,255,255,0.12);margin-top:20px;padding-top:18px;">
+          <p style="font-size:0.72rem;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:rgba(255,255,255,0.45);margin:0 0 12px;">A Zippa já roda em</p>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <a href="araruna.html" style="display:inline-block;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.18);color:#fff;border-radius:999px;padding:8px 15px;font-size:0.8rem;font-weight:600;text-decoration:none;">Araruna</a><a href="peabiru.html" style="display:inline-block;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.18);color:#fff;border-radius:999px;padding:8px 15px;font-size:0.8rem;font-weight:600;text-decoration:none;">Peabiru</a><a href="campo-mourao.html" style="display:inline-block;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.18);color:#fff;border-radius:999px;padding:8px 15px;font-size:0.8rem;font-weight:600;text-decoration:none;">Campo Mourão</a>
+          </div>
+          <p style="font-size:0.78rem;color:rgba(255,255,255,0.5);margin:16px 0 0;">Não está na sua cidade? <a href="franquias.html" style="color:#FF6B00;font-weight:700;text-decoration:none;">Leve a Zippa &rarr;</a></p>
+        </div>
       </div>
     </div>
   </section>

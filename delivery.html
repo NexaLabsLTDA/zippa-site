@@ -78,38 +78,6 @@
       font-size: 1.1rem; font-weight: 700; margin-bottom: 20px;
       display: flex; align-items: center; gap: 10px;
     }
-    .del-search-input {
-      width: 100%;
-      background: rgba(255,255,255,0.12);
-      border: 1px solid rgba(255,255,255,0.2);
-      border-radius: var(--radius-sm);
-      padding: 14px 16px;
-      font-size: 0.95rem;
-      color: white;
-      font-family: var(--font);
-      transition: var(--transition);
-    }
-    .del-search-input::placeholder { color: rgba(255,255,255,0.4); }
-    .del-search-input:focus { outline: none; border-color: var(--orange); background: rgba(255,107,0,0.1); }
-    .category-pills {
-      display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0;
-    }
-    .cat-pill {
-      background: rgba(255,255,255,0.12);
-      border: 1px solid rgba(255,255,255,0.2);
-      color: white;
-      padding: 6px 14px;
-      border-radius: 40px;
-      font-size: 0.78rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: var(--transition);
-    }
-    .cat-pill:hover, .cat-pill.active {
-      background: var(--orange);
-      border-color: var(--orange);
-    }
-
     /* ===== CATEGORIES ===== */
     .categories-section {
       padding: 80px 24px;
@@ -127,15 +95,7 @@
       border-radius: var(--radius-md);
       padding: 24px 16px;
       text-align: center;
-      cursor: pointer;
-      transition: var(--transition);
       border: 2px solid transparent;
-    }
-    .cat-card:hover {
-      border-color: var(--orange);
-      background: white;
-      box-shadow: var(--shadow);
-      transform: translateY(-4px);
     }
     .cat-card .emoji { font-size: 2.2rem; margin-bottom: 10px; }
     .cat-card span { font-size: 0.82rem; font-weight: 700; color: var(--gray-dark); }
@@ -482,23 +442,17 @@
         </div>
       </div>
       <div class="del-search-box anim-up anim-delay-2">
-        <h3><i class="fas fa-search" style="color:var(--orange)"></i> O que você quer comer?</h3>
-        <input type="text" class="del-search-input" placeholder="🔍 Buscar restaurante ou prato..." style="margin-bottom:16px;" />
-        <p style="font-size:0.78rem;color:rgba(255,255,255,0.5);margin-bottom:10px;">Categorias populares:</p>
-        <div class="category-pills">
-          <span class="cat-pill active">🍔 Lanches</span>
-          <span class="cat-pill">🍕 Pizza</span>
-          <span class="cat-pill">🍣 Sushi</span>
-          <span class="cat-pill">🍗 Frango</span>
-          <span class="cat-pill">🥗 Saudável</span>
-          <span class="cat-pill">🍦 Sobremesas</span>
-          <span class="cat-pill">☕ Café</span>
-          <span class="cat-pill">🌮 Mexicano</span>
+        <h3><i class="fas fa-utensils" style="color:var(--orange)"></i> O que você quer comer?</h3>
+        <p style="font-size:0.86rem;color:rgba(255,255,255,0.62);line-height:1.6;margin:0 0 18px;">Restaurantes da sua cidade, entrega rápida e taxa justa &mdash; no app da Zippa.</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+          <a href="https://play.google.com/store/apps/details?id=app.zippa.cliente" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:center;gap:9px;background:#FF6B00;color:#fff;border-radius:12px;padding:14px 12px;font-size:0.86rem;font-weight:700;text-decoration:none;"><i class="fab fa-google-play"></i> Google Play</a>
+          <a href="https://apps.apple.com/br/app/zippa-delivery/id6821483597" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:center;gap:9px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.28);color:#fff;border-radius:12px;padding:14px 12px;font-size:0.86rem;font-weight:700;text-decoration:none;"><i class="fab fa-apple"></i> App Store</a>
         </div>
-        <a href="#apps" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:8px;">
-          <i class="fas fa-utensils"></i> Ver restaurantes disponíveis
-        </a>
-        <p style="font-size:0.72rem;color:rgba(255,255,255,0.4);margin-top:12px;text-align:center;">Disponível para iPhone e Android. Baixe agora!</p>
+        <div style="border-top:1px solid rgba(255,255,255,0.12);margin-top:20px;padding-top:18px;">
+          <p style="font-size:0.72rem;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:rgba(255,255,255,0.45);margin:0 0 12px;">É restaurante?</p>
+          <a href="#restaurantes" style="display:flex;align-items:center;justify-content:center;gap:9px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.28);color:#fff;border-radius:12px;padding:14px 12px;font-size:0.86rem;font-weight:700;text-decoration:none;"><i class="fas fa-store"></i> Venda no app Zippa</a>
+          <p style="font-size:0.78rem;color:rgba(255,255,255,0.5);margin:16px 0 0;">Dúvidas? <a href="https://wa.me/554431421244?text=Ola%21%20Quero%20falar%20sobre%20a%20Zippa%20Delivery." target="_blank" rel="noopener" style="color:#FF6B00;font-weight:700;text-decoration:none;">Fale com a Central &rarr;</a></p>
+        </div>
       </div>
     </div>
   </section>

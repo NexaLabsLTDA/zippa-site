@@ -70,18 +70,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  /* ===== HERO SPLIT HOVER (Homepage) ===== */
-  const heroSides = document.querySelectorAll('.hero-side');
-  heroSides.forEach(side => {
-    side.addEventListener('mouseenter', () => {
-      heroSides.forEach(s => s.style.flex = '0.85');
-      side.style.flex = '1.3';
-    });
-    side.addEventListener('mouseleave', () => {
-      heroSides.forEach(s => s.style.flex = '1');
-    });
-  });
-
   /* ===== SMOOTH SCROLL para links de âncora ===== */
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {

@@ -93,6 +93,8 @@ img { max-width: 100%; display: block; }
   z-index: 1000;
   padding: 18px 24px;
   transition: var(--transition);
+  /* véu escuro no topo: garante leitura do menu sobre as fotos dos heroes */
+  background: linear-gradient(180deg, rgba(0,0,0,0.62) 0%, rgba(0,0,0,0.3) 62%, rgba(0,0,0,0) 100%);
 }
 .navbar.scrolled {
   background: rgba(255,255,255,0.97);
@@ -116,16 +118,20 @@ img { max-width: 100%; display: block; }
 .navbar-links { display: flex; align-items: center; gap: 4px; list-style: none; }
 .navbar-links a {
   padding: 8px 16px; border-radius: 40px;
-  font-size: 0.88rem; font-weight: 600; color: var(--gray-dark);
+  font-size: 0.88rem; font-weight: 600; color: #fff;
+  text-shadow: 0 1px 8px rgba(0,0,0,0.5);
   transition: var(--transition);
 }
-.navbar-links a:hover, .navbar-links a.active { background: rgba(255,107,0,0.1); color: var(--orange); }
+.navbar-links a:hover, .navbar-links a.active { background: rgba(255,255,255,0.2); color: #fff; }
+.navbar.scrolled .navbar-links a { color: var(--gray-dark); text-shadow: none; }
+.navbar.scrolled .navbar-links a:hover, .navbar.scrolled .navbar-links a.active { background: rgba(255,107,0,0.1); color: var(--orange); }
 .navbar-cta { display: flex; align-items: center; gap: 12px; }
 .hamburger {
   display: none; flex-direction: column; gap: 5px;
   cursor: pointer; padding: 4px; background: none; border: none;
 }
-.hamburger span { width: 24px; height: 2px; background: var(--black); border-radius: 4px; transition: var(--transition); }
+.hamburger span { width: 24px; height: 2px; background: #fff; border-radius: 4px; transition: var(--transition); box-shadow: 0 1px 6px rgba(0,0,0,0.55); }
+.navbar.scrolled .hamburger span { background: var(--black); box-shadow: none; }
 .mobile-menu {
   display: none; position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;

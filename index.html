@@ -11,143 +11,167 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" />
   <link rel="stylesheet" href="css/style.css" />
   <style>
-    /* ===== HERO SPLIT SCREEN ===== */
-    .hero-split {
-      height: 100vh;
-      min-height: 600px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      overflow: hidden;
-    }
-
-    .hero-side {
+    /* ===== HERO SLIDER ===== */
+    .hero-slider {
       position: relative;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 40px 48px;
-      text-align: center;
+      height: 100vh;
+      min-height: 620px;
       overflow: hidden;
-      cursor: pointer;
-      transition: flex 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      background: #0b0b0f;
+      touch-action: pan-y;
     }
 
-    .hero-side::before {
+    .hero-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.9s ease, visibility 0.9s ease;
+    }
+
+    .hero-slide.active {
+      opacity: 1;
+      visibility: visible;
+      z-index: 2;
+    }
+
+    .hero-slide-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .hero-slide.active .hero-slide-img {
+      animation: heroZoom 8s ease-out forwards;
+    }
+
+    @keyframes heroZoom {
+      from { transform: scale(1.02); }
+      to { transform: scale(1.11); }
+    }
+
+    .hero-slide::after {
       content: '';
       position: absolute;
       inset: 0;
-      background: rgba(0,0,0,0.5);
-      transition: background 0.4s ease;
-      z-index: 1;
+      background: linear-gradient(100deg, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.6) 48%, rgba(0,0,0,0.22) 100%);
     }
 
-    .hero-side:hover::before { background: rgba(0,0,0,0.35); }
-
-    .hero-side-bg {
-      position: absolute;
-      inset: 0;
-      background-size: cover;
-      background-position: center;
-      transition: transform 0.7s ease;
-      z-index: 0;
-    }
-
-    .hero-side:hover .hero-side-bg { transform: scale(1.05); }
-
-    .hero-side-content {
+    .hero-inner {
       position: relative;
-      z-index: 2;
+      z-index: 3;
+      max-width: 1200px;
+      margin: 0 auto;
+      height: 100%;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      gap: 20px;
-    }
-
-    .hero-side-icon {
-      width: 140px;
-      height: 140px;
-      background: transparent;
-      display: flex;
-      align-items: center;
       justify-content: center;
-      margin-bottom: 8px;
-      transition: all 0.3s ease;
+      padding: 130px 24px 150px;
     }
 
-    .hero-side-icon img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      filter: drop-shadow(0 8px 24px rgba(0,0,0,0.4));
-      transition: all 0.3s ease;
-    }
+    .hero-content { max-width: 640px; }
 
-    .hero-side:hover .hero-side-icon img {
-      transform: scale(1.12) translateY(-4px);
-      filter: drop-shadow(0 16px 32px rgba(255,107,0,0.5));
-    }
-
-    .hero-side-tag {
+    .hero-tag {
+      display: inline-block;
       font-size: 0.72rem;
       font-weight: 700;
       letter-spacing: 3px;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.7);
+      color: #fff;
+      background: rgba(255,107,0,0.92);
+      padding: 7px 16px;
+      border-radius: 40px;
+      margin-bottom: 22px;
     }
 
-    .hero-side h2 {
-      font-size: clamp(1.6rem, 3vw, 2.4rem);
+    .hero-content h2 {
+      font-size: clamp(2rem, 4.6vw, 3.5rem);
       font-weight: 800;
-      color: white;
-      line-height: 1.25;
-      max-width: 400px;
+      color: #fff;
+      line-height: 1.12;
+      letter-spacing: -0.5px;
+      margin-bottom: 18px;
     }
 
-    .hero-side p {
-      font-size: 1rem;
-      color: rgba(255,255,255,0.8);
-      max-width: 320px;
-      line-height: 1.6;
+    .hero-content p {
+      font-size: clamp(1rem, 1.3vw, 1.18rem);
+      color: rgba(255,255,255,0.87);
+      line-height: 1.65;
+      max-width: 520px;
+      margin-bottom: 32px;
     }
 
-    .hero-divider {
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+    .hero-actions .btn { box-shadow: 0 14px 34px rgba(0,0,0,0.38); }
+
+    .hero-arrow {
       position: absolute;
       top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 10;
-      width: 64px;
-      height: 64px;
-      background: white;
+      transform: translateY(-50%);
+      z-index: 5;
+      width: 52px;
+      height: 52px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.35);
+      color: #fff;
+      font-size: 1rem;
+      cursor: pointer;
+      -webkit-backdrop-filter: blur(8px);
+      backdrop-filter: blur(8px);
+      transition: all 0.25s ease;
     }
+    .hero-arrow:hover { background: var(--orange); border-color: var(--orange); }
+    .hero-arrow.prev { left: 24px; }
+    .hero-arrow.next { right: 24px; }
 
-    .hero-divider .logo-icon-hero {
-      width: 48px;
-      height: 48px;
-      background: var(--orange);
-      border-radius: 50%;
+    .hero-dots {
+      position: absolute;
+      left: 0; right: 0; bottom: 34px;
+      z-index: 5;
       display: flex;
-      align-items: center;
       justify-content: center;
-      font-size: 1.1rem;
-      font-weight: 900;
-      color: white;
+      gap: 12px;
+    }
+    .hero-dots button {
+      width: 34px; height: 4px;
+      border-radius: 4px;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      background: rgba(255,255,255,0.42);
+      transition: all 0.3s ease;
+    }
+    .hero-dots button.active { background: var(--orange); width: 54px; }
+
+    @media (max-width: 900px) {
+      .hero-slider { height: 100svh; min-height: 540px; }
+      .hero-inner { justify-content: flex-end; padding: 110px 22px 130px; }
+      .hero-content h2 { font-size: clamp(1.75rem, 7.4vw, 2.5rem); }
+      .hero-content p { max-width: none; }
+      .hero-arrow { display: none; }
     }
 
-    /* Mobility side bg */
-    .hero-mobility .hero-side-bg {
-      background-image: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    @media (max-width: 600px) {
+      .hero-inner { padding: 100px 20px 112px; }
+      .hero-tag { font-size: 0.64rem; letter-spacing: 2px; padding: 6px 13px; margin-bottom: 15px; }
+      .hero-content p { font-size: 0.97rem; margin-bottom: 24px; }
+      .hero-dots { bottom: 20px; gap: 9px; }
+      .hero-dots button { width: 26px; }
+      .hero-dots button.active { width: 42px; }
+      .hero-actions { gap: 10px; }
+      .hero-actions .btn { width: 100%; text-align: center; justify-content: center; }
     }
 
-    /* Delivery side bg */
-    .hero-delivery .hero-side-bg {
-      background-image: linear-gradient(135deg, #2d1206 0%, #7c2d00 50%, #c44b0a 100%);
+    @media (prefers-reduced-motion: reduce) {
+      .hero-slide { transition: none; }
+      .hero-slide.active .hero-slide-img { animation: none; }
     }
 
     /* ===== BRAND STRIP ===== */
@@ -463,25 +487,19 @@
 
     /* ===== RESPONSIVE ===== */
     @media (max-width: 900px) {
-      .hero-split { grid-template-columns: 1fr; grid-template-rows: 1fr 1fr; height: 100svh; }
-      .hero-divider { display: none; }
       .about-inner { grid-template-columns: 1fr; gap: 40px; }
       .services-grid { grid-template-columns: 1fr; gap: 20px; }
       .service-card { min-height: 320px; }
       .stats-inner { grid-template-columns: repeat(2,1fr); gap: 24px; }
       .how-steps { grid-template-columns: repeat(2,1fr); }
       .how-steps::before { display: none; }
-      .hero-side-icon { width: 100px; height: 100px; }
     }
 
     @media (max-width: 600px) {
-      .hero-side { padding: 24px 20px; }
-      .hero-side h2 { font-size: 1.4rem; }
       .stats-inner { grid-template-columns: repeat(2,1fr); }
       .how-steps { grid-template-columns: 1fr; }
       .about-cards { grid-template-columns: 1fr; }
       .about-card.featured { grid-column: 1; }
-      .hero-side-icon { width: 80px; height: 80px; }
     }
   </style>
 
@@ -586,40 +604,64 @@
     <a href="https://wa.me/554431421244" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
   </div>
 
-  <!-- ===== HERO SPLIT SCREEN ===== -->
-  <section class="hero-split">
+  <!-- ===== HERO SLIDER ===== -->
+  <section class="hero-slider" id="heroSlider" aria-roledescription="carrossel" aria-label="Destaques da Zippa">
 
-    <!-- Mobilidade -->
-    <div class="hero-side hero-mobility" onclick="location.href='mobilidade.html'">
-      <div class="hero-side-bg" style="background-image: url('https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1200&q=80'); background-blend-mode: overlay; background-color: rgba(15,52,96,0.6);"></div>
-      <div class="hero-side-content">
-        <div class="hero-side-icon"><img src="images/carro-3d.png" alt="Carro Zippa Mobilidade" /></div>
-        <span class="hero-side-tag">Zippa Mobilidade</span>
-        <h2>Precisa de uma carona? Vai de Zippa.</h2>
-        <p>Viagens seguras, preço justo e motoristas verificados na sua cidade.</p>
-        <a href="mobilidade.html" class="btn btn-primary btn-lg">
-          Descobrir Mobilidade <i class="fas fa-arrow-right"></i>
-        </a>
+    <!-- Slide 1 - Mobilidade -->
+    <div class="hero-slide active" aria-roledescription="slide" aria-label="1 de 3: Zippa Mobilidade">
+      <img class="hero-slide-img" src="images/hero-1.jpg" alt="Carro da Zippa em frente à catedral da cidade ao pôr do sol" width="1024" height="1024" fetchpriority="high" decoding="async" />
+      <div class="hero-inner">
+        <div class="hero-content">
+          <span class="hero-tag">Zippa Mobilidade</span>
+          <h2>Precisa de uma carona? Vai de Zippa.</h2>
+          <p>Viagens seguras, preço justo e motoristas verificados na sua cidade.</p>
+          <div class="hero-actions">
+            <a href="mobilidade.html" class="btn btn-primary btn-lg">Descobrir Mobilidade <i class="fas fa-arrow-right"></i></a>
+            <a href="mobilidade.html#motoristas" class="btn btn-white btn-lg">Quero ser motorista</a>
+          </div>
+        </div>
       </div>
     </div>
 
-    <!-- Divider Logo -->
-    <div class="hero-divider">
-      <img src="images/logo-zippa.png" alt="Zippa" style="width:44px;height:44px;object-fit:contain;border-radius:50%;" />
+    <!-- Slide 2 - Delivery -->
+    <div class="hero-slide" aria-roledescription="slide" aria-label="2 de 3: Zippa Delivery">
+      <img class="hero-slide-img" src="images/hero-2.jpg" alt="Entregador da Zippa Delivery de mochila térmica laranja em avenida da cidade" width="1024" height="576" loading="lazy" decoding="async" />
+      <div class="hero-inner">
+        <div class="hero-content">
+          <span class="hero-tag">Zippa Delivery</span>
+          <h2>Bateu a fome? A Zippa entrega.</h2>
+          <p>Os melhores restaurantes da cidade chegando até você, quentinhos e rápido.</p>
+          <div class="hero-actions">
+            <a href="delivery.html" class="btn btn-primary btn-lg">Descobrir Delivery <i class="fas fa-arrow-right"></i></a>
+            <a href="delivery.html#restaurantes" class="btn btn-white btn-lg">Sou restaurante</a>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <!-- Delivery -->
-    <div class="hero-side hero-delivery" onclick="location.href='delivery.html'">
-      <div class="hero-side-bg" style="background-image: url('https://images.unsplash.com/photo-1565299507177-b0ac66763828?w=1200&q=80'); background-blend-mode: overlay; background-color: rgba(124,45,0,0.55);"></div>
-      <div class="hero-side-content">
-        <div class="hero-side-icon">🍔</div>
-        <span class="hero-side-tag">Zippa Delivery</span>
-        <h2>Bateu a fome? A Zippa entrega.</h2>
-        <p>Os melhores restaurantes da cidade chegando até você, quentinhos e rápido.</p>
-        <a href="delivery.html" class="btn btn-primary btn-lg">
-          Descobrir Delivery <i class="fas fa-arrow-right"></i>
-        </a>
+    <!-- Slide 3 - Franquias -->
+    <div class="hero-slide" aria-roledescription="slide" aria-label="3 de 3: Zippa Franquias">
+      <img class="hero-slide-img" src="images/hero-3.jpg" alt="Vista aérea da cidade atendida pela Zippa ao entardecer" width="1024" height="576" loading="lazy" decoding="async" />
+      <div class="hero-inner">
+        <div class="hero-content">
+          <span class="hero-tag">Zippa Franquias</span>
+          <h2>Leve a Zippa para a sua cidade.</h2>
+          <p>Abra sua operação de mobilidade e delivery com a marca que já roda em três cidades do Paraná.</p>
+          <div class="hero-actions">
+            <a href="franquias.html" class="btn btn-primary btn-lg">Quero ser franqueado <i class="fas fa-arrow-right"></i></a>
+            <a href="anuncie.html" class="btn btn-white btn-lg">Anunciar na Zippa</a>
+          </div>
+        </div>
       </div>
+    </div>
+
+    <button class="hero-arrow prev" id="heroPrev" aria-label="Slide anterior"><i class="fas fa-chevron-left"></i></button>
+    <button class="hero-arrow next" id="heroNext" aria-label="Próximo slide"><i class="fas fa-chevron-right"></i></button>
+
+    <div class="hero-dots" id="heroDots">
+      <button class="active" aria-label="Ir para o slide 1"></button>
+      <button aria-label="Ir para o slide 2"></button>
+      <button aria-label="Ir para o slide 3"></button>
     </div>
   </section>
 
@@ -901,6 +943,62 @@
     <i class="fab fa-whatsapp"></i>
     <span class="wa-label">Suporte</span>
   </a>
+
+  <!-- ===== HERO SLIDER: autoplay, setas, dots, swipe ===== -->
+  <script>
+    (function () {
+      var slider = document.getElementById('heroSlider');
+      if (!slider) return;
+      var slides = slider.querySelectorAll('.hero-slide');
+      var dots = slider.querySelectorAll('.hero-dots button');
+      var total = slides.length;
+      var atual = 0;
+      var timer = null;
+      var reduzir = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      function irPara(i) {
+        atual = (i + total) % total;
+        for (var s = 0; s < total; s++) {
+          slides[s].classList.toggle('active', s === atual);
+          slides[s].setAttribute('aria-hidden', s === atual ? 'false' : 'true');
+        }
+        for (var d = 0; d < dots.length; d++) dots[d].classList.toggle('active', d === atual);
+      }
+      function proximo() { irPara(atual + 1); }
+      function parar() { if (timer) { clearInterval(timer); timer = null; } }
+      function iniciar() { parar(); if (!reduzir) timer = setInterval(proximo, 7000); }
+
+      var btnPrev = document.getElementById('heroPrev');
+      var btnNext = document.getElementById('heroNext');
+      if (btnPrev) btnPrev.addEventListener('click', function () { irPara(atual - 1); iniciar(); });
+      if (btnNext) btnNext.addEventListener('click', function () { irPara(atual + 1); iniciar(); });
+
+      for (var d = 0; d < dots.length; d++) {
+        (function (idx) {
+          dots[idx].addEventListener('click', function () { irPara(idx); iniciar(); });
+        })(d);
+      }
+
+      slider.addEventListener('mouseenter', parar);
+      slider.addEventListener('mouseleave', iniciar);
+      slider.addEventListener('focusin', parar);
+      slider.addEventListener('focusout', iniciar);
+      document.addEventListener('visibilitychange', function () { if (document.hidden) { parar(); } else { iniciar(); } });
+
+      var x0 = null;
+      slider.addEventListener('touchstart', function (e) { x0 = e.changedTouches[0].clientX; parar(); }, { passive: true });
+      slider.addEventListener('touchend', function (e) {
+        if (x0 === null) return;
+        var dx = e.changedTouches[0].clientX - x0;
+        if (Math.abs(dx) > 45) { if (dx < 0) { irPara(atual + 1); } else { irPara(atual - 1); } }
+        x0 = null;
+        iniciar();
+      }, { passive: true });
+
+      irPara(0);
+      iniciar();
+    })();
+  </script>
 
   <script src="js/axon-crm.js"></script>
   <script src="js/main.js"></script>

@@ -68,6 +68,31 @@
     .lead-box input::placeholder { color: rgba(255,255,255,0.35); }
     .lead-box input:focus, .lead-box select:focus { outline:none; border-color:#FF6B00; }
     .lead-box select option { color:#111; }
+    /* ===== SIMULADOR DE GANHOS ===== */
+    .sim-card { background:#fff; border:1px solid #ECECF1; border-radius:22px; padding:38px; box-shadow:0 18px 50px rgba(15,15,17,0.07); }
+    .sim-row { margin-bottom:30px; }
+    .sim-row-top { display:flex; justify-content:space-between; align-items:baseline; margin-bottom:12px; }
+    .sim-row label { font-size:0.94rem; font-weight:700; color:#3d3d4a; }
+    .sim-val { font-size:1.2rem; font-weight:900; color:#FF6B00; }
+    .sim-range { -webkit-appearance:none; appearance:none; display:block; width:100%; height:8px; border-radius:99px; background:#ECECF1; outline:none; }
+    .sim-range::-webkit-slider-thumb { -webkit-appearance:none; appearance:none; width:28px; height:28px; border-radius:50%; background:#FF6B00; border:4px solid #fff; box-shadow:0 3px 12px rgba(255,107,0,0.5); cursor:pointer; }
+    .sim-range::-moz-range-thumb { width:22px; height:22px; border-radius:50%; background:#FF6B00; border:4px solid #fff; box-shadow:0 3px 12px rgba(255,107,0,0.5); cursor:pointer; }
+    .sim-range:focus-visible { box-shadow:0 0 0 4px rgba(255,107,0,0.28); }
+    .sim-out { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:16px; background:#0F0F11; border-radius:18px; padding:28px; }
+    .sim-out > div { text-align:center; }
+    .sim-out small { display:block; font-size:0.7rem; font-weight:800; letter-spacing:1.6px; text-transform:uppercase; color:rgba(255,255,255,0.5); margin-bottom:10px; }
+    .sim-out strong { font-size:1.45rem; font-weight:900; color:#FF8C33; letter-spacing:-0.5px; }
+    .sim-out .hi strong { color:#fff; font-size:1.75rem; }
+    .sim-per { text-align:center; font-size:0.9rem; color:#5a5a66; margin:24px 0 0; line-height:1.6; }
+    .sim-per b { color:#111; }
+    @media (max-width: 640px) {
+      .sim-card { padding:24px 18px; }
+      .sim-out { padding:20px 12px; gap:10px; }
+      .sim-out strong { font-size:1.15rem; }
+      .sim-out .hi strong { font-size:1.4rem; }
+      .sim-row { margin-bottom:24px; }
+    }
+
     @media (max-width: 640px) { .p-sec { padding: 60px 0; } .lead-box { padding: 32px 22px; } }
   </style>
 </head>
@@ -172,6 +197,49 @@
         <div class="p-card"><i class="p-ico"><i class="fas fa-headset"></i></i><h3>Central de verdade</h3><p>Gente do outro lado do WhatsApp para resolver o que aparecer.</p></div>
       </div>
       <p style="color:#5a5a66;margin-top:26px;max-width:720px;">A Zippa atende <a href="araruna.html" style="color:#FF6B00;">Araruna</a>, <a href="peabiru.html" style="color:#FF6B00;">Peabiru</a> e <a href="campo-mourao.html" style="color:#FF6B00;">Campo Mourão</a> — e está abrindo novas praças. Se você quer levar a Zippa para a sua cidade, veja a página de <a href="franquias.html" style="color:#FF6B00;">franquias</a>.</p>
+    </div>
+  </section>
+
+  <!-- ===== SIMULADOR DE GANHOS ===== -->
+  <section class="p-sec" id="calculadora">
+    <div class="container" style="max-width:920px;">
+      <div style="text-align:center;">
+        <span class="section-tag">Simulador de ganhos</span>
+        <h2 class="section-title">Quanto você pode <span>ganhar</span> rodando</h2>
+        <p style="color:#5a5a66;max-width:660px;margin:0 auto;font-size:1.02rem;line-height:1.7;">A Zippa fica com <strong>15%</strong> de cada corrida — os outros <strong>85%</strong> são seus. Arraste e veja a conta com a corrida média da cidade.</p>
+      </div>
+
+      <div class="sim-card" style="margin-top:40px;">
+        <div class="sim-row">
+          <div class="sim-row-top">
+            <label for="simCorridas">Corridas por dia</label>
+            <span class="sim-val" id="simCorridasVal">10</span>
+          </div>
+          <input type="range" class="sim-range" id="simCorridas" min="1" max="30" step="1" value="10" aria-label="Corridas por dia">
+        </div>
+
+        <div class="sim-row">
+          <div class="sim-row-top">
+            <label for="simDias">Dias por semana</label>
+            <span class="sim-val" id="simDiasVal">5</span>
+          </div>
+          <input type="range" class="sim-range" id="simDias" min="1" max="7" step="1" value="5" aria-label="Dias por semana">
+        </div>
+
+        <div class="sim-out" aria-live="polite">
+          <div><small>Por dia</small><strong id="simDia">R$ 102,00</strong></div>
+          <div><small>Por semana</small><strong id="simSemana">R$ 510,00</strong></div>
+          <div class="hi"><small>Por mês</small><strong id="simMes">R$ 2.210,00</strong></div>
+        </div>
+
+        <p class="sim-per">Em cada corrida de <b>R$ 12,00</b> você recebe <b id="simCorrida">R$ 10,20</b> e a Zippa fica com <b>R$ 1,80</b>.</p>
+
+        <div style="text-align:center;margin-top:28px;">
+          <a href="https://play.google.com/store/apps/details?id=br.com.devbase.zippa.prestador" class="btn btn-primary btn-lg" target="_blank" rel="noopener"><i class="fab fa-google-play"></i> Baixar o app de motorista</a>
+        </div>
+
+        <p style="font-size:0.78rem;color:#8a8a96;text-align:center;margin:20px 0 0;line-height:1.7;">Simulação com corrida média de <b>R$ 12,00</b> e taxa Zippa de <b>15%</b>. São valores <b>brutos</b>: não descontam combustível, manutenção, impostos nem promoções, e não incluem gorjetas. O quanto você ganha de verdade depende do movimento da sua cidade — a Central Zippa confirma os números com você.</p>
+      </div>
     </div>
   </section>
 
@@ -326,6 +394,41 @@
     <i class="fab fa-whatsapp"></i>
     <span class="wa-label">Suporte</span>
   </a>
+  <script>
+    (function () {
+      var VALOR_CORRIDA = 12.00;
+      var TAXA_ZIPPA = 0.15;
+      var POR_CORRIDA = VALOR_CORRIDA * (1 - TAXA_ZIPPA);
+
+      var c = document.getElementById('simCorridas');
+      var d = document.getElementById('simDias');
+      if (!c || !d) return;
+
+      var outDia = document.getElementById('simDia');
+      var outSemana = document.getElementById('simSemana');
+      var outMes = document.getElementById('simMes');
+
+      function brl(v) {
+        return 'R$ ' + v.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      }
+
+      function calc() {
+        var nc = Number(c.value);
+        var nd = Number(d.value);
+        var dia = nc * POR_CORRIDA;
+        document.getElementById('simCorridasVal').textContent = nc;
+        document.getElementById('simDiasVal').textContent = nd;
+        outDia.textContent = brl(dia);
+        outSemana.textContent = brl(dia * nd);
+        outMes.textContent = brl(dia * nd * 52 / 12);
+      }
+
+      c.addEventListener('input', calc);
+      d.addEventListener('input', calc);
+      calc();
+    })();
+  </script>
+
   <script src="js/main.js?v=2"></script>
   <script src="js/cookies.js?v=2"></script>
 </body>

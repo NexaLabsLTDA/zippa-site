@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Entregador parceiro Zippa — R$ 5,00 livres por entrega</title>
+  <meta name="description" content="Na Zippa o entregador não paga nada para rodar: R$ 5,00 livres por entrega. Simule a sua noite e compare com o fixo de uma lanchonete de R$ 80 a R$ 100." />
+  <link rel="canonical" href="https://zippa.com.br/entregador.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="css/style.css?v=2" />
+  <link rel="icon" href="/favicon.ico?v=2" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=2" />
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png?v=2" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=2" />
+  <meta name="theme-color" content="#F6771A" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Zippa" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:title" content="Entregador parceiro Zippa — R$ 5,00 livres por entrega" />
+  <meta property="og:description" content="Na Zippa o entregador não paga nada para rodar: R$ 5,00 livres por entrega. Simule a sua noite e compare com o fixo de uma lanchonete de R$ 80 a R$ 100." />
+  <meta property="og:url" content="https://zippa.com.br/entregador.html" />
+  <meta property="og:image" content="https://zippa.com.br/images/og-zippa.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Entregador parceiro Zippa" />
+  <meta name="twitter:description" content="Na Zippa o entregador não paga nada para rodar: R$ 5,00 livres por entrega. Simule a sua noite e compare com o fixo de u" />
+  <meta name="twitter:image" content="https://zippa.com.br/images/og-zippa.jpg" />
+  <style>
+    .p-hero { background: linear-gradient(135deg,#111111 0%,#1a1a2e 55%,#2a1400 100%); padding: 140px 0 90px; position: relative; overflow: hidden; }
+    .p-hero::after { content:''; position:absolute; right:-140px; top:-140px; width:520px; height:520px; border-radius:50%; background: radial-gradient(circle,rgba(255,107,0,0.28),transparent 70%); }
+    .p-hero .container { position: relative; z-index: 2; }
+    .p-hero h1 { font-size: clamp(2rem,5vw,3.4rem); font-weight: 900; line-height: 1.1; letter-spacing: -1px; margin: 18px 0 18px; color: #fff; }
+    .p-hero p.lead { font-size: 1.1rem; color: rgba(255,255,255,0.78); max-width: 620px; line-height: 1.7; }
+    .p-ctas { display:flex; gap:14px; flex-wrap:wrap; margin-top: 30px; }
+    .p-stats { display:grid; grid-template-columns: repeat(auto-fit,minmax(150px,1fr)); gap: 18px; margin-top: 54px; }
+    .p-stat { background: rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); border-radius: 16px; padding: 20px; }
+    .p-stat strong { display:block; font-size: 1.35rem; font-weight: 800; color: #FF8C33; }
+    .p-stat span { font-size: 0.85rem; color: rgba(255,255,255,0.6); }
+    .p-sec { padding: 88px 0; }
+    .p-sec.alt { background: #F7F7F9; }
+    .p-grid { display:grid; gap: 22px; margin-top: 44px; }
+    .p-grid.c2 { grid-template-columns: repeat(auto-fit,minmax(300px,1fr)); }
+    .p-grid.c3 { grid-template-columns: repeat(auto-fit,minmax(260px,1fr)); }
+    .p-card { background:#fff; border:1px solid #ECECF1; border-radius: 18px; padding: 28px; transition: var(--transition); }
+    .p-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-color: rgba(255,107,0,0.35); }
+    .p-card i.p-ico { font-size: 1.5rem; color: #FF6B00; margin-bottom: 14px; display:block; }
+    .p-card h3 { font-size: 1.08rem; font-weight: 800; margin: 0 0 10px; color:#111; }
+    .p-card p { font-size: 0.94rem; line-height: 1.65; color:#5a5a66; margin:0; }
+    .p-step { display:flex; gap: 18px; align-items:flex-start; background:#fff; border:1px solid #ECECF1; border-radius:16px; padding: 22px; }
+    .p-step .n { flex:0 0 44px; height:44px; border-radius:50%; background: linear-gradient(135deg,#FF6B00,#ff9500); color:#fff; font-weight:900; display:flex; align-items:center; justify-content:center; }
+    .p-step h3 { margin:0 0 6px; font-size:1rem; font-weight:800; }
+    .p-step p { margin:0; font-size:0.9rem; color:#5a5a66; line-height:1.6; }
+    .p-check { list-style:none; padding:0; margin: 0; display:grid; gap:12px; }
+    .p-check li { display:flex; gap:12px; align-items:flex-start; font-size:0.95rem; color:#3d3d4a; line-height:1.6; }
+    .p-check li i { color:#FF6B00; margin-top:4px; }
+    details.faq { background:#fff; border:1px solid #ECECF1; border-radius:14px; padding: 18px 22px; margin-bottom: 12px; }
+    details.faq summary { font-weight:700; cursor:pointer; font-size:0.98rem; color:#111; }
+    details.faq p { margin: 12px 0 0; font-size:0.93rem; color:#5a5a66; line-height:1.7; }
+    .lead-box { background:#111; border-radius: 24px; padding: 46px 34px; }
+    .lead-box h2 { color:#fff; font-size: 1.7rem; font-weight: 900; margin:0 0 8px; }
+    .lead-box p { color: rgba(255,255,255,0.7); margin:0 0 26px; font-size:0.96rem; }
+    .lead-box label { display:block; font-size:0.82rem; font-weight:700; color: rgba(255,255,255,0.75); margin: 0 0 6px; }
+    .lead-box input, .lead-box select, .lead-box textarea { width:100%; padding: 14px 16px; border-radius:10px; border:1px solid rgba(255,255,255,0.18); background: rgba(255,255,255,0.07); color:#fff; font-family: inherit; font-size:0.95rem; margin-bottom: 16px; }
+    .lead-box input::placeholder { color: rgba(255,255,255,0.35); }
+    .lead-box input:focus, .lead-box select:focus { outline:none; border-color:#FF6B00; }
+    .lead-box select option { color:#111; }
+    /* ===== SIMULADOR DE GANHOS ===== */
+    .sim-card { background:#fff; border:1px solid #ECECF1; border-radius:22px; padding:38px; box-shadow:0 18px 50px rgba(15,15,17,0.07); }
+    .sim-row { margin-bottom:30px; }
+    .sim-row-top { display:flex; justify-content:space-between; align-items:baseline; margin-bottom:12px; }
+    .sim-row label { font-size:0.94rem; font-weight:700; color:#3d3d4a; }
+    .sim-val { font-size:1.2rem; font-weight:900; color:#FF6B00; }
+    .sim-range { -webkit-appearance:none; appearance:none; display:block; width:100%; height:8px; border-radius:99px; background:#ECECF1; outline:none; }
+    .sim-range::-webkit-slider-thumb { -webkit-appearance:none; appearance:none; width:28px; height:28px; border-radius:50%; background:#FF6B00; border:4px solid #fff; box-shadow:0 3px 12px rgba(255,107,0,0.5); cursor:pointer; }
+    .sim-range::-moz-range-thumb { width:22px; height:22px; border-radius:50%; background:#FF6B00; border:4px solid #fff; box-shadow:0 3px 12px rgba(255,107,0,0.5); cursor:pointer; }
+    .sim-range:focus-visible { box-shadow:0 0 0 4px rgba(255,107,0,0.28); }
+    .sim-out { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:16px; background:#0F0F11; border-radius:18px; padding:28px; }
+    .sim-out > div { text-align:center; }
+    .sim-out small { display:block; font-size:0.7rem; font-weight:800; letter-spacing:1.6px; text-transform:uppercase; color:rgba(255,255,255,0.5); margin-bottom:10px; }
+    .sim-out strong { font-size:1.45rem; font-weight:900; color:#FF8C33; letter-spacing:-0.5px; }
+    .sim-out .hi strong { color:#fff; font-size:1.75rem; }
+    .sim-per { text-align:center; font-size:0.9rem; color:#5a5a66; margin:24px 0 0; line-height:1.6; }
+    .sim-per b { color:#111; }
+    @media (max-width: 640px) {
+      .sim-card { padding:24px 18px; }
+      .sim-out { padding:20px 12px; gap:10px; }
+      .sim-out strong { font-size:1.15rem; }
+      .sim-out .hi strong { font-size:1.4rem; }
+      .sim-row { margin-bottom:24px; }
+    }
+
+    @media (max-width: 640px) { .p-sec { padding: 60px 0; } .lead-box { padding: 32px 22px; } }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar" id="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-logo">
+        <img src="images/logo-zippa.png" alt="Zippa" style="height:72px;width:auto;" />
+      </a>
+      <ul class="navbar-links">
+              <li><a href="index.html">Início</a></li>
+              <li><a href="mobilidade.html">Passageiro</a></li>
+              <li><a href="parceiro.html" class="active">Seja parceiro</a></li>
+              <li><a href="comercio.html">Comércio</a></li>
+              <li><a href="delivery.html">Delivery</a></li>
+              <li><a href="franquias.html">Franquias</a></li>
+              <li><a href="anuncie.html">Anuncie</a></li>
+              <li><a href="ajuda.html">Ajuda</a></li>
+            </ul>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+      <button class="mobile-menu-close" id="menuClose"><i class="fas fa-times"></i></button>
+      <a href="index.html"><i class="fas fa-home"></i> Início</a>
+      <a href="mobilidade.html"><i class="fas fa-user"></i> Passageiro</a>
+      <a href="parceiro.html"><i class="fas fa-motorcycle"></i> Seja parceiro</a>
+      <a href="comercio.html"><i class="fas fa-store"></i> Comércio</a>
+      <a href="delivery.html"><i class="fas fa-utensils"></i> Delivery</a>
+      <a href="franquias.html"><i class="fas fa-handshake"></i> Franquias</a>
+      <a href="anuncie.html"><i class="fas fa-bullhorn"></i> Anuncie</a>
+      <a href="ajuda.html"><i class="fas fa-circle-question"></i> Central de Ajuda</a>
+      <a href="https://wa.me/554431421244" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+    </div>
+
+    <section class="p-hero" style="background:linear-gradient(135deg,rgba(15,15,17,0.93) 0%,rgba(26,26,46,0.88) 55%,rgba(60,28,0,0.86) 100%),url('images/hero-delivery.jpg?v=3') center/cover;">
+    <div class="container">
+      <span class="section-tag">🏍️ Para entregador</span>
+      <h1>Sem patrão, sem taxa:<br>R$ 5,00 livres por entrega</h1>
+      <p class="lead">Na Zippa o entregador <strong>não paga nada para rodar</strong>. Cada entrega rende <strong>R$ 5,00 livres</strong> — e quem decide as noites em que você roda é você.</p>
+      <div class="p-ctas">
+        <a href="#entregador" class="btn btn-primary btn-lg"><i class="fas fa-calculator"></i> Simular a minha noite</a>
+        <a href="https://wa.me/554431421244?text=Ola%21%20Quero%20rodar%20como%20entregador%20Zippa." class="btn btn-outline btn-lg" style="border-color:rgba(255,255,255,0.3);color:#fff;" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Falar com a Central</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SIMULADOR DO ENTREGADOR ===== -->
+  <section class="p-sec alt" id="entregador">
+    <div class="container" style="max-width:920px;">
+      <div style="text-align:center;">
+        <span class="section-tag">Para entregador</span>
+        <h2 class="section-title">Uma lanchonete só tem os pedidos <span>dela</span>.<br>O app tem os pedidos da cidade.</h2>
+        <p style="color:#5a5a66;max-width:700px;margin:0 auto;font-size:1.02rem;line-height:1.7;">Na Zippa o entregador <strong>não paga nada para rodar</strong>: cada entrega rende <strong>R$ 5,00 livres</strong>, sem desconto. Monte a sua noite e compare com o fixo de uma lanchonete.</p>
+      </div>
+
+      <div class="sim-card" style="margin-top:40px;">
+        <div class="sim-row">
+          <div class="sim-row-top">
+            <label for="entEntregas">Entregas por noite</label>
+            <span class="sim-val" id="entEntregasVal">18</span>
+          </div>
+          <input type="range" class="sim-range" id="entEntregas" min="1" max="40" step="1" value="18" aria-label="Entregas por noite">
+        </div>
+
+        <div class="sim-row">
+          <div class="sim-row-top">
+            <label for="entNoites">Noites por semana</label>
+            <span class="sim-val" id="entNoitesVal">5</span>
+          </div>
+          <input type="range" class="sim-range" id="entNoites" min="1" max="7" step="1" value="5" aria-label="Noites por semana">
+        </div>
+
+        <div class="sim-out" aria-live="polite">
+          <div><small>Por noite</small><strong id="entNoite">R$ 90,00</strong></div>
+          <div><small>Por semana</small><strong id="entSemana">R$ 450,00</strong></div>
+          <div class="hi"><small>Por mês</small><strong id="entMes">R$ 1.950,00</strong></div>
+        </div>
+
+        <div style="margin-top:32px;">
+          <p style="font-size:0.72rem;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:#8a8a96;margin:0 0 18px;">A sua noite comparada ao fixo</p>
+
+          <div style="margin-bottom:20px;">
+            <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;">
+              <span style="font-size:0.92rem;font-weight:700;color:#111;">Rodando com a Zippa</span>
+              <span style="font-size:1.05rem;font-weight:900;color:#FF6B00;" id="cmpZippa">R$ 90,00</span>
+            </div>
+            <div style="height:14px;background:#ECECF1;border-radius:99px;overflow:hidden;">
+              <div id="cmpZippaBar" style="height:100%;width:82%;background:linear-gradient(90deg,#FF6B00,#ff9500);border-radius:99px;transition:width .25s ease;"></div>
+            </div>
+          </div>
+
+          <div>
+            <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;">
+              <span style="font-size:0.92rem;font-weight:700;color:#111;">Fixo na lanchonete</span>
+              <span style="font-size:1.05rem;font-weight:900;color:#7a7a86;">R$ 80,00 &ndash; R$ 100,00</span>
+            </div>
+            <div style="height:14px;background:#ECECF1;border-radius:99px;overflow:hidden;">
+              <div id="cmpFixoBar" style="height:100%;width:82%;background:#C9C9D1;border-radius:99px;transition:width .25s ease;"></div>
+            </div>
+          </div>
+
+          <p id="entVeredito" style="margin:24px 0 0;text-align:center;font-size:1rem;font-weight:800;color:#0F9D58;"></p>
+        </div>
+
+        <div style="overflow-x:auto;margin-top:36px;">
+          <table style="width:100%;border-collapse:collapse;min-width:520px;">
+            <thead>
+              <tr>
+                <th style="text-align:left;padding:0 14px 12px;font-size:0.7rem;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:#8a8a96;border-bottom:1px solid #ECECF1;"></th>
+                <th style="text-align:left;padding:0 14px 12px;font-size:0.7rem;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:#FF6B00;border-bottom:1px solid #ECECF1;">Com a Zippa</th>
+                <th style="text-align:left;padding:0 14px 12px;font-size:0.7rem;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:#8a8a96;border-bottom:1px solid #ECECF1;">Fixo na lanchonete</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td style="padding:14px 14px;border-bottom:1px solid #F1F1F4;color:#3d3d4a;font-size:0.9rem;font-weight:700;line-height:1.55;vertical-align:top;">Custo para rodar</td><td style="padding:14px 14px;border-bottom:1px solid #F1F1F4;color:#111;font-size:0.9rem;line-height:1.55;vertical-align:top;"><strong>Nada.</strong> Os R$ 5,00 são livres, sem desconto nenhum</td><td style="padding:14px 14px;border-bottom:1px solid #F1F1F4;color:#5a5a66;font-size:0.9rem;line-height:1.55;vertical-align:top;">—</td></tr>
+              <tr><td style="padding:14px 14px;border-bottom:1px solid #F1F1F4;color:#3d3d4a;font-size:0.9rem;font-weight:700;line-height:1.55;vertical-align:top;">Quanto entra por noite</td><td style="padding:14px 14px;border-bottom:1px solid #F1F1F4;color:#111;font-size:0.9rem;line-height:1.55;vertical-align:top;"><strong>R$ 5,00 por entrega</strong></td><td style="padding:14px 14px;border-bottom:1px solid #F1F1F4;color:#5a5a66;font-size:0.9rem;line-height:1.55;vertical-align:top;">R$ 80,00 a R$ 100,00, o mesmo valor sempre</td></tr>
+              <tr><td style="padding:14px 14px;border-bottom:1px solid #F1F1F4;color:#3d3d4a;font-size:0.9rem;font-weight:700;line-height:1.55;vertical-align:top;">Quem decide o seu horário</td><td style="padding:14px 14px;border-bottom:1px solid #F1F1F4;color:#111;font-size:0.9rem;line-height:1.55;vertical-align:top;"><strong>Você</strong></td><td style="padding:14px 14px;border-bottom:1px solid #F1F1F4;color:#5a5a66;font-size:0.9rem;line-height:1.55;vertical-align:top;">A escala do lanchote</td></tr>
+              <tr><td style="padding:14px 14px;border-bottom:1px solid #F1F1F4;color:#3d3d4a;font-size:0.9rem;font-weight:700;line-height:1.55;vertical-align:top;">Para quem você entrega</td><td style="padding:14px 14px;border-bottom:1px solid #F1F1F4;color:#111;font-size:0.9rem;line-height:1.55;vertical-align:top;">Todos os restaurantes da Zippa</td><td style="padding:14px 14px;border-bottom:1px solid #F1F1F4;color:#5a5a66;font-size:0.9rem;line-height:1.55;vertical-align:top;">Só aquele lanchote</td></tr>
+              <tr><td style="padding:14px 14px;border-bottom:1px solid #F1F1F4;color:#3d3d4a;font-size:0.9rem;font-weight:700;line-height:1.55;vertical-align:top;">Quando a noite enche</td><td style="padding:14px 14px;border-bottom:1px solid #F1F1F4;color:#111;font-size:0.9rem;line-height:1.55;vertical-align:top;">Cada entrega a mais são R$ 5,00 no seu bolso</td><td style="padding:14px 14px;border-bottom:1px solid #F1F1F4;color:#5a5a66;font-size:0.9rem;line-height:1.55;vertical-align:top;">Continua o mesmo valor</td></tr>
+              <tr><td style="padding:14px 14px;border-bottom:1px solid #F1F1F4;color:#3d3d4a;font-size:0.9rem;font-weight:700;line-height:1.55;vertical-align:top;">Quando a noite esvazia</td><td style="padding:14px 14px;border-bottom:1px solid #F1F1F4;color:#111;font-size:0.9rem;line-height:1.55;vertical-align:top;">Você ganha pelas entregas que fizer</td><td style="padding:14px 14px;border-bottom:1px solid #F1F1F4;color:#5a5a66;font-size:0.9rem;line-height:1.55;vertical-align:top;">Você recebe o combinado</td></tr>
+              <tr><td style="padding:14px 14px;border-bottom:1px solid #F1F1F4;color:#3d3d4a;font-size:0.9rem;font-weight:700;line-height:1.55;vertical-align:top;">Se você quiser parar</td><td style="padding:14px 14px;border-bottom:1px solid #F1F1F4;color:#111;font-size:0.9rem;line-height:1.55;vertical-align:top;">Só sair do app</td><td style="padding:14px 14px;border-bottom:1px solid #F1F1F4;color:#5a5a66;font-size:0.9rem;line-height:1.55;vertical-align:top;">Você perde a vaga</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div style="margin-top:30px;background:rgba(255,107,0,0.07);border:1px solid rgba(255,107,0,0.2);border-radius:16px;padding:22px 24px;">
+          <p style="margin:0;font-size:0.94rem;line-height:1.7;color:#3d3d4a;"><strong>Não precisa largar o fixo hoje.</strong> Baixe o app, rode só nas noites em que o lanchote está fechado e compare o que caiu no seu bolso. Se valer a pena, você decide o resto.</p>
+        </div>
+
+        <div style="text-align:center;margin-top:28px;">
+          <a href="https://play.google.com/store/apps/details?id=app.zippa.entregador" class="btn btn-primary btn-lg" target="_blank" rel="noopener"><i class="fab fa-google-play"></i> Baixar o app de entregador</a>
+          <a href="https://wa.me/554431421244?text=Ola%21%20Quero%20rodar%20como%20entregador%20Zippa." class="btn btn-outline btn-lg" style="margin-left:12px;" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Falar com a Central</a>
+        </div>
+
+        <p style="font-size:0.78rem;color:#8a8a96;text-align:center;margin:20px 0 0;line-height:1.7;">Simulação com <b>R$ 5,00 livres por entrega</b> &mdash; o entregador não paga taxa para rodar. O fixo de <b>R$ 80,00 a R$ 100,00 por noite</b> é a média paga pelos lanchotes da região. São valores <b>brutos</b>: não descontam combustível, manutenção nem impostos, e não incluem gorjetas. O quanto você faz por noite depende do movimento da cidade &mdash; a Central Zippa confirma os números com você.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-sec">
+    <div class="container" style="max-width:760px;text-align:center;">
+      <h2 class="section-title">Comece pelas noites <span>livres</span></h2>
+      <p style="color:#5a5a66;margin-bottom:24px;">Não precisa largar o fixo hoje. Baixe o app, rode nas noites em que você está livre e veja o que caiu no seu bolso. O app de entregador está no Google Play; a versão para iPhone chega em breve.</p>
+      <div class="p-ctas" style="justify-content:center;">
+        <a href="https://play.google.com/store/apps/details?id=app.zippa.entregador" class="btn btn-primary btn-lg" target="_blank" rel="noopener"><i class="fab fa-google-play"></i> Baixar o app de entregador</a>
+        <a href="https://wa.me/554431421244?text=Ola%21%20Quero%20rodar%20como%20entregador%20Zippa." class="btn btn-outline btn-lg" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Falar com a Central</a>
+      </div>
+      <p style="font-size:0.85rem;color:#7a7a86;margin-top:16px;">WhatsApp e telefone: (44) 3142-1244 · <a href="ajuda.html" style="color:#FF6B00;">Central de Ajuda</a></p>
+    </div>
+  </section>
+
+<footer id="footer">
+      <div class="footer-inner">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a href="index.html" class="navbar-logo" style="display:inline-block;margin-bottom:4px;">
+              <img src="images/logo-zippa.png" alt="Zippa" style="height:64px;width:auto;" />
+            </a>
+            <p>O melhor de dois mundos: mobilidade e delivery na sua cidade, com segurança e preço justo.</p>
+            <p style="margin-top:12px;font-size:0.9rem;opacity:0.8;">📍 Atendemos <a href="araruna.html" style="color:inherit;text-decoration:underline;">Araruna</a>, <a href="peabiru.html" style="color:inherit;text-decoration:underline;">Peabiru</a> e <a href="campo-mourao.html" style="color:inherit;text-decoration:underline;">Campo Mourão</a> — PR</p>
+            <div class="footer-socials" style="margin-top:20px;">
+              <a href="https://www.instagram.com/zippaoficial" target="_blank" rel="noopener" class="social-btn" title="Instagram da Zippa"><i class="fab fa-instagram"></i></a>
+              <a href="https://wa.me/554431421244" class="social-btn" title="WhatsApp da Zippa"><i class="fab fa-whatsapp"></i></a>
+            </div>
+          </div>
+          <div class="footer-col">
+            <h4>Serviços</h4>
+            <ul>
+              <li><a href="mobilidade.html">Zippa Mobilidade</a></li>
+              <li><a href="delivery.html">Zippa Delivery</a></li>
+              <li><a href="motorista.html">Motorista Parceiro</a></li>
+              <li><a href="entregador.html">Entregador Parceiro</a></li>
+              <li><a href="comercio.html">Comércio Parceiro</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Negócios</h4>
+            <ul>
+              <li><a href="franquias.html">Seja Franqueado</a></li>
+              <li><a href="anuncie.html">Anuncie na Zippa</a></li>
+              <li><a href="index.html#sobre">Sobre a Zippa</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Suporte</h4>
+            <ul>
+              <li><a href="https://wa.me/554431421244">WhatsApp</a></li>
+              <li><a href="tel:+554431421244">Central: (44) 3142-1244</a></li>
+              <li><a href="mailto:contato@zippa.app">contato@zippa.app</a></li>
+              <li><a href="privacidade.html#termos">Termos de Uso</a></li>
+              <li><a href="privacidade.html#privacidade">Privacidade</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>© 2026 Zippa · CNPJ 59.708.950/0001-18 — Desenvolvido por <strong>Nexa Labs</strong>. Todos os direitos reservados.</p>
+          <p><a href="privacidade.html#termos" style="color:rgba(255,255,255,0.5);text-decoration:underline;font-size:0.82rem;">Termos de Uso</a> · <a href="privacidade.html#privacidade" style="color:rgba(255,255,255,0.5);text-decoration:underline;font-size:0.82rem;">Privacidade</a> · <a href="privacidade.html#lgpd" style="color:rgba(255,255,255,0.5);text-decoration:underline;font-size:0.82rem;">LGPD</a></p>
+        </div>
+      </div>
+    </footer>
+
+  <a href="https://wa.me/554431421244" target="_blank" class="whatsapp-float" title="Fale conosco no WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+    <span class="wa-label">Suporte</span>
+  </a>
+  <script>
+    (function () {
+      var POR_ENTREGA = 5.00;
+      var FIXO_MIN = 80.00;
+      var FIXO_MED = 90.00;
+      var FIXO_MAX = 100.00;
+
+      var e = document.getElementById('entEntregas');
+      var n = document.getElementById('entNoites');
+      if (!e || !n) return;
+
+      var outNoite = document.getElementById('entNoite');
+      var outSemana = document.getElementById('entSemana');
+      var outMes = document.getElementById('entMes');
+      var cmpZippa = document.getElementById('cmpZippa');
+      var barZippa = document.getElementById('cmpZippaBar');
+      var barFixo = document.getElementById('cmpFixoBar');
+      var veredito = document.getElementById('entVeredito');
+
+      function brl(v) {
+        return 'R$ ' + v.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      }
+
+      function calc() {
+        var ne = Number(e.value);
+        var nn = Number(n.value);
+        var noite = ne * POR_ENTREGA;
+        var semana = noite * nn;
+
+        document.getElementById('entEntregasVal').textContent = ne;
+        document.getElementById('entNoitesVal').textContent = nn;
+        outNoite.textContent = brl(noite);
+        outSemana.textContent = brl(semana);
+        outMes.textContent = brl(semana * 52 / 12);
+        cmpZippa.textContent = brl(noite);
+
+        var escala = Math.max(noite, FIXO_MAX) * 1.1;
+        barZippa.style.width = Math.min(100, (noite / escala) * 100) + '%';
+        barFixo.style.width = Math.min(100, (FIXO_MED / escala) * 100) + '%';
+
+        var msg, cor;
+        if (noite > FIXO_MAX) {
+          msg = 'Você passou o teto do fixo: ' + brl(noite - FIXO_MAX) + ' a mais na noite.';
+          cor = '#0F9D58';
+        } else if (noite >= FIXO_MAX) {
+          msg = 'Você bateu o teto do fixo (R$ 100,00) — e sem patrão.';
+          cor = '#0F9D58';
+        } else if (noite >= FIXO_MED) {
+          msg = 'Você já bateu a média do fixo (R$ 90,00) — e sem patrão.';
+          cor = '#0F9D58';
+        } else if (noite >= FIXO_MIN) {
+          msg = 'Você já entrou na faixa do fixo (R$ 80,00 a R$ 100,00).';
+          cor = '#0F9D58';
+        } else {
+          var faltam = Math.ceil((FIXO_MIN - noite) / POR_ENTREGA);
+          msg = 'Faltam ' + faltam + (faltam === 1 ? ' entrega' : ' entregas') + ' para chegar em R$ 80,00.';
+          cor = '#8a8a96';
+        }
+        veredito.textContent = msg;
+        veredito.style.color = cor;
+      }
+
+      e.addEventListener('input', calc);
+      n.addEventListener('input', calc);
+      calc();
+    })();
+  </script>
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Entregador parceiro Zippa — R$ 5,00 livres por entrega",
+  "url": "https://zippa.com.br/entregador.html",
+  "description": "Na Zippa o entregador não paga nada para rodar: R$ 5,00 livres por entrega. Simule a sua noite e compare com o fixo de uma lanchonete de R$ 80 a R$ 100.",
+  "about": {
+    "@type": "Organization",
+    "name": "Zippa",
+    "url": "https://zippa.com.br/",
+    "telephone": "+554431421244"
+  },
+  "areaServed": [
+    {"@type": "City", "name": "Araruna"},
+    {"@type": "City", "name": "Peabiru"},
+    {"@type": "City", "name": "Campo Mourão"}
+  ]
+}
+  </script>
+
+  <script src="js/main.js?v=2"></script>
+  <script src="js/cookies.js?v=2"></script>
+</body>
+</html>

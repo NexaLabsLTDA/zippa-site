@@ -192,61 +192,6 @@
       padding: 96px 24px;
       background: var(--dark);
     }
-    .rest-inner {
-      max-width: 1200px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 80px; align-items: center;
-    }
-    .rest-text .section-tag { background: rgba(255,107,0,0.2); color: #ffb380; }
-    .rest-text .section-title { color: white; }
-    .rest-text .section-subtitle { color: rgba(255,255,255,0.6); }
-    .rest-args {
-      margin-top: 32px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-    .rest-arg {
-      display: flex;
-      align-items: flex-start;
-      gap: 16px;
-      background: rgba(255,255,255,0.06);
-      border-radius: var(--radius-md);
-      padding: 20px;
-      border: 1px solid rgba(255,255,255,0.08);
-      transition: var(--transition);
-    }
-    .rest-arg:hover { background: rgba(255,107,0,0.1); border-color: rgba(255,107,0,0.3); }
-    .rest-arg-icon {
-      width: 44px; height: 44px; min-width: 44px;
-      background: rgba(255,107,0,0.15);
-      border-radius: var(--radius-sm);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.2rem;
-    }
-    .rest-arg h4 { font-size: 0.95rem; font-weight: 700; color: white; margin-bottom: 4px; }
-    .rest-arg p { font-size: 0.84rem; color: rgba(255,255,255,0.55); line-height: 1.5; }
-    .rest-visual {
-      position: relative;
-    }
-    .rest-img {
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      aspect-ratio: 3/4;
-      background: linear-gradient(135deg, #3d1500, #7c2d00);
-    }
-    .rest-img img { width: 100%; height: 100%; object-fit: cover; }
-    .rest-stats {
-      position: absolute;
-      bottom: 24px; left: -24px;
-      background: var(--orange);
-      color: white;
-      padding: 20px 24px;
-      border-radius: var(--radius-md);
-      box-shadow: var(--shadow-orange);
-    }
-    .rest-stats strong { display: block; font-size: 1.6rem; font-weight: 900; }
-    .rest-stats span { font-size: 0.78rem; opacity: 0.9; }
 
     /* ===== PROMO BANNER ===== */
     .promo-section {
@@ -260,34 +205,6 @@
     }
     .promo-text h3 { font-size: 1.5rem; font-weight: 800; color: white; }
     .promo-text p { font-size: 0.92rem; color: rgba(255,255,255,0.85); margin-top: 4px; }
-
-    /* ===== TESTIMONIALS ===== */
-    .del-testimonials {
-      padding: 96px 24px;
-      background: var(--gray-light);
-    }
-    .del-test-inner { max-width: 1200px; margin: 0 auto; }
-    .del-test-header { text-align: center; margin-bottom: 48px; }
-    .del-test-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-    .del-test-card {
-      background: white;
-      border-radius: var(--radius-md);
-      padding: 28px 24px;
-      transition: var(--transition);
-      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
-    }
-    .del-test-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
-    .del-test-card .stars { color: var(--orange); font-size: 0.9rem; margin-bottom: 12px; }
-    .del-test-card .quote { font-size: 0.92rem; color: var(--gray-dark); line-height: 1.7; font-style: italic; margin-bottom: 20px; }
-    .del-test-card .author { display: flex; align-items: center; gap: 12px; }
-    .del-test-card .avatar {
-      width: 40px; height: 40px; border-radius: 50%;
-      background: var(--orange); color: white;
-      display: flex; align-items: center; justify-content: center;
-      font-weight: 700; font-size: 0.9rem;
-    }
-    .del-test-card .author strong { font-size: 0.88rem; display: block; }
-    .del-test-card .author span { font-size: 0.78rem; color: var(--gray-mid); }
 
     /* ===== CTA FINAL ===== */
     .cta-del {
@@ -305,12 +222,9 @@
     @media (max-width: 900px) {
       .hero-del-content { grid-template-columns: 1fr; gap: 40px; padding-top: 100px; }
       .cust-inner { grid-template-columns: 1fr; gap: 48px; }
-      .rest-inner { grid-template-columns: 1fr; gap: 48px; }
       .how-del-steps { grid-template-columns: repeat(2, 1fr); }
       .how-del-steps::before { display: none; }
-      .del-test-grid { grid-template-columns: 1fr 1fr; }
       .cust-badge { right: 0; bottom: -16px; }
-      .rest-stats { left: 0; }
     }
     @media (max-width: 768px) {
       .navbar-logo img { height: 44px !important; }
@@ -319,7 +233,6 @@
     @media (max-width: 600px) {
       .cat-grid { grid-template-columns: repeat(3, 1fr); gap: 10px; }
       .how-del-steps { grid-template-columns: 1fr; }
-      .del-test-grid { grid-template-columns: 1fr; }
       .delivery-perks { grid-template-columns: 1fr; }
     }
   </style>
@@ -662,48 +575,12 @@
     <div class="container" style="max-width:860px;text-align:center;">
       <span class="section-tag">Tem um restaurante, lanchonete ou mercado?</span>
       <h2 class="section-title">Coloque o seu comércio <span>na Zippa</span></h2>
-      <p style="color:#5a5a66;font-size:1.02rem;line-height:1.75;max-width:700px;margin:0 auto 30px;">Duas formas de trabalhar com a gente: <strong>chamar um entregador avulso quando precisar</strong>, sem compromisso nenhum &mdash; ou <strong>colocar a sua loja dentro do app</strong>, com captação, venda e entrega por nossa conta. Você paga só por pedido entregue.</p>
+      <p style="color:#5a5a66;font-size:1.02rem;line-height:1.75;max-width:700px;margin:0 auto 30px;">Duas formas de trabalhar com a gente: <strong>chamar um entregador avulso quando precisar</strong>, sem compromisso nenhum &mdash; ou <strong>colocar a sua loja dentro do app</strong>, com captação, venda e entrega por nossa conta e <strong>zero comissão sobre a venda</strong>. A entrega custa <strong>R$ 7,00</strong> avulsa, até 5 km, ou <strong>R$ 3,00</strong> por pedido entregue no app.</p>
       <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
         <a href="comercio.html" class="btn btn-primary btn-lg"><i class="fas fa-store"></i> Ver as duas formas</a>
         <a href="https://wa.me/554431421244?text=Ola%21%20Quero%20ser%20comercio%20parceiro%20da%20Zippa." class="btn btn-outline btn-lg" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Falar com a Central</a>
       </div>
       <p style="font-size:0.88rem;color:#7a7a86;margin-top:24px;">Quer <strong>entregar</strong> em vez de vender? <a href="entregador.html" style="color:#FF6B00;font-weight:700;">Veja a página do entregador</a>.</p>
-    </div>
-  </section>
-
-  <!-- ===== TESTIMONIALS ===== -->
-  <section class="del-testimonials">
-    <div class="del-test-inner">
-      <div class="del-test-header anim-up">
-        <span class="section-tag">Quem pede, volta sempre</span>
-        <h2 class="section-title">A cidade toda está <span>amando</span></h2>
-      </div>
-      <div class="del-test-grid">
-        <div class="del-test-card anim-up">
-          <div class="stars">★★★★★</div>
-          <p class="quote">"Pedi uma pizza e chegou em 22 minutos, ainda quentinha! A taxa de entrega foi super justa. Nunca mais vou usar outro app."</p>
-          <div class="author">
-            <div class="avatar">CS</div>
-            <div><strong>Carla S.</strong><span>Cliente desde 2024</span></div>
-          </div>
-        </div>
-        <div class="del-test-card anim-up anim-delay-1">
-          <div class="stars">★★★★★</div>
-          <p class="quote">"Como dono de restaurante, o que me convenceu foi não ter comissão. O valor da venda é todo meu — eu pago só a entrega. Vale muito!"</p>
-          <div class="author">
-            <div class="avatar">MP</div>
-            <div><strong>Marcos P.</strong><span>Restaurante parceiro</span></div>
-          </div>
-        </div>
-        <div class="del-test-card anim-up anim-delay-2">
-          <div class="stars">★★★★★</div>
-          <p class="quote">"Uso todo dia no almoço. A variedade é incrível e o app é muito fácil. O rastreamento em tempo real me deixa tranquila esperando."</p>
-          <div class="author">
-            <div class="avatar">FL</div>
-            <div><strong>Fernanda L.</strong><span>Usuária frequente</span></div>
-          </div>
-        </div>
-      </div>
     </div>
   </section>
 

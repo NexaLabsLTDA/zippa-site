@@ -1,17 +1,19 @@
 /* ============================================================
-   ZIPPA — Pixel da Meta (Facebook / Instagram) para anúncios
+   ZIPPA — Rastreamento para anúncios (Meta Pixel + Google Analytics 4)
    ============================================================
 
    COMO ATIVAR
-   1) Cole o ID do pixel na linha META_PIXEL_ID abaixo (só os números).
-   2) Pronto — nada mais precisa ser mexido.
+   1) Meta: cole o ID do pixel na linha META_PIXEL_ID (só os números).
+   2) GA4: cole o ID de medição na linha GA4_ID (formato G-XXXXXXXXXX).
+   Pronto — nada mais precisa ser mexido. Os dois usam o mesmo portão de
+   consentimento e os mesmos eventos, definidos uma única vez aqui.
 
    Enquanto o ID estiver vazio, este arquivo NÃO carrega script algum,
    não grava cookie e não faz nenhuma requisição para o Facebook.
 
    LGPD (Lei 13.709/2018)
-   O pixel só dispara para quem escolheu "Aceitar todos" no aviso de
-   cookies. Quem escolhe "Só essenciais" navega sem rastreamento, e
+   Nada dispara antes do "Aceitar todos" no aviso de cookies: nem o
+   pixel da Meta, nem o gtag do Google. Quem escolhe "Só essenciais" navega sem rastreamento, e
    quem aceita depois passa a ser rastreado na hora, sem recarregar.
 
    EVENTOS ENVIADOS
@@ -25,12 +27,22 @@
                     só "quis falar no WhatsApp" e os públicos ficam limpos)
    - Contact        clique em e-mail
    - SimuladorUsado evento próprio: alguém mexeu num simulador
+
+   Os mesmos eventos vão para o GA4 (a página é medida pelo page_view
+   automático do gtag):
+   - view_content    -> evento de consideração
+   - generate_lead   -> nome recomendado pelo Google para captação de
+                        lead (clique no WhatsApp)
+   - clique_loja     -> clique em Google Play / App Store
+   - contato_email   -> clique em e-mail
+   - simulador_usado -> alguém mexeu num simulador
    ============================================================ */
 
 (function () {
   'use strict';
 
   var META_PIXEL_ID = '970540685551369';          // ID do pixel da Meta (só números)
+  var GA4_ID        = 'G-4PB0YG8MMG';            // ID de medição do Google Analytics 4
 
   var CONSENT_COOKIE = 'zippa_cookies_consent'; // gravado pelo js/cookies.js
   var CONSENT_EVENT = 'zippa:consent';          // disparado ao clicar em "Aceitar todos"
@@ -53,6 +65,7 @@
   ];
 
   var ligado = false;
+  var ga4Ligado = false;
   var simuladorAvisado = false;
 
   function lerCookie(nome) {
@@ -95,11 +108,20 @@
     return 'Loja de aplicativos';
   }
 
+  function eventoGA(nome, params) {
+    if (typeof window.gtag !== 'function') return;
+    window.gtag('event', nome, params || {});
+  }
+
   function paginaDeConsideracao() {
     if (PAGINAS_CONSIDERACAO.indexOf(arquivoAtual()) === -1) return;
     window.fbq('track', 'ViewContent', {
       content_name: arquivoAtual().replace('.html', ''),
       content_category: 'parceiro'
+    });
+    eventoGA('view_content', {
+      pagina: arquivoAtual().replace('.html', ''),
+      categoria: 'parceiro'
     });
   }
 
@@ -117,13 +139,22 @@
           content_name: rotuloWhatsApp(href),
           content_category: 'WhatsApp'
         });
+        eventoGA('generate_lead', {
+          metodo_contato: 'WhatsApp',
+          assunto: rotuloWhatsApp(href)
+        });
       } else if (/play\.google\.com|apps\.apple\.com|itunes\.apple\.com/i.test(href)) {
         window.fbq('trackCustom', 'CliqueLoja', {
           content_name: nomeDoApp(href),
           content_category: plataforma(href)
         });
+        eventoGA('clique_loja', {
+          app: nomeDoApp(href),
+          loja: plataforma(href)
+        });
       } else if (/^mailto:/i.test(href)) {
         window.fbq('track', 'Contact', { content_name: 'E-mail do site' });
+        eventoGA('contato_email', { metodo_contato: 'E-mail' });
       }
     }, true);
 
@@ -135,6 +166,7 @@
       window.fbq('trackCustom', 'SimuladorUsado', {
         content_name: arquivoAtual() === 'motorista.html' ? 'Motorista' : 'Entregador'
       });
+      eventoGA('simulador_usado', { simulador: arquivoAtual() === 'motorista.html' ? 'Motorista' : 'Entregador' });
     }, true);
   }
 
@@ -167,13 +199,35 @@
     ligarEventos();
   }
 
+  function carregarGA4() {
+    if (ga4Ligado || !GA4_ID || !consentiu()) return;
+    ga4Ligado = true;
+
+    /* Código base do Google (gtag.js) — o gtag precisa existir ANTES do script */
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
+
+    var t = document.createElement('script');
+    t.async = true;
+    t.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA4_ID;
+    document.head.appendChild(t);
+
+    window.gtag('js', new Date());
+    window.gtag('config', GA4_ID);   // dispara o page_view da própria página
+  }
+
+  function carregarTudo() {
+    carregarPixel();
+    carregarGA4();
+  }
+
   // Consentimento dado agora (sem recarregar a página)
-  window.addEventListener(CONSENT_EVENT, carregarPixel);
+  window.addEventListener(CONSENT_EVENT, carregarTudo);
 
   // Consentimento já dado antes
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', carregarPixel);
+    document.addEventListener('DOMContentLoaded', carregarTudo);
   } else {
-    carregarPixel();
+    carregarTudo();
   }
 })();

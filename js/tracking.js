@@ -28,7 +28,7 @@
 (function () {
   'use strict';
 
-  var META_PIXEL_ID = '';                       // <<< COLE AQUI O ID DO PIXEL (só números)
+  var META_PIXEL_ID = '970540685551369';          // ID do pixel da Meta (só números)
 
   var CONSENT_COOKIE = 'zippa_cookies_consent'; // gravado pelo js/cookies.js
   var CONSENT_EVENT = 'zippa:consent';          // disparado ao clicar em "Aceitar todos"

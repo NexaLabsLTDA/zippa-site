@@ -27,6 +27,9 @@
   function acceptAll() {
     setCookie(COOKIE_KEY, 'all', 365);
     hideBanner();
+    // avisa o rastreamento (js/tracking.js) para ligar o pixel agora,
+    // sem precisar recarregar a página
+    window.dispatchEvent(new Event('zippa:consent'));
   }
 
   function acceptEssential() {

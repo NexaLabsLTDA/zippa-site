@@ -20,7 +20,9 @@
                     entregador, comércio, franquias, anuncie)
    - Lead           clique em link do WhatsApp — o assunto da conversa
                     vai no nome do evento, para separar as campanhas
-   - Lead           clique em Google Play / App Store, com o app no nome
+   - CliqueLoja     clique em Google Play / App Store, com o app no nome
+                    (evento próprio, de propósito: assim Lead significa
+                    só "quis falar no WhatsApp" e os públicos ficam limpos)
    - Contact        clique em e-mail
    - SimuladorUsado evento próprio: alguém mexeu num simulador
    ============================================================ */
@@ -116,7 +118,7 @@
           content_category: 'WhatsApp'
         });
       } else if (/play\.google\.com|apps\.apple\.com|itunes\.apple\.com/i.test(href)) {
-        window.fbq('track', 'Lead', {
+        window.fbq('trackCustom', 'CliqueLoja', {
           content_name: nomeDoApp(href),
           content_category: plataforma(href)
         });

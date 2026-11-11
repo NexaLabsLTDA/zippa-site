@@ -70,6 +70,18 @@
     .lead-box input:focus, .lead-box select:focus { outline:none; border-color:#FF6B00; }
     .lead-box select option { color:#111; }
     @media (max-width: 640px) { .p-sec { padding: 60px 0; } .lead-box { padding: 32px 22px; } }
+  
+    /* hero com foto emoldurada */
+    .p-hero-split { display: grid; grid-template-columns: 1.04fr .96fr; gap: 56px; align-items: center; }
+    .p-hero-copy { min-width: 0; }
+    .p-hero-media { position: relative; border-radius: 22px; overflow: hidden; border: 1px solid rgba(255,255,255,.09); box-shadow: 0 34px 80px rgba(0,0,0,.45); }
+    .p-hero-media img { display: block; width: 100%; height: auto; aspect-ratio: 16/9; object-fit: cover; }
+    .p-hero-media::after { content:''; position:absolute; inset:0; background: linear-gradient(200deg, rgba(255,107,0,.10), transparent 45%); pointer-events:none; }
+    .p-hero .p-stats { margin-top: 56px; }
+    @media (max-width: 900px) {
+      .p-hero-split { grid-template-columns: 1fr; gap: 32px; }
+      .p-hero .p-stats { margin-top: 36px; }
+    }
   </style>
 </head>
 <body>
@@ -112,12 +124,20 @@
 
   <section class="p-hero">
     <div class="container">
+      <div class="p-hero-split">
+        <div class="p-hero-copy">
       <span class="section-tag">🤝 Franquias Zippa</span>
       <h1>Leve a Zippa<br>para a sua cidade</h1>
-      <p class="lead">Mobilidade e delivery em uma só operação. A Zippa já roda em Araruna, Peabiru e Campo Mourão — e está abrindo novas praças para quem quer empreender com uma marca que o cliente já conhece.</p>
+      <p class="lead">Mobilidade e delivery em uma só operação. A Zippa já roda em cinco cidades do Paraná — e está abrindo novas praças para quem quer empreender com uma marca que o cliente já conhece.</p>
       <div class="p-ctas">
         <a href="#cadastro" class="btn btn-primary btn-lg"><i class="fas fa-handshake"></i> Quero ser franqueado</a>
         <a href="https://wa.me/554431421244?text=Tenho%20interesse%20em%20uma%20franquia%20Zippa" target="_blank" class="btn btn-outline" style="border-color:rgba(255,255,255,0.35);color:#fff;"><i class="fab fa-whatsapp"></i> Falar agora</a>
+      </div>
+      
+        </div>
+        <div class="p-hero-media">
+          <img src="images/hero-franquias.jpg?v=2" alt="Empreendedor com o celular na mão em rua comercial, pronto para levar a Zippa para a sua cidade" width="1376" height="768" loading="eager" decoding="async" />
+        </div>
       </div>
       <div class="p-stats">
         <div class="p-stat"><strong>5 cidades</strong><span>em operação no Paraná</span></div>
@@ -139,7 +159,7 @@
         <div class="p-card">
           <i class="fas fa-store p-ico"></i>
           <h3>Marca que já roda na rua</h3>
-          <p>A Zippa opera em Araruna, Peabiru e Campo Mourão, com carros, entregadores e restaurantes parceiros na ativa. Você não começa do zero.</p>
+          <p>A Zippa opera em cinco cidades do Paraná, com carros, entregadores e restaurantes parceiros na ativa. Você não começa do zero.</p>
         </div>
         <div class="p-card">
           <i class="fas fa-layer-group p-ico"></i>

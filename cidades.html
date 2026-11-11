@@ -64,6 +64,18 @@
     .city-card p.pop { font-size:0.85rem;color:#8a8a96;margin-top:12px; }
     .city-card p.link { margin-top:10px; }
     @media (max-width: 640px) { .p-sec { padding: 60px 0; } }
+  
+    /* hero com foto emoldurada */
+    .p-hero-split { display: grid; grid-template-columns: 1.04fr .96fr; gap: 56px; align-items: center; }
+    .p-hero-copy { min-width: 0; }
+    .p-hero-media { position: relative; border-radius: 22px; overflow: hidden; border: 1px solid rgba(255,255,255,.09); box-shadow: 0 34px 80px rgba(0,0,0,.45); }
+    .p-hero-media img { display: block; width: 100%; height: auto; aspect-ratio: 16/9; object-fit: cover; }
+    .p-hero-media::after { content:''; position:absolute; inset:0; background: linear-gradient(200deg, rgba(255,107,0,.10), transparent 45%); pointer-events:none; }
+    .p-hero .p-stats { margin-top: 56px; }
+    @media (max-width: 900px) {
+      .p-hero-split { grid-template-columns: 1fr; gap: 32px; }
+      .p-hero .p-stats { margin-top: 36px; }
+    }
   </style>
 </head>
 <body>
@@ -109,12 +121,20 @@
 
     <section class="p-hero">
     <div class="container">
+      <div class="p-hero-split">
+        <div class="p-hero-copy">
       <span class="section-tag">📍 Paraná — Região de Campo Mourão</span>
       <h1>A Zippa já<br>roda aqui</h1>
       <p class="lead">Corrida e delivery pelo app em <strong>cinco cidades do Paraná</strong>. Motoristas verificados, valor antes de confirmar e atendimento humano pela Central. Veja onde a Zippa está e o que tem em cada cidade.</p>
       <div class="p-ctas">
         <a href="https://play.google.com/store/apps/details?id=br.com.devbase.zippa" class="btn btn-primary btn-lg" target="_blank" rel="noopener"><i class="fab fa-google-play"></i> Baixar o app</a>
         <a href="https://wa.me/554431421244?text=Ola!%20Quero%20saber%20se%20a%20Zippa%20atende%20minha%20cidade" class="btn btn-outline btn-lg" style="border-color:rgba(255,255,255,0.3);color:#fff;" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Falar com a Central</a>
+      </div>
+      
+        </div>
+        <div class="p-hero-media">
+          <img src="images/hero-mobilidade.jpg?v=7" alt="Carro da Zippa plotado com a marca, em rua de cidade do interior do Paraná" width="1376" height="768" loading="eager" decoding="async" />
+        </div>
       </div>
       <div class="p-stats">
         <div class="p-stat"><strong>5 cidades</strong><span>no Paraná</span></div>

@@ -70,6 +70,18 @@
     .lead-box input:focus, .lead-box select:focus { outline:none; border-color:#FF6B00; }
     .lead-box select option { color:#111; }
     @media (max-width: 640px) { .p-sec { padding: 60px 0; } .lead-box { padding: 32px 22px; } }
+  
+    /* hero com foto emoldurada */
+    .p-hero-split { display: grid; grid-template-columns: 1.04fr .96fr; gap: 56px; align-items: center; }
+    .p-hero-copy { min-width: 0; }
+    .p-hero-media { position: relative; border-radius: 22px; overflow: hidden; border: 1px solid rgba(255,255,255,.09); box-shadow: 0 34px 80px rgba(0,0,0,.45); }
+    .p-hero-media img { display: block; width: 100%; height: auto; aspect-ratio: 16/9; object-fit: cover; }
+    .p-hero-media::after { content:''; position:absolute; inset:0; background: linear-gradient(200deg, rgba(255,107,0,.10), transparent 45%); pointer-events:none; }
+    .p-hero .p-stats { margin-top: 56px; }
+    @media (max-width: 900px) {
+      .p-hero-split { grid-template-columns: 1fr; gap: 32px; }
+      .p-hero .p-stats { margin-top: 36px; }
+    }
   </style>
 </head>
 <body>
@@ -112,12 +124,20 @@
 
   <section class="p-hero">
     <div class="container">
+      <div class="p-hero-split">
+        <div class="p-hero-copy">
       <span class="section-tag">📣 Anuncie na Zippa</span>
       <h1>Sua marca na tela<br>de quem está sempre<br>em movimento</h1>
       <p class="lead">A Zippa coloca o seu negócio na frente de passageiros, motoristas, entregadores e clientes de delivery da sua cidade — em um momento em que eles estão decidindo onde comer, o que comprar e para onde ir.</p>
       <div class="p-ctas">
         <a href="#cadastro" class="btn btn-primary btn-lg"><i class="fas fa-bullhorn"></i> Quero anunciar</a>
         <a href="https://wa.me/554431421244?text=Quero%20anunciar%20na%20Zippa" target="_blank" class="btn btn-outline" style="border-color:rgba(255,255,255,0.35);color:#fff;"><i class="fab fa-whatsapp"></i> Falar com o comercial</a>
+      </div>
+      
+        </div>
+        <div class="p-hero-media">
+          <img src="images/hero-anuncie.jpg?v=1" alt="Lojista de cidade pequena atrás do balcão conferindo um pedido no celular" width="1376" height="768" loading="eager" decoding="async" />
+        </div>
       </div>
       <div class="p-stats">
         <div class="p-stat"><strong>5 cidades</strong><span>de audiência local qualificada</span></div>

@@ -19,7 +19,7 @@
    EVENTOS ENVIADOS
    - PageView       toda página
    - ViewContent    páginas de consideração (parceiro, motorista,
-                    entregador, comércio, franquias, anuncie)
+                    entregador, comércio, licença, abrir cidade, anuncie)
    - Lead           clique em link do WhatsApp — o assunto da conversa
                     vai no nome do evento, para separar as campanhas
    - CliqueLoja     clique em Google Play / App Store, com o app no nome
@@ -49,7 +49,7 @@
 
   var PAGINAS_CONSIDERACAO = [
     'parceiro.html', 'motorista.html', 'entregador.html',
-    'comercio.html', 'franquias.html', 'anuncie.html'
+    'comercio.html', 'licenca.html', 'anuncie.html'
   ];
 
   // Ordem importa: o mais específico primeiro.

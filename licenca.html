@@ -83,6 +83,18 @@
       .p-hero .p-stats { margin-top: 36px; }
     }
 
+/* ===== VALOR CALCULADO ===== */
+.fz-cal{margin-top:16px;border:1px solid rgba(255,107,0,.35);background:rgba(255,107,0,.07);border-radius:12px;padding:14px 16px}
+.fz-cal[hidden]{display:none}
+.fz-cal-lbl{font-size:.8rem;letter-spacing:.04em;text-transform:uppercase;color:#8a4a13;font-weight:700}
+.fz-cal-row{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-top:4px;flex-wrap:wrap}
+.fz-cal-val{font-size:1.6rem;font-weight:800;color:#FF6B00;letter-spacing:-.02em;line-height:1.1}
+.fz-cal-sub{font-size:.8rem;color:#5a5a66;margin-top:6px;line-height:1.5}
+.fz-match{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.fz-match button{font:inherit;font-size:.85rem;padding:7px 12px;border-radius:999px;border:1px solid rgba(0,0,0,.16);background:#fff;color:#1a1a2e;cursor:pointer}
+.fz-match button:hover{border-color:#FF6B00;color:#c25200}
+.fz-lista-hint{font-size:.8rem;color:#8a8a94;margin-top:10px}
+
 /* ===== ROYALTIES ===== */
 .roy{margin-top:26px;border-top:1px dashed rgba(0,0,0,.12);padding-top:20px}
 .roy-h{font-size:1.02rem;font-weight:800;margin:0 0 4px;color:#111}
@@ -337,10 +349,10 @@
         <p class="roy-h">Royalties sobre o faturamento da praça</p>
         <p class="roy-sub">O percentual acompanha o amadurecimento da operação: começa baixo, quando a praça ainda está sendo formada, e sobe conforme ela cresce.</p>
         <div class="roy-list">
-          <div class="roy-row"><span class="roy-p">5%</span><span class="roy-l">nos primeiros <strong>90 dias</strong> de operação</span></div>
-          <div class="roy-row"><span class="roy-p">7%</span><span class="roy-l">na etapa seguinte</span></div>
-          <div class="roy-row"><span class="roy-p">10%</span><span class="roy-l">depois, com a praça já consolidada</span></div>
-          <div class="roy-row"><span class="roy-p">15%</span><span class="roy-l">a partir de <strong>12 meses</strong> — e permanece nesse patamar</span></div>
+          <div class="roy-row"><span class="roy-p">5%</span><span class="roy-l"><strong>Meses 1 a 3</strong> · fase de ativação</span></div>
+          <div class="roy-row"><span class="roy-p">7%</span><span class="roy-l"><strong>Meses 4 a 6</strong> · fase de tração</span></div>
+          <div class="roy-row"><span class="roy-p">10%</span><span class="roy-l"><strong>Meses 7 a 9</strong> · fase de consolidação</span></div>
+          <div class="roy-row"><span class="roy-p">15%</span><span class="roy-l"><strong>Mês 10 em diante</strong> · fase madura, até o fim do contrato</span></div>
         </div>
       </div>
     </div>
@@ -402,13 +414,23 @@
           <h3 class="fz-q">Em qual cidade você quer abrir a Zippa?</h3>
           <p class="fz-hint">Pode ser a sua cidade ou uma da região. É por ela que a gente calcula o tamanho da operação.</p>
           <input class="fz-input" id="fzCidade" type="text" placeholder="Ex.: Engenheiro Beltrão" autocomplete="address-level2" maxlength="60" />
+          <div class="fz-match" id="fzMatch"></div>
+          <div class="fz-cal" id="fzCal" hidden>
+            <span class="fz-cal-lbl">Licença de uso da marca · <span id="fzCalCidade"></span></span>
+            <div class="fz-cal-row">
+              <span class="fz-cal-val" id="fzCalVal">—</span>
+              <span class="fz-cal-sub" id="fzCalPop" style="margin:0">—</span>
+            </div>
+            <p class="fz-cal-sub" id="fzCalSub">Valor da licença para esta cidade. Expansão e marketing de lançamento ficam por conta do licenciado.</p>
+          </div>
+          <p class="fz-lista-hint" id="fzListaHint" hidden>Não encontrei esse município na base do IBGE. Pode seguir — o time confirma o valor na conversa.</p>
         </div>
 
         <!-- 2. INVESTIMENTO -->
         <div class="fz-slide" data-step="2">
           <div class="fz-kicker">Passo 2</div>
           <h3 class="fz-q">Quanto você tem disponível para investir?</h3>
-          <p class="fz-hint">A licença começa em <strong>R$ 5 mil</strong> e o valor final depende do tamanho da cidade. <strong>Não estão incluídos</strong> os gastos com expansão e o marketing de lançamento — esses ficam por conta do licenciado.</p>
+          <p class="fz-hint" id="fzInvHint">A licença parte de <strong>R$ 5 mil</strong> e o valor final depende do tamanho da cidade. <strong>Não estão incluídos</strong> os gastos com expansão e o marketing de lançamento — esses ficam por conta do licenciado.</p>
           <div class="fz-opts" id="fzInv">
             <button type="button" class="fz-opt" data-v="ate5">Até R$ 5 mil <span class="fz-tick"><i class="fas fa-check"></i></span></button>
             <button type="button" class="fz-opt" data-v="5a10">De R$ 5 mil a R$ 10 mil <span class="fz-tick"><i class="fas fa-check"></i></span></button>
@@ -575,9 +597,121 @@
     if (st.step === 4) nextBtn.innerHTML = 'Ver o resultado <i class="fas fa-arrow-right"></i>';
   }
 
-  // passo 1 — cidade
+  // passo 1 — cidade + valor calculado pelo Censo 2022
   var cidade = document.getElementById('fzCidade');
-  cidade.addEventListener('input', function () { st.cidade = cidade.value; validar(); });
+  var elCal = document.getElementById('fzCal');
+  var elVal = document.getElementById('fzCalVal');
+  var elCalCidade = document.getElementById('fzCalCidade');
+  var elPop = document.getElementById('fzCalPop');
+  var elMatch = document.getElementById('fzMatch');
+  var elLista = document.getElementById('fzListaHint');
+  var hintInv = document.getElementById('fzInvHint');
+  var HINT_INV_PADRAO = 'A licença parte de <strong>R$ 5 mil</strong> e o valor final depende do tamanho da cidade. <strong>Não estão incluídos</strong> os gastos com expansão e o marketing de lançamento — esses ficam por conta do licenciado.';
+
+  var LIC_POR_HAB = 0.25;
+  var LIC_MIN = 5000;
+  var mapaMun = null, pendentesMun = null;
+
+  function norm(t) {
+    return String(t).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()
+      .replace(/[^a-z\s]/g, ' ').replace(/\s+/g, ' ').trim();
+  }
+
+  function carregarMun(cb) {
+    if (mapaMun) { cb(); return; }
+    if (pendentesMun) { pendentesMun.push(cb); return; }
+    pendentesMun = [cb];
+    fetch('data/municipios.json', { cache: 'force-cache' })
+      .then(function (r) { return r.json(); })
+      .then(function (lista) {
+        mapaMun = {};
+        lista.forEach(function (m) {
+          var k = norm(m[0]);
+          (mapaMun[k] = mapaMun[k] || []).push({ nome: m[0], uf: m[1], pop: m[2] });
+        });
+      })
+      .catch(function () { mapaMun = null; })
+      .then(function () {
+        var fila = pendentesMun || [];
+        pendentesMun = null;
+        fila.forEach(function (fn) { try { fn(); } catch (e) {} });
+      });
+  }
+
+  function valorLicenca(pop) {
+    var v = Math.ceil((pop * LIC_POR_HAB) / 500) * 500;
+    return Math.max(v, LIC_MIN);
+  }
+
+  function brl(v) { return 'R$ ' + v.toLocaleString('pt-BR'); }
+
+  function atualizarHintInv() {
+    if (!hintInv) return;
+    if (st.mun) {
+      hintInv.innerHTML = 'A licença para <strong>' + esc(st.mun.nome) + '</strong> fica em <strong>' + brl(st.valor) + '</strong>. Quanto você tem disponível para a licença?';
+    } else {
+      hintInv.innerHTML = HINT_INV_PADRAO;
+    }
+  }
+
+  function limparValor() {
+    st.mun = null; st.valor = null;
+    elCal.hidden = true; elMatch.innerHTML = '';
+    if (elLista) elLista.hidden = true;
+    atualizarHintInv();
+  }
+
+  function mostrarValor(m) {
+    st.mun = m;
+    st.valor = valorLicenca(m.pop);
+    st.cidade = m.nome;
+    elCalCidade.textContent = m.nome + ' - ' + m.uf;
+    elVal.textContent = brl(st.valor);
+    elPop.textContent = m.pop.toLocaleString('pt-BR') + ' hab. (Censo 2022)';
+    elMatch.innerHTML = '';
+    if (elLista) elLista.hidden = true;
+    elCal.hidden = false;
+    atualizarHintInv();
+  }
+
+  function listaChips(arr) {
+    limparValor();
+    arr.slice(0, 6).forEach(function (m) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.textContent = m.nome + ' - ' + m.uf;
+      b.addEventListener('click', function () { cidade.value = m.nome; mostrarValor(m); validar(); });
+      elMatch.appendChild(b);
+    });
+  }
+
+  function buscar(nome) {
+    var q = norm(nome);
+    if (q.length < 3) { limparValor(); return; }
+    carregarMun(function () {
+      if (!mapaMun) { limparValor(); if (elLista) elLista.hidden = false; return; }
+      var exatos = mapaMun[q] || [];
+      if (exatos.length === 1) { mostrarValor(exatos[0]); return; }
+      if (exatos.length > 1) { listaChips(exatos); return; }
+      var aprox = [];
+      for (var k in mapaMun) {
+        if (k.indexOf(q) === 0) { aprox = aprox.concat(mapaMun[k]); if (aprox.length > 6) break; }
+      }
+      if (aprox.length === 1) { mostrarValor(aprox[0]); }
+      else if (aprox.length > 1) { listaChips(aprox); }
+      else { limparValor(); if (elLista) elLista.hidden = false; }
+    });
+  }
+
+  var tmrCidade = null;
+  cidade.addEventListener('input', function () {
+    st.cidade = cidade.value;
+    limparValor();
+    validar();
+    clearTimeout(tmrCidade);
+    tmrCidade = setTimeout(function () { buscar(cidade.value); }, 320);
+  });
+  cidade.addEventListener('focus', function () { carregarMun(function () {}); });
   cidade.addEventListener('keydown', function (e) {
     if (e.key === 'Enter' && !nextBtn.disabled) nextBtn.click();
   });
@@ -601,7 +735,10 @@
   backBtn.addEventListener('click', function () { if (st.step > 1) show(st.step - 1); });
   document.getElementById('fzVoltar').addEventListener('click', function () { show(4); });
 
+  var TETO_INV = { ate5: 5000, '5a10': 10000, '10a20': 20000, mais20: Infinity, naosei: null };
+
   function qualificado() {
+    if (st.valor) return TETO_INV[st.inv] >= st.valor;
     return st.inv === '5a10' || st.inv === '10a20' || st.inv === 'mais20';
   }
 
@@ -614,7 +751,24 @@
 
     alerta.style.display = 'none';
 
-    if (st.inv === 'ate5') {
+    if (st.mun && st.valor) {
+      var valorTxt = brl(st.valor);
+      if (st.inv === 'naosei') {
+        kicker.textContent = 'Valor da licença';
+        titulo.textContent = valorTxt + ' para ' + st.mun.nome;
+        texto.textContent = 'Esse é o valor da licença de uso da marca na sua cidade. Fora dele ficam a estrutura de expansão e o marketing de lançamento, por sua conta.';
+      } else if (TETO_INV[st.inv] < st.valor) {
+        kicker.textContent = 'Um ajuste antes de seguir';
+        titulo.textContent = 'A licença em ' + st.mun.nome + ' fica em ' + valorTxt;
+        texto.textContent = 'É acima da faixa que você indicou. Vale conversar com o time: eles mostram o que está incluído e como a conta fecha na sua praça.';
+        alerta.style.display = 'block';
+        alerta.textContent = 'O valor da licença não inclui a estrutura de expansão nem o marketing de lançamento.';
+      } else {
+        kicker.textContent = 'Perfil alinhado';
+        titulo.textContent = 'Sua cidade entra no plano de expansão';
+        texto.textContent = 'A licença para ' + st.mun.nome + ' fica em ' + valorTxt + ' e cabe na faixa que você indicou. A estrutura de expansão e o marketing de lançamento entram por fora.';
+      }
+    } else if (st.inv === 'ate5') {
       kicker.textContent = 'Um ajuste antes de seguir';
       titulo.textContent = 'O investimento começa em R$ 5 mil';
       texto.textContent = 'Com esse valor dá para adquirir a licença em cidades menores da região. Os gastos de expansão e o marketing de lançamento entram à parte, por sua conta.';
@@ -631,7 +785,8 @@
     }
 
     resumo.innerHTML =
-      '<p>Cidade <b>' + esc(st.cidade) + '</b></p>' +
+      '<p>Cidade <b>' + esc(st.cidade) + (st.mun ? ' - ' + st.mun.uf : '') + '</b></p>' +
+      (st.valor ? '<p>Licença estimada <b>' + brl(st.valor) + '</b></p>' : '') +
       '<p>Investimento <b>' + ROTULOS.inv[st.inv] + '</b></p>' +
       '<p>Empresa <b>' + ROTULOS.emp[st.emp] + '</b></p>' +
       '<p>Início <b>' + ROTULOS.prazo[st.prazo] + '</b></p>';
@@ -653,6 +808,7 @@
       'Empresa: ' + ROTULOS.emp[st.emp],
       'Quando pretende começar: ' + ROTULOS.prazo[st.prazo]
     ];
+    if (st.valor) linhas.push('Licença estimada para a cidade: ' + brl(st.valor));
     if (nome) linhas.push('Nome: ' + nome);
     linhas.push('', 'Quero falar com o Josemar sobre a licença.');
 
@@ -660,7 +816,8 @@
       window.gtag('event', 'funil_licença', {
         faixa_investimento: st.inv,
         qualificado: qualificado() ? 'sim' : 'nao',
-        cidade: st.cidade.trim()
+        cidade: st.cidade.trim(),
+        valor_licenca: st.valor || 0
       });
     }
 

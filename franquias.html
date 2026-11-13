@@ -82,6 +82,102 @@
       .p-hero-split { grid-template-columns: 1fr; gap: 32px; }
       .p-hero .p-stats { margin-top: 36px; }
     }
+
+/* ===== FUNIL DE FRANQUIA ===== */
+#funil-franquia {
+  max-width: 780px;
+  margin: 0 auto;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+.fz-card {
+  background: #14141c;
+  border: 1px solid rgba(255,255,255,0.09);
+  border-radius: 26px;
+  overflow: hidden;
+  box-shadow: 0 40px 90px rgba(0,0,0,.45);
+}
+.fz-media { position: relative; height: 190px; overflow: hidden; }
+.fz-media img { width: 100%; height: 100%; object-fit: cover; object-position: center 35%; display: block; }
+.fz-media::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(20,20,28,.15) 0%, rgba(20,20,28,.75) 60%, #14141c 100%);
+}
+.fz-badge {
+  position: absolute; left: 24px; bottom: 18px; z-index: 2;
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(255,107,0,.16); border: 1px solid rgba(255,107,0,.45);
+  color: #ffb380; font-size: .72rem; font-weight: 800;
+  letter-spacing: 1.6px; text-transform: uppercase;
+  padding: 8px 14px; border-radius: 999px;
+}
+.fz-body { padding: 26px 28px 30px; }
+.fz-top { display: flex; align-items: center; gap: 14px; margin-bottom: 26px; }
+.fz-progress { flex: 1; height: 5px; background: rgba(255,255,255,.1); border-radius: 999px; overflow: hidden; }
+.fz-progress i { display: block; height: 100%; width: 20%; background: linear-gradient(90deg,#FF6B00,#ffa24d); border-radius: 999px; transition: width .35s ease; }
+.fz-count { font-size: .74rem; color: rgba(255,255,255,.5); font-weight: 700; letter-spacing: .04em; white-space: nowrap; }
+.fz-slide { display: none; animation: fzIn .28s ease both; }
+.fz-slide.on { display: block; }
+@keyframes fzIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.fz-kicker { font-size: .72rem; font-weight: 800; letter-spacing: 1.8px; text-transform: uppercase; color: #FF8A3D; margin-bottom: 10px; }
+.fz-q { font-size: clamp(1.25rem, 3.4vw, 1.6rem); font-weight: 800; color: #fff; line-height: 1.25; margin: 0 0 8px; }
+.fz-hint { font-size: .92rem; color: rgba(255,255,255,.55); line-height: 1.55; margin: 0 0 22px; }
+.fz-input {
+  width: 100%; background: rgba(255,255,255,.06); border: 1.5px solid rgba(255,255,255,.14);
+  border-radius: 14px; padding: 16px 18px; color: #fff; font-size: 1rem; font-family: inherit;
+  outline: none; transition: border-color .2s, background .2s;
+}
+.fz-input::placeholder { color: rgba(255,255,255,.32); }
+.fz-input:focus { border-color: #FF6B00; background: rgba(255,255,255,.09); }
+.fz-opts { display: grid; gap: 10px; }
+.fz-opt {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  width: 100%; text-align: left; cursor: pointer;
+  background: rgba(255,255,255,.05); border: 1.5px solid rgba(255,255,255,.12);
+  border-radius: 14px; padding: 15px 18px; color: #fff; font-family: inherit;
+  font-size: .98rem; font-weight: 600; transition: all .18s ease;
+}
+.fz-opt:hover { border-color: rgba(255,107,0,.55); background: rgba(255,107,0,.08); transform: translateY(-1px); }
+.fz-opt.sel { border-color: #FF6B00; background: rgba(255,107,0,.14); }
+.fz-opt .fz-tick { opacity: 0; color: #FF6B00; font-size: .9rem; transition: opacity .18s; }
+.fz-opt.sel .fz-tick { opacity: 1; }
+.fz-opt small { display: block; font-weight: 500; font-size: .78rem; color: rgba(255,255,255,.45); margin-top: 3px; }
+.fz-nav { display: flex; align-items: center; gap: 12px; margin-top: 26px; }
+.fz-back {
+  background: transparent; border: 1px solid rgba(255,255,255,.18); color: rgba(255,255,255,.7);
+  border-radius: 12px; padding: 13px 20px; font-family: inherit; font-size: .9rem; font-weight: 600;
+  cursor: pointer; transition: .18s;
+}
+.fz-back:hover { border-color: rgba(255,255,255,.4); color: #fff; }
+.fz-next {
+  flex: 1; background: #FF6B00; border: 0; color: #fff; border-radius: 12px;
+  padding: 15px 22px; font-family: inherit; font-size: .98rem; font-weight: 800;
+  cursor: pointer; transition: .18s; display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+}
+.fz-next:hover:not(:disabled) { background: #ff7d1f; transform: translateY(-1px); }
+.fz-next:disabled { opacity: .38; cursor: not-allowed; }
+.fz-next.wa { background: #25D366; font-size: 1rem; }
+.fz-next.wa:hover { background: #2ee06f; }
+.fz-selo {
+  display: grid; gap: 10px; margin: 18px 0 0; padding: 16px 18px;
+  background: rgba(255,255,255,.04); border-radius: 14px; border: 1px solid rgba(255,255,255,.08);
+}
+.fz-selo div { display: flex; gap: 10px; font-size: .86rem; color: rgba(255,255,255,.7); line-height: 1.45; }
+.fz-selo i { color: #FF6B00; margin-top: 2px; }
+.fz-resumo { display: grid; gap: 8px; margin: 4px 0 18px; }
+.fz-resumo p { margin: 0; font-size: .88rem; color: rgba(255,255,255,.62); display: flex; justify-content: space-between; gap: 14px; border-bottom: 1px dashed rgba(255,255,255,.1); padding-bottom: 7px; }
+.fz-resumo p b { color: #fff; font-weight: 700; text-align: right; }
+.fz-alerta {
+  background: rgba(255,209,102,.1); border: 1px solid rgba(255,209,102,.35);
+  color: #ffe0a3; border-radius: 14px; padding: 14px 16px; font-size: .88rem; line-height: 1.5; margin-bottom: 18px;
+}
+.fz-rodape { text-align: center; font-size: .78rem; color: rgba(255,255,255,.35); margin-top: 16px; line-height: 1.6; }
+@media (max-width: 560px) {
+  .fz-media { height: 140px; }
+  .fz-body { padding: 22px 18px 26px; }
+  .fz-opt { padding: 14px 16px; font-size: .93rem; }
+  .fz-nav { flex-wrap: wrap-reverse; }
+  .fz-back { width: 100%; }
+}
   </style>
 </head>
 <body>
@@ -258,23 +354,100 @@
     </div>
   </section>
   <section class="p-sec" id="cadastro" style="background:linear-gradient(135deg,#111111,#1a1a2e);">
-    <div class="container" style="max-width:760px;">
-      <div class="lead-box">
-        <h2>Quero ser franqueado</h2>
-        <p>A Central Zippa faz o primeiro atendimento e encaminha você para o time de expansão.</p>
-        <div style="max-width:560px;margin:0 auto 36px;background:rgba(255,255,255,0.1);backdrop-filter:blur(12px);border-radius:20px;padding:30px;border:1px solid rgba(255,255,255,0.2);text-align:center;">
-      <div style="width:58px;height:58px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">
-        <i class="fab fa-whatsapp" style="font-size:1.9rem;color:#fff;"></i>
+    <div class="container" style="max-width:820px;">
+      <div class="text-center" style="margin-bottom:34px;">
+        <span class="section-tag">Seja franqueado</span>
+        <h2 class="section-title" style="color:#fff;">Descubra se a <span class="text-orange">sua cidade</span> já pode ter Zippa</h2>
+        <p style="color:rgba(255,255,255,.65);max-width:560px;margin:14px auto 0;line-height:1.65;">Quatro perguntas rápidas. No fim, você fala direto com o time de expansão.</p>
       </div>
-      <p style="font-size:0.75rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-bottom:10px;">Central Zippa</p>
-      <h3 style="font-size:1.3rem;color:#fff;margin-bottom:10px;">Fale com a gente pelo WhatsApp</h3>
-      <p style="font-size:0.92rem;color:rgba(255,255,255,0.75);margin-bottom:20px;line-height:1.6;">A Central Zippa faz o primeiro atendimento e encaminha você para o time certo — passageiro, motorista, entregador, restaurante, franquia ou anúncio.</p>
-      <a class="btn btn-white btn-lg" style="width:100%;justify-content:center;" href="https://wa.me/554431421244?text=Ola%21%20Quero%20saber%20sobre%20franquias%20da%20Zippa." target="_blank" rel="noopener">
-        <i class="fab fa-whatsapp"></i> Abrir conversa no WhatsApp
-      </a>
-      <p style="font-size:0.78rem;color:rgba(255,255,255,0.5);margin-top:14px;">WhatsApp e telefone: (44) 3142-1244</p>
+<div id="funil-franquia">
+  <div class="fz-card">
+    <div class="fz-media">
+      <img src="images/hero-franquias.jpg?v=2" alt="Empreendedor em rua comercial, pronto para abrir uma franquia da Zippa" loading="lazy" />
+      <span class="fz-badge"><i class="fas fa-handshake"></i> Franquia Zippa</span>
     </div>
+
+    <div class="fz-body">
+      <div class="fz-top">
+        <div class="fz-progress"><i id="fzBar"></i></div>
+        <span class="fz-count" id="fzCount">1 de 4</span>
       </div>
+
+      <div class="fz-slides">
+        <!-- 1. CIDADE -->
+        <div class="fz-slide on" data-step="1">
+          <div class="fz-kicker">Passo 1</div>
+          <h3 class="fz-q">Em qual cidade você quer abrir a Zippa?</h3>
+          <p class="fz-hint">Pode ser a sua cidade ou uma da região. É por ela que a gente calcula o tamanho da operação.</p>
+          <input class="fz-input" id="fzCidade" type="text" placeholder="Ex.: Engenheiro Beltrão" autocomplete="address-level2" maxlength="60" />
+        </div>
+
+        <!-- 2. INVESTIMENTO -->
+        <div class="fz-slide" data-step="2">
+          <div class="fz-kicker">Passo 2</div>
+          <h3 class="fz-q">Quanto você tem disponível para investir?</h3>
+          <p class="fz-hint">A franquia começa em <strong>R$ 5 mil</strong>. O valor final depende do tamanho da cidade e já inclui a estrutura de abertura, o marketing de lançamento e a operação inicial.</p>
+          <div class="fz-opts" id="fzInv">
+            <button type="button" class="fz-opt" data-v="ate5">Até R$ 5 mil <span class="fz-tick"><i class="fas fa-check"></i></span></button>
+            <button type="button" class="fz-opt" data-v="5a10">De R$ 5 mil a R$ 10 mil <span class="fz-tick"><i class="fas fa-check"></i></span></button>
+            <button type="button" class="fz-opt" data-v="10a20">De R$ 10 mil a R$ 20 mil <span class="fz-tick"><i class="fas fa-check"></i></span></button>
+            <button type="button" class="fz-opt" data-v="mais20">Mais de R$ 20 mil <span class="fz-tick"><i class="fas fa-check"></i></span></button>
+            <button type="button" class="fz-opt" data-v="naosei">Ainda não sei <span class="fz-tick"><i class="fas fa-check"></i></span></button>
+          </div>
+        </div>
+
+        <!-- 3. EMPRESA -->
+        <div class="fz-slide" data-step="3">
+          <div class="fz-kicker">Passo 3</div>
+          <h3 class="fz-q">Você já tem empresa aberta?</h3>
+          <p class="fz-hint">Isso muda só a etapa de documentação — a gente orienta quem ainda vai abrir.</p>
+          <div class="fz-opts" id="fzEmp">
+            <button type="button" class="fz-opt" data-v="sim">Sim, já tenho CNPJ <span class="fz-tick"><i class="fas fa-check"></i></span></button>
+            <button type="button" class="fz-opt" data-v="nao">Não, ainda não <span class="fz-tick"><i class="fas fa-check"></i></span></button>
+            <button type="button" class="fz-opt" data-v="vouabrir">Vou abrir agora <span class="fz-tick"><i class="fas fa-check"></i></span></button>
+          </div>
+        </div>
+
+        <!-- 4. PRAZO -->
+        <div class="fz-slide" data-step="4">
+          <div class="fz-kicker">Passo 4</div>
+          <h3 class="fz-q">Quando você quer começar?</h3>
+          <p class="fz-hint">Prazo ajuda o time a encaixar você na próxima onda de abertura de praças.</p>
+          <div class="fz-opts" id="fzPrazo">
+            <button type="button" class="fz-opt" data-v="30">Nos próximos 30 dias <span class="fz-tick"><i class="fas fa-check"></i></span></button>
+            <button type="button" class="fz-opt" data-v="90">Em 2 ou 3 meses <span class="fz-tick"><i class="fas fa-check"></i></span></button>
+            <button type="button" class="fz-opt" data-v="pesquisa">Ainda estou pesquisando <span class="fz-tick"><i class="fas fa-check"></i></span></button>
+          </div>
+        </div>
+
+        <!-- 5. RESULTADO -->
+        <div class="fz-slide" data-step="5">
+          <div class="fz-kicker" id="fzResKicker">Tudo pronto</div>
+          <h3 class="fz-q" id="fzResTitulo">Sua cidade entra no plano de expansão</h3>
+          <p class="fz-hint" id="fzResTexto">Confira o resumo e fale com o time de expansão no WhatsApp — a mensagem já vai preenchida.</p>
+          <div class="fz-alerta" id="fzAlerta" style="display:none"></div>
+          <div class="fz-resumo" id="fzResumo"></div>
+          <input class="fz-input" id="fzNome" type="text" placeholder="Seu nome (opcional)" autocomplete="name" maxlength="60" style="margin-bottom:14px;" />
+          <div class="fz-nav" style="margin-top:0;">
+            <button class="fz-back" id="fzVoltar" type="button"><i class="fas fa-arrow-left"></i> Voltar</button>
+            <button class="fz-next wa" id="fzEnviar" type="button"><i class="fab fa-whatsapp"></i> Falar com o time</button>
+          </div>
+          <div class="fz-selo">
+            <div><i class="fas fa-circle-check"></i> Investimento inicial a partir de R$ 5 mil, com estrutura de abertura, marketing de lançamento e operação assistida.</div>
+            <div><i class="fas fa-circle-check"></i> Atendimento direto com o time de expansão, sem intermediário.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="fz-nav" id="fzNav">
+        <button class="fz-back" id="fzBack" type="button"><i class="fas fa-arrow-left"></i> Voltar</button>
+        <button class="fz-next" id="fzNext" type="button" disabled>Continuar <i class="fas fa-arrow-right"></i></button>
+      </div>
+    </div>
+  </div>
+  <p class="fz-rodape">Ao continuar você fala com a Central Zippa no WhatsApp (44) 3142-1244.<br>Seus dados não ficam salvos neste site.</p>
+</div>
+
     </div>
   </section>
 
@@ -337,5 +510,145 @@
   <script src="js/main.js?v=2"></script>
   <script src="js/cookies.js?v=3"></script>
   <script src="js/tracking.js?v=4"></script>
+<script>
+(function () {
+  var wrap = document.getElementById('funil-franquia');
+  if (!wrap) return;
+
+  var steps = wrap.querySelectorAll('.fz-slide');
+  var bar = document.getElementById('fzBar');
+  var count = document.getElementById('fzCount');
+  var nextBtn = document.getElementById('fzNext');
+  var backBtn = document.getElementById('fzBack');
+  var navShared = document.getElementById('fzNav');
+  var st = { step: 1, cidade: '', inv: '', emp: '', prazo: '', nome: '' };
+
+  var ROTULOS = {
+    inv: { ate5: 'Até R$ 5 mil', '5a10': 'De R$ 5 mil a R$ 10 mil', '10a20': 'De R$ 10 mil a R$ 20 mil', mais20: 'Mais de R$ 20 mil', naosei: 'Ainda não sei' },
+    emp: { sim: 'Já tem CNPJ', nao: 'Ainda não tem CNPJ', vouabrir: 'Vai abrir agora' },
+    prazo: { '30': 'Próximos 30 dias', '90': 'Em 2 ou 3 meses', pesquisa: 'Ainda pesquisando' }
+  };
+
+  function show(n) {
+    st.step = n;
+    steps.forEach(function (s) {
+      s.classList.toggle('on', Number(s.dataset.step) === n);
+    });
+    bar.style.width = Math.round((Math.min(n, 4) / 4) * 100) + '%';
+    count.textContent = n >= 5 ? 'Resultado' : n + ' de 4';
+    if (navShared) navShared.style.display = n >= 5 ? 'none' : 'flex';
+    if (n === 5) montarResultado();
+    validar();
+    if (wrap.scrollIntoView) { try { wrap.scrollIntoView({ behavior: 'smooth', block: 'center' }); } catch (e) {} }
+  }
+
+  function validar() {
+    if (!nextBtn) return;
+    var ok = false;
+    if (st.step === 1) ok = st.cidade.trim().length >= 2;
+    else if (st.step === 2) ok = !!st.inv;
+    else if (st.step === 3) ok = !!st.emp;
+    else if (st.step === 4) ok = !!st.prazo;
+    nextBtn.disabled = !ok;
+    if (st.step === 4) nextBtn.innerHTML = 'Ver o resultado <i class="fas fa-arrow-right"></i>';
+  }
+
+  // passo 1 — cidade
+  var cidade = document.getElementById('fzCidade');
+  cidade.addEventListener('input', function () { st.cidade = cidade.value; validar(); });
+  cidade.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter' && !nextBtn.disabled) nextBtn.click();
+  });
+
+  // passos 2 a 4 — opções
+  [['fzInv', 'inv'], ['fzEmp', 'emp'], ['fzPrazo', 'prazo']].forEach(function (par) {
+    var box = document.getElementById(par[0]);
+    box.addEventListener('click', function (e) {
+      var b = e.target.closest('.fz-opt');
+      if (!b) return;
+      box.querySelectorAll('.fz-opt').forEach(function (o) { o.classList.remove('sel'); });
+      b.classList.add('sel');
+      st[par[1]] = b.dataset.v;
+      validar();
+      setTimeout(function () { nextBtn.click(); }, 180);
+    });
+  });
+
+  // navegação
+  nextBtn.addEventListener('click', function () { if (st.step < 5) show(st.step + 1); });
+  backBtn.addEventListener('click', function () { if (st.step > 1) show(st.step - 1); });
+  document.getElementById('fzVoltar').addEventListener('click', function () { show(4); });
+
+  function qualificado() {
+    return st.inv === '5a10' || st.inv === '10a20' || st.inv === 'mais20';
+  }
+
+  function montarResultado() {
+    var titulo = document.getElementById('fzResTitulo');
+    var texto = document.getElementById('fzResTexto');
+    var kicker = document.getElementById('fzResKicker');
+    var alerta = document.getElementById('fzAlerta');
+    var resumo = document.getElementById('fzResumo');
+
+    alerta.style.display = 'none';
+
+    if (st.inv === 'ate5') {
+      kicker.textContent = 'Um ajuste antes de seguir';
+      titulo.textContent = 'O investimento começa em R$ 5 mil';
+      texto.textContent = 'Com esse valor já é possível começar em cidades menores da região. Se o seu caixa hoje é menor, vale conversar com o time para entender o momento certo.';
+      alerta.style.display = 'block';
+      alerta.textContent = 'A franquia tem investimento inicial e capital de giro para os primeiros meses. Não abrimos operação sem essa estrutura montada.';
+    } else if (st.inv === 'naosei') {
+      kicker.textContent = 'Vamos entender junto';
+      titulo.textContent = 'Dá para começar com R$ 5 mil';
+      texto.textContent = 'O valor acompanha o tamanho da cidade: quanto maior a praça, maior a estrutura de abertura e o marketing de lançamento. O time mostra a conta certa para a sua cidade.';
+    } else {
+      kicker.textContent = 'Perfil alinhado';
+      titulo.textContent = 'Sua cidade entra no plano de expansão';
+      texto.textContent = 'Com esse investimento dá para estruturar a operação na sua cidade, com abertura, marketing de lançamento e acompanhamento. O próximo passo é a conversa com o time.';
+    }
+
+    resumo.innerHTML =
+      '<p>Cidade <b>' + esc(st.cidade) + '</b></p>' +
+      '<p>Investimento <b>' + ROTULOS.inv[st.inv] + '</b></p>' +
+      '<p>Empresa <b>' + ROTULOS.emp[st.emp] + '</b></p>' +
+      '<p>Início <b>' + ROTULOS.prazo[st.prazo] + '</b></p>';
+  }
+
+  function esc(t) {
+    return String(t).replace(/[&<>"]/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+    });
+  }
+
+  document.getElementById('fzEnviar').addEventListener('click', function () {
+    var nome = document.getElementById('fzNome').value.trim();
+    var linhas = [
+      'Olá! Vim pelo site da Zippa e quero abrir uma franquia.',
+      '',
+      'Cidade: ' + st.cidade.trim(),
+      'Investimento disponível: ' + ROTULOS.inv[st.inv],
+      'Empresa: ' + ROTULOS.emp[st.emp],
+      'Quando pretende começar: ' + ROTULOS.prazo[st.prazo]
+    ];
+    if (nome) linhas.push('Nome: ' + nome);
+    linhas.push('', 'Quero falar com o Josemar sobre a franquia.');
+
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', 'funil_franquia', {
+        faixa_investimento: st.inv,
+        qualificado: qualificado() ? 'sim' : 'nao',
+        cidade: st.cidade.trim()
+      });
+    }
+
+    var url = 'https://wa.me/554431421244?text=' + encodeURIComponent(linhas.join('\n'));
+    window.open(url, '_blank', 'noopener');
+  });
+
+  show(1);
+})();
+
+</script>
 </body>
 </html>

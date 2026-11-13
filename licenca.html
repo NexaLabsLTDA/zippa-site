@@ -83,6 +83,17 @@
       .p-hero .p-stats { margin-top: 36px; }
     }
 
+/* ===== PRAÇA JÁ LICENCIADA ===== */
+.fz-block{margin-top:16px;border:1px solid rgba(200,30,30,.28);background:rgba(200,30,30,.06);border-radius:12px;padding:16px 18px}
+.fz-block[hidden]{display:none}
+.fz-block-tag{display:inline-flex;align-items:center;gap:7px;font-size:.78rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:#b3261e}
+.fz-block-tit{font-size:1.05rem;font-weight:800;color:#111;margin:8px 0 6px}
+.fz-block-txt{font-size:.92rem;color:#4a4a55;line-height:1.55;margin:0 0 14px}
+.fz-block .btn{display:inline-flex;align-items:center;gap:8px;font-size:.92rem;padding:11px 18px;border-radius:10px;background:#FF6B00;color:#fff;text-decoration:none;font-weight:700}
+.fz-block-note{font-size:.8rem;color:#7a7a85;margin:10px 0 0;line-height:1.5}
+.fz-pracas{font-size:.8rem;color:#8a8a94;margin:12px 0 0;line-height:1.55}
+.fz-pracas strong{color:#5a5a66}
+
 /* ===== VALOR CALCULADO ===== */
 .fz-cal{margin-top:16px;border:1px solid rgba(255,107,0,.35);background:rgba(255,107,0,.07);border-radius:12px;padding:14px 16px}
 .fz-cal[hidden]{display:none}
@@ -423,6 +434,14 @@
             </div>
             <p class="fz-cal-sub" id="fzCalSub">Valor da licença para esta cidade. Expansão e marketing de lançamento ficam por conta do licenciado.</p>
           </div>
+          <div class="fz-block" id="fzBlock" hidden>
+            <span class="fz-block-tag"><i class="fas fa-lock"></i> Praça já licenciada</span>
+            <p class="fz-block-tit" id="fzBlockTit">Esta cidade já tem Zippa</p>
+            <p class="fz-block-txt">A licença de <b id="fzBlockNome"></b> já foi vendida, então não abrimos uma nova licença para essa praça no momento.</p>
+            <a class="btn" id="fzBlockWa" href="https://wa.me/5544999934543" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Ver praças vizinhas disponíveis</a>
+            <p class="fz-block-note">Se você já é o licenciado desta cidade, fale com a gente pelo mesmo número.</p>
+          </div>
+          <p class="fz-pracas">Praças já licenciadas: <strong>Araruna, Campo Mourão, Campina da Lagoa, Engenheiro Beltrão, Iretama, Peabiru, Roncador e Terra Boa</strong>.</p>
           <p class="fz-lista-hint" id="fzListaHint" hidden>Não encontrei esse município na base do IBGE. Pode seguir — o time confirma o valor na conversa.</p>
         </div>
 
@@ -589,7 +608,7 @@
   function validar() {
     if (!nextBtn) return;
     var ok = false;
-    if (st.step === 1) ok = st.cidade.trim().length >= 2;
+    if (st.step === 1) ok = st.cidade.trim().length >= 2 && !st.bloqueado;
     else if (st.step === 2) ok = !!st.inv;
     else if (st.step === 3) ok = !!st.emp;
     else if (st.step === 4) ok = !!st.prazo;
@@ -605,6 +624,16 @@
   var elPop = document.getElementById('fzCalPop');
   var elMatch = document.getElementById('fzMatch');
   var elLista = document.getElementById('fzListaHint');
+  var elBlock = document.getElementById('fzBlock');
+  var elBlockNome = document.getElementById('fzBlockNome');
+  var elBlockWa = document.getElementById('fzBlockWa');
+
+  // Praças com licença já vendida — ao vender uma nova, acrescentar aqui.
+  var PRACAS_TOMADAS = ['campo mourao', 'peabiru', 'araruna', 'engenheiro beltrao', 'terra boa', 'iretama', 'roncador', 'campina da lagoa'];
+
+  function pracaTomada(m) {
+    return m.uf === 'PR' && PRACAS_TOMADAS.indexOf(norm(m.nome)) > -1;
+  }
   var hintInv = document.getElementById('fzInvHint');
   var HINT_INV_PADRAO = 'A licença parte de <strong>R$ 5 mil</strong> e o valor final depende do tamanho da cidade. <strong>Não estão incluídos</strong> os gastos com expansão e o marketing de lançamento — esses ficam por conta do licenciado.';
 
@@ -647,7 +676,7 @@
 
   function atualizarHintInv() {
     if (!hintInv) return;
-    if (st.mun) {
+    if (st.mun && st.valor) {
       hintInv.innerHTML = 'A licença para <strong>' + esc(st.mun.nome) + '</strong> fica em <strong>' + brl(st.valor) + '</strong>. Quanto você tem disponível para a licença?';
     } else {
       hintInv.innerHTML = HINT_INV_PADRAO;
@@ -655,10 +684,26 @@
   }
 
   function limparValor() {
-    st.mun = null; st.valor = null;
-    elCal.hidden = true; elMatch.innerHTML = '';
+    st.mun = null; st.valor = null; st.bloqueado = false;
+    elCal.hidden = true;
+    if (elBlock) elBlock.hidden = true;
+    elMatch.innerHTML = '';
     if (elLista) elLista.hidden = true;
     atualizarHintInv();
+  }
+
+  function mostrarBloqueio(m) {
+    st.mun = m; st.valor = null; st.bloqueado = true; st.cidade = m.nome;
+    elCal.hidden = true;
+    elMatch.innerHTML = '';
+    if (elLista) elLista.hidden = true;
+    document.getElementById('fzBlockNome').textContent = m.nome + ' - ' + m.uf;
+    elBlockWa.href = 'https://wa.me/5544999934543?text=' + encodeURIComponent(
+      'Olá! Vi no site que ' + m.nome + ' já tem licença Zippa. Queria saber quais praças vizinhas estão disponíveis.'
+    );
+    elBlock.hidden = false;
+    atualizarHintInv();
+    validar();
   }
 
   function mostrarValor(m) {
@@ -671,7 +716,10 @@
     elMatch.innerHTML = '';
     if (elLista) elLista.hidden = true;
     elCal.hidden = false;
+    st.bloqueado = false;
+    if (elBlock) elBlock.hidden = true;
     atualizarHintInv();
+    validar();
   }
 
   function listaChips(arr) {
@@ -680,7 +728,11 @@
       var b = document.createElement('button');
       b.type = 'button';
       b.textContent = m.nome + ' - ' + m.uf;
-      b.addEventListener('click', function () { cidade.value = m.nome; mostrarValor(m); validar(); });
+      b.addEventListener('click', function () {
+        cidade.value = m.nome;
+        (pracaTomada(m) ? mostrarBloqueio : mostrarValor)(m);
+        validar();
+      });
       elMatch.appendChild(b);
     });
   }
@@ -691,13 +743,13 @@
     carregarMun(function () {
       if (!mapaMun) { limparValor(); if (elLista) elLista.hidden = false; return; }
       var exatos = mapaMun[q] || [];
-      if (exatos.length === 1) { mostrarValor(exatos[0]); return; }
+      if (exatos.length === 1) { (pracaTomada(exatos[0]) ? mostrarBloqueio : mostrarValor)(exatos[0]); return; }
       if (exatos.length > 1) { listaChips(exatos); return; }
       var aprox = [];
       for (var k in mapaMun) {
         if (k.indexOf(q) === 0) { aprox = aprox.concat(mapaMun[k]); if (aprox.length > 6) break; }
       }
-      if (aprox.length === 1) { mostrarValor(aprox[0]); }
+      if (aprox.length === 1) { (pracaTomada(aprox[0]) ? mostrarBloqueio : mostrarValor)(aprox[0]); }
       else if (aprox.length > 1) { listaChips(aprox); }
       else { limparValor(); if (elLista) elLista.hidden = false; }
     });

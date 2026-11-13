@@ -597,7 +597,7 @@
     if (st.step === 4) nextBtn.innerHTML = 'Ver o resultado <i class="fas fa-arrow-right"></i>';
   }
 
-  // passo 1 — cidade + valor calculado pelo Censo 2022
+  // passo 1 — cidade + valor calculado pela população do IBGE
   var cidade = document.getElementById('fzCidade');
   var elCal = document.getElementById('fzCal');
   var elVal = document.getElementById('fzCalVal');
@@ -667,7 +667,7 @@
     st.cidade = m.nome;
     elCalCidade.textContent = m.nome + ' - ' + m.uf;
     elVal.textContent = brl(st.valor);
-    elPop.textContent = m.pop.toLocaleString('pt-BR') + ' hab. (Censo 2022)';
+    elPop.textContent = m.pop.toLocaleString('pt-BR') + ' hab. (estimativa IBGE 2026)';
     elMatch.innerHTML = '';
     if (elLista) elLista.hidden = true;
     elCal.hidden = false;

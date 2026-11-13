@@ -83,6 +83,17 @@
       .p-hero .p-stats { margin-top: 36px; }
     }
 
+/* ===== ROYALTIES ===== */
+.roy{margin-top:26px;border-top:1px dashed rgba(0,0,0,.12);padding-top:20px}
+.roy-h{font-size:1.02rem;font-weight:800;margin:0 0 4px;color:#111}
+.roy-sub{font-size:.92rem;color:#5a5a66;margin:0 0 14px;line-height:1.6}
+.roy-list{display:grid;grid-template-columns:1fr;gap:0}
+.roy-row{display:flex;align-items:baseline;gap:16px;padding:10px 0;border-bottom:1px solid rgba(0,0,0,.07)}
+.roy-row:last-child{border-bottom:0}
+.roy-p{font-weight:800;font-size:1.18rem;color:#FF6B00;min-width:58px;letter-spacing:-.01em}
+.roy-l{font-size:.95rem;color:#3a3a44;line-height:1.5}
+@media (min-width:760px){.roy-list{grid-template-columns:1fr 1fr;column-gap:34px}}
+
 /* ===== FUNIL DE LICENÇA ===== */
 #funil-licenca {
   max-width: 780px;
@@ -224,7 +235,7 @@
         <div class="p-hero-copy">
       <span class="section-tag">🤝 Licença Zippa</span>
       <h1>Leve a Zippa<br>para a sua cidade</h1>
-      <p class="lead">Mobilidade e delivery em uma só operação. A Zippa já roda em cinco cidades do Paraná — e está abrindo novas praças para quem quer empreender com uma marca que o cliente já conhece.</p>
+      <p class="lead">Licença de uso da marca Zippa para operar mobilidade e delivery na sua cidade. A Zippa já roda em cinco praças do Paraná — e está abrindo novas para quem quer empreender com uma marca que o cliente já conhece.</p>
       <div class="p-ctas">
         <a href="#cadastro" class="btn btn-primary btn-lg"><i class="fas fa-handshake"></i> Quero ser licenciado</a>
         <a href="https://wa.me/554431421244?text=Tenho%20interesse%20em%20uma%20licença%20Zippa" target="_blank" class="btn btn-outline" style="border-color:rgba(255,255,255,0.35);color:#fff;"><i class="fab fa-whatsapp"></i> Falar agora</a>
@@ -307,7 +318,7 @@
       <div class="p-grid c3">
         <div class="p-card">
           <i class="fas fa-file-signature p-ico"></i>
-          <h3>Licença de operação</h3>
+          <h3>Licença de uso da marca</h3>
           <p>A partir de R$ 5 mil. O valor final é definido conforme o tamanho da praça.</p>
         </div>
         <div class="p-card">
@@ -319,6 +330,17 @@
           <i class="fas fa-chart-line p-ico"></i>
           <h3>Marketing de lançamento</h3>
           <p>Divulgação e mídia da abertura também ficam por conta do licenciado. A Zippa entrega o material de marca.</p>
+        </div>
+      </div>
+
+      <div class="roy">
+        <p class="roy-h">Royalties sobre o faturamento da praça</p>
+        <p class="roy-sub">O percentual acompanha o amadurecimento da operação: começa baixo, quando a praça ainda está sendo formada, e sobe conforme ela cresce.</p>
+        <div class="roy-list">
+          <div class="roy-row"><span class="roy-p">5%</span><span class="roy-l">nos primeiros <strong>90 dias</strong> de operação</span></div>
+          <div class="roy-row"><span class="roy-p">7%</span><span class="roy-l">na etapa seguinte</span></div>
+          <div class="roy-row"><span class="roy-p">10%</span><span class="roy-l">depois, com a praça já consolidada</span></div>
+          <div class="roy-row"><span class="roy-p">15%</span><span class="roy-l">a partir de <strong>12 meses</strong> — e permanece nesse patamar</span></div>
         </div>
       </div>
     </div>

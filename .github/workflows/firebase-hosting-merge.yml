@@ -42,19 +42,19 @@ jobs:
         uses: google-github-actions/auth@v2
         with:
           credentials_json: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_ZIPPA_WEB_OFFICIAL }}
-          create_credentials_file: false
 
       - name: Habilita as APIs que o deploy de função exige
         env:
           TOKEN: ${{ steps.gauth.outputs.access_token }}
         run: |
           echo "token com ${#TOKEN} caracteres"
-          for api in cloudbilling eventarc run artifactregistry; do
-            echo "--- ${api}"
-            curl -s -X POST -H "Authorization: Bearer $TOKEN" -H "Content-Length: 0" \
-              "https://serviceusage.googleapis.com/v1/projects/zippa-web-official/services/${api}.googleapis.com:enable"
-            echo
+          for api in cloudbilling eventarc run artifactregistry pubsub storage cloudbuild cloudfunctions firebaseextensions; do
+            code=$(curl -s -o /dev/null -w '%{http_code}' -X POST \
+              -H "Authorization: Bearer $TOKEN" -H "Content-Length: 0" \
+              "https://serviceusage.googleapis.com/v1/projects/zippa-web-official/services/${api}.googleapis.com:enable")
+            echo "${api}.googleapis.com -> HTTP ${code}"
           done
+          sleep 15
 
       - name: Deploy da função de Conversões
         run: npx --yes firebase-tools@13 deploy --only functions --project zippa-web-official --non-interactive

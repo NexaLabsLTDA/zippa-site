@@ -46,6 +46,7 @@
 
   var CONSENT_COOKIE = 'zippa_cookies_consent'; // gravado pelo js/cookies.js
   var CONSENT_EVENT = 'zippa:consent';          // disparado ao clicar em "Aceitar todos"
+  var CAPI_URL = '';                            // preenchido depois do deploy da função de Conversões
 
   var PAGINAS_CONSIDERACAO = [
     'parceiro.html', 'motorista.html', 'entregador.html',
@@ -108,6 +109,23 @@
     return 'Loja de aplicativos';
   }
 
+  function idEvento() {
+    return 'z' + Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
+  }
+
+  // Espelha o evento na API de Conversões (servidor). Só com consentimento, mesma base do pixel.
+  function espelhar(nome, id, dados) {
+    if (!CAPI_URL || !consentiu()) return;
+    var corpo = JSON.stringify({
+      evento: nome, id: id, dados: dados || {},
+      url: location.href
+    });
+    try {
+      if (navigator.sendBeacon) navigator.sendBeacon(CAPI_URL, new Blob([corpo], { type: 'application/json' }));
+      else fetch(CAPI_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: corpo, keepalive: true });
+    } catch (e) { /* medição nunca quebra a navegação */ }
+  }
+
   function eventoGA(nome, params) {
     if (typeof window.gtag !== 'function') return;
     window.gtag('event', nome, params || {});
@@ -135,19 +153,23 @@
       var href = el.getAttribute('href') || '';
 
       if (/wa\.me|api\.whatsapp\.com|whatsapp\.com\/send/i.test(href)) {
+        var idLead = idEvento();
         window.fbq('track', 'Lead', {
           content_name: rotuloWhatsApp(href),
           content_category: 'WhatsApp'
-        });
+        }, { eventID: idLead });
+        espelhar('Lead', idLead, { content_name: rotuloWhatsApp(href) });
         eventoGA('generate_lead', {
           metodo_contato: 'WhatsApp',
           assunto: rotuloWhatsApp(href)
         });
       } else if (/play\.google\.com|apps\.apple\.com|itunes\.apple\.com/i.test(href)) {
+        var idLoja = idEvento();
         window.fbq('trackCustom', 'CliqueLoja', {
           content_name: nomeDoApp(href),
           content_category: plataforma(href)
-        });
+        }, { eventID: idLoja });
+        espelhar('CliqueLoja', idLoja, { content_name: nomeDoApp(href), content_category: plataforma(href) });
         eventoGA('clique_loja', {
           app: nomeDoApp(href),
           loja: plataforma(href)

@@ -45,13 +45,15 @@ jobs:
           create_credentials_file: false
 
       - name: Habilita as APIs que o deploy de função exige
+        env:
+          TOKEN: ${{ steps.gauth.outputs.access_token }}
         run: |
-          for api in cloudbilling eventarc run artifactregistry pubsub storage cloudbuild cloudfunctions firebaseextensions; do
-            code=$(curl -s -o /dev/null -w '%{http_code}' -X POST \
-              -H "Authorization: Bearer ${{ steps.gauth.outputs.access_token }}" \
-              -H "Content-Length: 0" \
-              "https://serviceusage.googleapis.com/v1/projects/zippa-web-official/services/${api}.googleapis.com:enable")
-            echo "${api}.googleapis.com -> HTTP ${code}"
+          echo "token com ${#TOKEN} caracteres"
+          for api in cloudbilling eventarc run artifactregistry; do
+            echo "--- ${api}"
+            curl -s -X POST -H "Authorization: Bearer $TOKEN" -H "Content-Length: 0" \
+              "https://serviceusage.googleapis.com/v1/projects/zippa-web-official/services/${api}.googleapis.com:enable"
+            echo
           done
 
       - name: Deploy da função de Conversões

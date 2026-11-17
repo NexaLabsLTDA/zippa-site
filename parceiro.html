@@ -139,11 +139,12 @@
     <div class="container">
       <span class="section-tag">🏍️ Seja parceiro</span>
       <h1>Rode com a<br>Zippa na sua cidade</h1>
-      <p class="lead">Motorista ou entregador parceiro: <strong>você escolhe os horários</strong>, usa o seu veículo e roda na cidade onde você mora. A Central Zippa faz o primeiro atendimento e explica o passo a passo.</p>
+      <p class="lead">Motorista ou entregador parceiro: <strong>você escolhe os horários</strong>, usa o seu veículo e roda na cidade onde você mora. Baixe o app, faça o cadastro e suba os documentos por ele — <strong>a Central entra só se você travar</strong>.</p>
       <div class="p-ctas">
-        <a href="https://wa.me/554431421244?text=Ola!%20Quero%20ser%20parceiro%20da%20Zippa." class="btn btn-primary btn-lg" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Falar com a Central</a>
-        <a href="#como-comecar" class="btn btn-outline btn-lg" style="border-color:rgba(255,255,255,0.3);color:#fff;">Como começar</a>
+        <a id="cta-app" href="#apps" class="btn btn-primary btn-lg"><i class="fab fa-google-play"></i> Baixar o app</a>
+        <a href="https://wa.me/554431421244?text=Ola!%20Quero%20ser%20parceiro%20da%20Zippa." class="btn btn-outline btn-lg" style="border-color:rgba(255,255,255,0.3);color:#fff;" target="_blank" rel="noopener" id="cta-central"><i class="fab fa-whatsapp"></i> Falar com a Central</a>
       </div>
+      <p id="aviso-plataforma" style="font-size:0.86rem;color:rgba(255,255,255,0.72);margin-top:16px;">Android no Google Play · iPhone em breve</p>
     </div>
   </section>
 
@@ -335,5 +336,27 @@
   <script src="js/main.js?v=2"></script>
   <script src="js/cookies.js?v=3"></script>
   <script src="js/tracking.js?v=4"></script>
+  <script>
+  /* CTA do hero adaptado à plataforma: motorista e entregador só existem no Android. */
+  (function () {
+    var ua = navigator.userAgent || "";
+    var botao = document.getElementById("cta-app");
+    var aviso = document.getElementById("aviso-plataforma");
+    if (!botao) return;
+    var ehIPhone = /iPhone|iPad|iPod/i.test(ua);
+    var ehAndroid = /Android/i.test(ua);
+    if (ehIPhone) {
+      botao.href = "https://wa.me/554431421244?text=Ola!%20Uso%20iPhone%20e%20quero%20ser%20parceiro%20da%20Zippa.";
+      botao.innerHTML = '<i class="fab fa-whatsapp"></i> iPhone: falar com a Central';
+      botao.removeAttribute("target");
+      if (aviso) aviso.textContent = "O app de motorista e entregador ainda não está na App Store — a Central cadastra você por outro caminho.";
+    } else if (ehAndroid) {
+      /* Android: a seção #apps tem os dois apps (motorista e entregador) com o botão da loja */
+      botao.href = "#apps";
+      botao.innerHTML = '<i class="fab fa-google-play"></i> Baixar o app no Google Play';
+      if (aviso) aviso.textContent = "Você está no Android: escolha abaixo o app de motorista ou de entregador.";
+    }
+  })();
+  </script>
 </body>
 </html>

@@ -17,7 +17,11 @@ exports.capi = onRequest({ region: "southamerica-east1", cors: ORIGENS }, async 
   if (req.method !== "POST") return res.status(405).json({ ok: false, erro: "use POST" });
   if (!TOKEN) return res.status(500).json({ ok: false, erro: "META_CAPI_TOKEN ausente" });
 
-  const corpo = req.body || {};
+  let corpo = req.body;
+  if (typeof corpo === "string") {
+    try { corpo = JSON.parse(corpo); } catch { corpo = {}; }
+  }
+  corpo = corpo || {};
   const ip = String(req.headers["x-forwarded-for"] || "").split(",")[0].trim();
   const ua = req.headers["user-agent"] || "";
   const cookie = req.headers.cookie || "";

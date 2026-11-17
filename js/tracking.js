@@ -120,10 +120,17 @@
       evento: nome, id: id, dados: dados || {},
       url: location.href
     });
+    // fetch com keepalive sobrevive à troca de página. Beacon com JSON seria
+    // bloqueado pelo preflight (sendBeacon não faz OPTIONS), então não é usado.
     try {
-      if (navigator.sendBeacon) navigator.sendBeacon(CAPI_URL, new Blob([corpo], { type: 'application/json' }));
-      else fetch(CAPI_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: corpo, keepalive: true });
-    } catch (e) { /* medição nunca quebra a navegação */ }
+      fetch(CAPI_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: corpo,
+        keepalive: true,
+        mode: 'cors'
+      }).catch(function () { /* medição nunca quebra a navegação */ });
+    } catch (e) { /* idem */ }
   }
 
   function eventoGA(nome, params) {

@@ -24,8 +24,15 @@ jobs:
         run: printf '%s' '${{ secrets.FIREBASE_SERVICE_ACCOUNT_ZIPPA_WEB_OFFICIAL }}' > "$RUNNER_TEMP/sa.json"
 
       - name: Token da Meta na função
-        if: ${{ secrets.META_CAPI_TOKEN != '' }}
-        run: printf 'META_CAPI_TOKEN=%s\n' '${{ secrets.META_CAPI_TOKEN }}' > functions/.env
+        env:
+          CAPI_TOKEN: ${{ secrets.META_CAPI_TOKEN }}
+        run: |
+          if [ -n "$CAPI_TOKEN" ]; then
+            printf 'META_CAPI_TOKEN=%s\n' "$CAPI_TOKEN" > functions/.env
+            echo "token injetado"
+          else
+            echo "aviso: segredo META_CAPI_TOKEN ausente — a função sobe sem token"
+          fi
 
       - name: Deploy da função de Conversões
         run: npx --yes firebase-tools@13 deploy --only functions --project zippa-web-official --non-interactive

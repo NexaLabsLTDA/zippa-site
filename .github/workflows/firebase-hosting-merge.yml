@@ -34,6 +34,9 @@ jobs:
             echo "aviso: segredo META_CAPI_TOKEN ausente — a função sobe sem token"
           fi
 
+      - name: Dependencias da funcao
+        run: npm install --prefix functions --omit=dev --no-audit --no-fund
+
       - name: Deploy da função de Conversões
         run: npx --yes firebase-tools@13 deploy --only functions --project zippa-web-official --non-interactive
         env:

@@ -47,14 +47,14 @@
         <div class="ck-left">
           <div class="ck-icon">🍪</div>
           <div class="ck-text">
-            <strong>Usamos cookies e respeitamos sua privacidade</strong>
-            <p>A Zippa utiliza cookies essenciais para o funcionamento do site e opcionais para análise e marketing. Conforme a <strong>LGPD (Lei 13.709/2018)</strong>, você decide.</p>
-            <a href="privacidade.html#cookies" class="ck-link">Política de Cookies e Privacidade →</a>
+            <strong>Aceitar cookies ajuda a Zippa a crescer</strong>
+            <p>Os essenciais mantêm o site funcionando. Os opcionais medem o que você procura e melhoram os anúncios — sem eles a Zippa fica sem saber o que está funcionando. Você decide, como manda a <strong>LGPD</strong>, e pode mudar depois.</p>
+            <a href="privacidade.html#cookies" class="ck-link">Ver o que é coletado →</a>
           </div>
         </div>
         <div class="ck-actions">
-          <button class="ck-btn-essential" onclick="cookiesEssential()">Só essenciais</button>
           <button class="ck-btn-accept" onclick="cookiesAcceptAll()">Aceitar todos</button>
+          <button class="ck-btn-essential" onclick="cookiesEssential()">Só essenciais</button>
         </div>
       </div>
     `;

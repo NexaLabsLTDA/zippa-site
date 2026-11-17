@@ -46,7 +46,7 @@
 
   var CONSENT_COOKIE = 'zippa_cookies_consent'; // gravado pelo js/cookies.js
   var CONSENT_EVENT = 'zippa:consent';          // disparado ao clicar em "Aceitar todos"
-  var CAPI_URL = '';                            // preenchido depois do deploy da função de Conversões
+  var CAPI_URL = 'https://southamerica-east1-zippa-web-official.cloudfunctions.net/capi';
 
   var PAGINAS_CONSIDERACAO = [
     'parceiro.html', 'motorista.html', 'entregador.html',

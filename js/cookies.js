@@ -149,9 +149,9 @@
         background: #FF6B00;
         border: none;
         color: white;
-        padding: 11px 24px;
+        padding: 13px 30px;
         border-radius: 40px;
-        font-size: 0.85rem;
+        font-size: 0.92rem;
         font-weight: 700;
         cursor: pointer;
         transition: all 0.2s ease;

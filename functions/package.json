@@ -2,7 +2,11 @@
   "name": "zippa-capi",
   "description": "API de Conversões da Meta para o site da Zippa",
   "main": "index.js",
-  "engines": { "node": "20" },
-  "dependencies": { "firebase-functions": "^5.0.0" },
+  "engines": {
+    "node": "22"
+  },
+  "dependencies": {
+    "firebase-functions": "^5.0.0"
+  },
   "private": true
 }

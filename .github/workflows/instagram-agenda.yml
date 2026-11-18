@@ -1,0 +1,55 @@
+name: Instagram — agenda de posts
+
+on:
+  schedule:
+    # 14:00 UTC = 11:00 em Brasília (o cron do Actions é sempre UTC)
+    - cron: "0 14 * * *"
+  workflow_dispatch:
+    inputs:
+      simular:
+        description: "Só validar (não publica)"
+        type: boolean
+        default: false
+      forcar:
+        description: "ID do post da fila para publicar agora"
+        type: string
+        required: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: agenda-instagram
+  cancel-in-progress: false
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Rodar agenda
+        env:
+          META_TOKEN: ${{ secrets.META_TOKEN }}
+        run: |
+          ARGS=""
+          if [ "${{ inputs.simular }}" = "true" ]; then ARGS="--simular"; fi
+          if [ -n "${{ inputs.forcar }}" ]; then ARGS="$ARGS --forcar ${{ inputs.forcar }}"; fi
+          python instagram/agenda.py $ARGS
+
+      - name: Registrar resultado no repositório
+        if: always()
+        run: |
+          if [ -n "$(git status --porcelain instagram/)" ]; then
+            git config user.name "zippa-agenda"
+            git config user.email "agenda@zippa.com.br"
+            git add instagram/fila.json instagram/publicados.md
+            git commit -m "instagram: registro da agenda $(date -u +%Y-%m-%dT%H:%MZ)"
+            git push
+          else
+            echo "nada mudou"
+          fi

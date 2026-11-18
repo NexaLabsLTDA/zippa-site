@@ -1,6 +1,11 @@
 name: Instagram — agenda de posts
 
 on:
+  push:
+    paths:
+      - "instagram/fila.json"
+      - "instagram/agenda.py"
+      - ".github/workflows/instagram-agenda.yml"
   schedule:
     # 14:00 UTC = 11:00 em Brasília (o cron do Actions é sempre UTC)
     - cron: "0 14 * * *"
@@ -37,6 +42,7 @@ jobs:
           META_TOKEN: ${{ secrets.META_TOKEN }}
         run: |
           ARGS=""
+          if [ "${{ github.event_name }}" = "push" ]; then ARGS="--simular"; fi
           if [ "${{ inputs.simular }}" = "true" ]; then ARGS="--simular"; fi
           if [ -n "${{ inputs.forcar }}" ]; then ARGS="$ARGS --forcar ${{ inputs.forcar }}"; fi
           python instagram/agenda.py $ARGS

@@ -28,6 +28,78 @@
       ],
       "publicado": false,
       "legenda": "Bateu a fome? A Zippa entrega.\n\nComida do comércio da sua cidade, entregue sem sair de casa e com pagamento pelo app.\n\n📲 Peça agora: zippa.com.br/links\n📍 Central: (44) 3142-1244\n\n#Zippa #Delivery #Comida #ZippaOficial"
+    },
+    {
+      "id": "grid-07-seja-motorista",
+      "data": "2026-11-25",
+      "hora": "11:00",
+      "imagem": "instagram/grid-07-seja-motorista.jpg",
+      "canais": [
+        "instagram",
+        "facebook"
+      ],
+      "publicado": false,
+      "legenda": "Rode com a Zippa.\n\nTaxa de R$ 1,00 + 20% por corrida — 15% com o adesivo — e seguro incluso. Corrida mínima de R$ 13.\n\n📲 App do motorista: zippa.com.br/links\n📍 Central: (44) 3142-1244\n\n#Zippa #Motorista #ZippaOficial"
+    },
+    {
+      "id": "grid-09-franquia",
+      "data": "2026-11-27",
+      "hora": "11:00",
+      "imagem": "instagram/grid-09-franquia.jpg",
+      "canais": [
+        "instagram",
+        "facebook"
+      ],
+      "publicado": false,
+      "legenda": "Leve a Zippa pra sua cidade.\n\nMarca conhecida, app pronto e exclusividade no território. São 17 cidades à venda na região de Campo Mourão.\n\n🏙️ Conheça a licença: zippa.com.br/licenca\n\n#Zippa #Franquia #CampoMourao"
+    },
+    {
+      "id": "grid-06-prova",
+      "data": "2026-11-30",
+      "hora": "11:00",
+      "imagem": "instagram/grid-06-prova.jpg",
+      "canais": [
+        "instagram",
+        "facebook"
+      ],
+      "publicado": false,
+      "legenda": "Quem anda, recomenda.\n\nNota 4,9 no app, mais de 5 mil usuários e atendimento humano na Central.\n\n📲 Baixe grátis: zippa.com.br/links\n\n#Zippa #ZippaOficial"
+    },
+    {
+      "id": "grid-05-seguranca",
+      "data": "2026-12-02",
+      "hora": "11:00",
+      "imagem": "instagram/grid-05-seguranca.jpg",
+      "canais": [
+        "instagram",
+        "facebook"
+      ],
+      "publicado": false,
+      "legenda": "Pediu seu número? Não passe.\n\nNenhum motorista da Zippa precisa do seu telefone — a corrida acontece dentro do app. Confirme a placa, compartilhe a viagem e denuncie pelo app.\n\n#Zippa #Seguranca"
+    },
+    {
+      "id": "grid-08-lojista",
+      "data": "2026-12-04",
+      "hora": "11:00",
+      "imagem": "instagram/grid-08-lojista.jpg",
+      "canais": [
+        "instagram",
+        "facebook"
+      ],
+      "publicado": false,
+      "legenda": "Seu restaurante na Zippa.\n\nCardápio no app, entregador da própria cidade e pedidos acompanhados em tempo real.\n\n📞 Fale com a Central: (44) 3142-1244\n\n#Zippa #Delivery #Lojista"
+    },
+    {
+      "id": "grid-07-taxa",
+      "data": "2026-12-07",
+      "hora": "11:00",
+      "imagem": "instagram/grid-07-motorista-taxa.jpg",
+      "canais": [
+        "instagram",
+        "facebook"
+      ],
+      "publicado": false,
+      "legenda": "R$ 10,05 é seu.\n\nNa corrida mínima de R$ 13, com o adesivo a taxa cai de 20% para 15% — seguro incluso.\n\n📲 App do motorista: zippa.com.br/links\n📍 Central: (44) 3142-1244\n\n#Zippa #Motorista"
     }
   ]
 }

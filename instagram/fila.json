@@ -14,8 +14,18 @@
         "instagram",
         "facebook"
       ],
-      "publicado": false,
-      "legenda": "Precisa de carona? Vai de Zippa.\n\nCorrida mínima de R$ 13, pagamento direto no app e motorista verificado em cada viagem.\n\n📲 Baixe grátis: zippa.com.br/links\n📍 Central: (44) 3142-1244\n\n#Zippa #Mobilidade #Corrida #ZippaOficial"
+      "publicado": true,
+      "legenda": "Precisa de carona? Vai de Zippa.\n\nCorrida mínima de R$ 13, pagamento direto no app e motorista verificado em cada viagem.\n\n📲 Baixe grátis: zippa.com.br/links\n📍 Central: (44) 3142-1244\n\n#Zippa #Mobilidade #Corrida #ZippaOficial",
+      "resultado": {
+        "instagram": {
+          "media_id": "18120452521789894",
+          "link": "https://www.instagram.com/p/Df-pBOKGpI-/"
+        },
+        "facebook": {
+          "post_id": "635483882987608_122224546154892143",
+          "link": "https://www.facebook.com/635483882987608_122224546154892143"
+        }
+      }
     },
     {
       "id": "grid-04-delivery",

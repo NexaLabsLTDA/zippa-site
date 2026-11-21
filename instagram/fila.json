@@ -6,6 +6,20 @@
   },
   "posts": [
     {
+      "id": "mobilidade-21-11",
+      "data": "2026-11-21",
+      "hora": "11:58",
+      "imagem": "instagram/mobilidade-21-11.jpg",
+      "canais": [
+        "instagram",
+        "facebook"
+      ],
+      "publicado": true,
+      "publicado_em": "2026-11-21T11:58-03:00",
+      "permalink": "https://www.instagram.com/p/DgAgDCikkfu/",
+      "legenda": "Vai sair? Vai de Zippa."
+    },
+    {
       "id": "chuva-21-11",
       "data": "2026-11-21",
       "hora": "11:55",

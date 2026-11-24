@@ -9,6 +9,9 @@ on:
   schedule:
     # 14:00 UTC = 11:00 em Brasília (o cron do Actions é sempre UTC)
     - cron: "0 14 * * *"
+    # rede de seguranca: 17:00 UTC = 14h em Brasilia. Se a execucao das 11h
+    # nao acontecer (o Actions falha sem avisar), esta publica o que venceu.
+    - cron: "0 17 * * *"
   workflow_dispatch:
     inputs:
       simular:

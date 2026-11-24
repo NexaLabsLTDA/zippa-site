@@ -148,6 +148,42 @@
       ],
       "publicado": false,
       "legenda": "R$ 10,05 é seu.\n\nNa corrida mínima de R$ 13, com o adesivo a taxa cai de 20% para 15% — seguro incluso.\n\n📲 App do motorista: zippa.com.br/links\n📍 Central: (44) 3142-1244\n\n#Zippa #Motorista"
+    },
+    {
+      "id": "festa-26-vespera",
+      "data": "2026-11-26",
+      "hora": "10:00",
+      "imagem": "instagram/festa-26-vespera.png",
+      "canais": [
+        "instagram",
+        "facebook"
+      ],
+      "publicado": false,
+      "legenda": "Amanhã começa a festa dos 72 anos de Engenheiro Beltrão.\n\nSexta, 27: abertura oficial às 22h e show com Duda Bertelli às 23h, no centro da cidade.\n\nSábado, 28: Pedro Paulo & Alex.\n\nDomingo, 29: almoço do leitão à pururuca no Salão Paroquial, com convites vendidos pela APAE, e encerramento com Munhoz & Mariano.\n\nA volta é de Zippa.\n\n#EngenheiroBeltrao #72Anos #Zippa #Parana #Festa"
+    },
+    {
+      "id": "festa-28-sabado",
+      "data": "2026-11-28",
+      "hora": "10:00",
+      "imagem": "instagram/festa-28-sabado.png",
+      "canais": [
+        "instagram",
+        "facebook"
+      ],
+      "publicado": false,
+      "legenda": "Hoje tem Pedro Paulo & Alex, no centro de Engenheiro Beltrão.\n\nAmanhã, último dia: almoço do leitão à pururuca no Salão Paroquial — convites com a APAE — e encerramento com Munhoz & Mariano.\n\nA volta é de Zippa.\n\n#EngenheiroBeltrao #72Anos #Zippa #Parana #Festa"
+    },
+    {
+      "id": "festa-29-domingo",
+      "data": "2026-11-29",
+      "hora": "10:00",
+      "imagem": "instagram/festa-29-domingo.png",
+      "canais": [
+        "instagram",
+        "facebook"
+      ],
+      "publicado": false,
+      "legenda": "Último dia dos 72 anos de Engenheiro Beltrão.\n\nAlmoço do leitão à pururuca no Salão Paroquial, com convites vendidos pela APAE. À noite, encerramento com Munhoz & Mariano, no centro da cidade.\n\nA volta é de Zippa.\n\n#EngenheiroBeltrao #72Anos #Zippa #Parana #Festa"
     }
   ]
 }

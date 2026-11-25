@@ -77,6 +77,12 @@
       '.ntz-box>*:not(.ntz-snow){position:relative}.ntz-snow{position:absolute;inset:0;pointer-events:none;overflow:hidden}' +
       '.ntz-snow i{position:absolute;top:-10px;border-radius:50%;background:#fff;opacity:.8;animation:ntzSnow linear infinite}@keyframes ntzSnow{to{transform:translate3d(var(--dx,20px),108vh,0)}}' +
       '.ntz-tree{font-size:54px;line-height:1;filter:drop-shadow(0 6px 14px rgba(0,0,0,.45));animation:ntzSway 3.2s ease-in-out infinite;transform-origin:50% 90%}@keyframes ntzSway{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(4deg)}}' +
+      '.ntz-ttl{margin:2px 0 0;font-size:25px;line-height:1.15;font-weight:900;letter-spacing:-.3px;text-shadow:0 2px 12px rgba(0,0,0,.4)}' +
+      '.ntz-sub{display:inline-block;margin:8px 0 4px;font-size:12px;font-weight:900;letter-spacing:2.4px;text-transform:uppercase;color:#3a0a0a;background:linear-gradient(90deg,#ffc94d,#ffe08a,#ffc94d);padding:5px 14px;border-radius:999px;box-shadow:0 4px 14px rgba(255,201,77,.35)}' +
+      '.ntz-wheel{position:relative;width:min(58vw,224px,30vh);aspect-ratio:1;margin:16px auto 12px}' +
+      '.ntz-wheel canvas{width:100%;height:100%;display:block;border-radius:50%;transition:transform 4.6s cubic-bezier(.12,.75,.1,1);box-shadow:0 0 0 5px #2a0710,0 0 0 8px #ffc94d,0 10px 34px rgba(255,201,77,.4)}' +
+      '.ntz-wheel .pt{position:absolute;top:-13px;left:50%;transform:translateX(-50%);width:0;height:0;z-index:3;border-left:12px solid transparent;border-right:12px solid transparent;border-top:24px solid #ffc94d;filter:drop-shadow(0 3px 3px rgba(0,0,0,.6))}' +
+      '.ntz-wheel .hb{position:absolute;top:50%;left:50%;width:22%;height:22%;transform:translate(-50%,-50%);border-radius:50%;z-index:2;background:radial-gradient(circle at 35% 30%,#fff3c4,#ffc94d 55%,#ff8a00);box-shadow:0 0 0 4px #2a0710;display:flex;align-items:center;justify-content:center;font-size:17px}' +
       '.ntz-cd{display:inline-block;margin-top:6px;font-size:11px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:#3a0a0a;background:linear-gradient(90deg,#ffc94d,#ffe08a);padding:4px 11px;border-radius:999px}' +
       '.ntz-box h3{font-size:23px;line-height:1.2;margin:10px 0 6px;font-weight:800}.ntz-box .tx{font-size:14px;line-height:1.5;color:#ffe9d6}' +
       '.ntz-box ul{list-style:none;text-align:left;margin:12px 0 14px;padding:0}.ntz-box li{font-size:13px;line-height:1.45;background:rgba(0,0,0,.22);border-radius:10px;padding:8px 10px;margin-bottom:6px}' +
@@ -84,6 +90,9 @@
       '.ntz-lojas{display:flex;flex-direction:column;gap:8px}.ntz-btn{display:block;text-decoration:none;text-align:center;border-radius:14px;padding:14px;font:800 15px Inter,sans-serif;cursor:pointer;border:0}' +
       '.ntz-btn.l1{background:#ffc94d;color:#3a0a0a}.ntz-btn.l2{background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.35)}' +
       '.ntz-nao{background:none;border:0;color:#ffd9bd;font:13px Inter,sans-serif;text-decoration:underline;cursor:pointer;margin-top:12px;width:100%}' +
+      '@media(max-height:880px){.ntz-box{padding:20px 18px 14px}.ntz-box li.ex2{display:none}.ntz-wheel{margin:14px auto 10px}.ntz-box ul{margin:10px 0 12px}}' +
+      '@media(max-height:760px){.ntz-box li.ex1{display:none}.ntz-box h3{font-size:22px}}' +
+      '@media(max-height:660px){.ntz-box p.tx{display:none}.ntz-btn{padding:12px}.ntz-wheel{margin:12px auto 8px}}' +
       '@media(max-width:600px){.ntz-bar{font-size:12px;padding:6px 8px;gap:6px}.ntz-bar .go{padding:5px 10px}}' +
       '@media(prefers-reduced-motion:reduce){.ntz-snow,.ntz-tree{animation:none!important;display:none}}';
     document.head.appendChild(s);
@@ -99,6 +108,45 @@
     }
   }
 
+  // ── roleta (mesmo desenho e mesmas fatias do Show de Prêmios) ──
+  var CORES = ['#ff6a00', '#111827', '#ffb300', '#7c3aed', '#16a34a', '#e11d48'];
+  function segmentos() {
+    var g = cfg && cfg.games, sg = cfg && cfg.segmentos;
+    if (g && g.roleta === false) return null;     // sem roleta ativa, não promete roleta
+    if (!sg || sg.length < 2) return null;
+    return sg;
+  }
+  function desenhar(c, seg) {
+    var g = c.getContext('2d'), n = seg.length, R = c.width / 2, a = 2 * Math.PI / n;
+    g.clearRect(0, 0, c.width, c.height);
+    for (var i = 0; i < n; i++) {
+      var ini = -Math.PI / 2 - a / 2 + i * a, cor = seg[i].cor || CORES[i % CORES.length];
+      g.beginPath(); g.moveTo(R, R); g.arc(R, R, R - 4, ini, ini + a); g.closePath();
+      g.fillStyle = cor; g.fill(); g.strokeStyle = 'rgba(255,255,255,.25)'; g.lineWidth = 3; g.stroke();
+      g.save(); g.translate(R, R); g.rotate(ini + a / 2); g.textAlign = 'right'; g.textBaseline = 'middle';
+      g.fillStyle = /^#(ff|ffb|ffc|ffd)/i.test(cor) ? '#1a1206' : '#fff';
+      var lab = seg[i].ganhou ? String(seg[i].label || '') : 'Quase!', fs = lab.length > 16 ? 26 : lab.length > 9 ? 33 : 42;
+      g.font = '800 ' + fs + 'px -apple-system, Segoe UI, Roboto, sans-serif';
+      g.fillText(lab, R - 40, 0, R * 0.62); g.restore();
+    }
+  }
+  /** Gira e para num prêmio (só enfeite: o giro de verdade é feito no app, com login). Repete até fechar. */
+  function animar(c, seg, parar) {
+    var n = seg.length, a = 360 / n, ang = 0, vivo = true, t1 = null, t2 = null;
+    var ganha = []; for (var i = 0; i < n; i++) if (seg[i].ganhou) ganha.push(i);
+    if (!ganha.length) ganha = [0];
+    function girar() {
+      if (!vivo) return;
+      var idx = ganha[Math.floor(Math.random() * ganha.length)], jitter = (Math.random() - 0.5) * a * 0.5;
+      var atual = ang % 360;
+      ang = ang - atual + 360 * 5 + (360 - idx * a) + jitter;
+      c.style.transform = 'rotate(' + ang + 'deg)';
+      t2 = setTimeout(girar, 4600 + 2600);
+    }
+    if (!reduz()) t1 = setTimeout(girar, 700);
+    parar.push(function () { vivo = false; clearTimeout(t1); clearTimeout(t2); });
+  }
+
   // ── aviso grande ──
   function abrir(origem) {
     if (!natal || aberto || noApp()) return;
@@ -106,17 +154,23 @@
     aberto = true;
     css();
     var ov = el('div', 'ntz-over'), box = el('div', 'ntz-box');
-    ov.setAttribute('role', 'dialog'); ov.setAttribute('aria-modal', 'true'); ov.setAttribute('aria-label', 'Natal Zippa');
-    var sn = el('div', 'ntz-snow'); neve(sn, 22); box.appendChild(sn);
-    box.appendChild(el('div', 'ntz-tree', '🎄'));
+    ov.setAttribute('role', 'dialog'); ov.setAttribute('aria-modal', 'true'); ov.setAttribute('aria-label', 'Natal Premiado Zippa, Show de Descontos');
+    var sn = el('div', 'ntz-snow'); neve(sn, 24); box.appendChild(sn);
     box.appendChild(el('div', 'ntz-cd', dias()));
-    box.appendChild(el('h3', null, natal.titulo || ('Natal ' + empresa)));
-    box.appendChild(el('p', 'tx', natal.texto || ('Baixe o app da ' + empresa + ': peça sua corrida em poucos toques e concorra a prêmios no Show de Prêmios de Natal.')));
+    box.appendChild(el('h3', 'ntz-ttl', '🎄 ' + (natal.titulo || ('Natal Premiado ' + empresa))));
+    box.appendChild(el('div', 'ntz-sub', 'Show de Descontos'));
+    var seg = segmentos(), parar = [];
+    if (seg) {
+      var rb = el('div', 'ntz-wheel'); rb.setAttribute('aria-hidden', 'true');
+      var cv = document.createElement('canvas'); cv.width = 680; cv.height = 680;
+      rb.appendChild(el('div', 'pt')); rb.appendChild(cv); rb.appendChild(el('div', 'hb', '🎁'));
+      box.appendChild(rb); desenhar(cv, seg); animar(cv, seg, parar);
+    }
+    box.appendChild(el('p', 'tx', natal.texto || ('Baixe o app da ' + empresa + (seg ? ', gire a roleta do Show de Prêmios e concorra a descontos nas suas corridas.' : ' e concorra a descontos nas suas corridas.'))));
     var ul = document.createElement('ul'), bt = bonusTxt();
-    if (bt) ul.appendChild(el('li', 'bn', '🎁 Baixe o app e ganhe ' + bt + ' na roleta do Show de Prêmios.'));
-    ul.appendChild(el('li', null, '🎰 Roleta e raspadinha com descontos para as suas corridas.'));
-    if (cfg && cfg.fidelidade) ul.appendChild(el('li', null, '🎟️ Cartão Fidelidade: a cada ' + cfg.fidelidade.meta_corridas + ' corridas, ' + cfg.fidelidade.desconto_pct + '% de desconto na próxima.'));
-    ul.appendChild(el('li', null, '🚗 Peça seu carro sem precisar mandar mensagem.'));
+    if (bt) ul.appendChild(el('li', 'bn', '🎁 Baixe o app e ganhe ' + bt + ' na roleta.'));
+    if (cfg && cfg.fidelidade) ul.appendChild(el('li', 'ex1', '🎟️ Cartão Fidelidade: a cada ' + cfg.fidelidade.meta_corridas + ' corridas, ' + cfg.fidelidade.desconto_pct + '% de desconto na próxima.'));
+    ul.appendChild(el('li', 'ex2', '🚗 Peça seu carro sem precisar mandar mensagem.'));
     box.appendChild(ul);
     var area = el('div', 'ntz-lojas');
     lojas().forEach(function (lj, i) {
@@ -136,7 +190,7 @@
     nao.type = 'button'; box.appendChild(nao);
     ov.appendChild(box); document.body.appendChild(ov);
     vista(origem);
-    function fim() { if (ov.parentNode) ov.remove(); aberto = false; document.removeEventListener('keydown', esc); }
+    function fim() { parar.forEach(function (f) { f(); }); if (ov.parentNode) ov.remove(); aberto = false; document.removeEventListener('keydown', esc); }
     function esc(e) { if (e.key === 'Escape') fim(); }
     nao.addEventListener('click', fim);
     ov.addEventListener('click', function (e) { if (e.target === ov) fim(); });
@@ -162,8 +216,8 @@
     css();
     var b = el('div', 'ntz-bar'); b.id = 'ntzBar';
     var tx = el('div', 'tx');
-    tx.appendChild(el('b', null, '🎄 Natal ' + empresa));
-    tx.appendChild(document.createTextNode(bonusTxt() ? ' · baixe o app e ganhe ' + bonusTxt() : ' · baixe o app e concorra a prêmios'));
+    tx.appendChild(el('b', null, '🎄 Natal Premiado ' + empresa));
+    tx.appendChild(document.createTextNode(bonusTxt() ? ' · baixe o app e ganhe ' + bonusTxt() : ' · Show de Descontos no app'));
     var go = el('button', 'go', 'Baixar app'); go.type = 'button';
     var x = el('button', 'x', '×'); x.type = 'button'; x.setAttribute('aria-label', 'Fechar aviso');
     b.appendChild(tx); b.appendChild(go); b.appendChild(x);

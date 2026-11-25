@@ -86,8 +86,18 @@
         "instagram",
         "facebook"
       ],
-      "publicado": false,
-      "legenda": "Rode com a Zippa.\n\nTaxa de R$ 1,00 + 20% por corrida — 15% com o adesivo — e seguro incluso. Corrida mínima de R$ 13.\n\n📲 App do motorista: zippa.com.br/links\n📍 Central: (44) 3142-1244\n\n#Zippa #Motorista #ZippaOficial"
+      "publicado": true,
+      "legenda": "Rode com a Zippa.\n\nTaxa de R$ 1,00 + 20% por corrida — 15% com o adesivo — e seguro incluso. Corrida mínima de R$ 13.\n\n📲 App do motorista: zippa.com.br/links\n📍 Central: (44) 3142-1244\n\n#Zippa #Motorista #ZippaOficial",
+      "resultado": {
+        "instagram": {
+          "media_id": "17947829544385193",
+          "link": "https://www.instagram.com/p/DgLpg25AB13/"
+        },
+        "facebook": {
+          "post_id": "635483882987608_122225241344892143",
+          "link": "https://www.facebook.com/635483882987608_122225241344892143"
+        }
+      }
     },
     {
       "id": "grid-09-franquia",

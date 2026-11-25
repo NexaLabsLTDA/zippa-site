@@ -12,11 +12,11 @@
   var SLUG = 'zippa';
   var API = 'https://app.axonbrain.com.br/premios-api/';
   var PREMIOS = 'https://app.axonbrain.com.br/premios/' + SLUG;
-  var K_IN = 'zp_nt_in', K_CLICK = 'zp_nt_click', K_BAR = 'zp_nt_bar';
+  var K_IN = 'zp_nt_in', K_CLICK = 'zp_nt_click', K_BAR = 'zp_nt_bar', K_CFG = 'zp_nt_cfg';
 
   var teste = /[?&]natal=ver\b/.test(location.search);
   var natal = null, empresa = 'Zippa', cfg = null;
-  var aberto = false, saiu = false, vistas = {};
+  var aberto = false, saiu = false, vistas = {}, off = 0;
 
   function ls(k, v) { try { if (v === undefined) return localStorage.getItem(k) || ''; localStorage.setItem(k, v); } catch (e) {} return ''; }
   function ss(k, v) { try { if (v === undefined) return sessionStorage.getItem(k) || ''; sessionStorage.setItem(k, v); } catch (e) {} return ''; }
@@ -44,11 +44,27 @@
     if (!(n > 0)) return '';
     return n === 1 ? '1 giro extra' : n + ' giros extras';
   }
-  function dias() {
-    var n = natal.dias_para_natal;
-    if (n > 1) return 'Faltam ' + n + ' dias para o Natal';
-    if (n === 1) return 'É amanhã: véspera de Natal';
-    return 'Feliz Natal!';
+  /** Cronômetro até 25/12 00:00 (Brasília). Usa a hora do servidor, então não depende do relógio do aparelho. */
+  function cronometro(parar) {
+    var alvo = natal.natal_ms || Date.UTC(new Date(Date.now() + off).getUTCFullYear(), 11, 25, 3, 0, 0);
+    var box = el('div', 'ntz-cd');
+    var l = el('div', 'l', 'Faltam para o Natal'); box.appendChild(l);
+    var tm = el('div', 'ntz-tm'), nums = {};
+    [['d', 'dias'], ['h', 'horas'], ['m', 'min'], ['s', 'seg']].forEach(function (u) {
+      var c = el('div', 'u'), b = el('b', null, '00'); nums[u[0]] = b;
+      c.appendChild(b); c.appendChild(el('i', null, u[1])); tm.appendChild(c);
+    });
+    box.appendChild(tm);
+    function dois(n) { return (n < 10 ? '0' : '') + n; }
+    function tick() {
+      var r = Math.floor((alvo - (Date.now() + off)) / 1000);
+      if (r <= 0) { box.textContent = ''; box.appendChild(el('div', 'l fim', '🎅 Feliz Natal!')); if (id) clearInterval(id); return; }
+      nums.d.textContent = dois(Math.floor(r / 86400)); nums.h.textContent = dois(Math.floor(r % 86400 / 3600));
+      nums.m.textContent = dois(Math.floor(r % 3600 / 60)); nums.s.textContent = dois(r % 60);
+    }
+    var id = setInterval(tick, 1000); tick();
+    parar.push(function () { clearInterval(id); });
+    return box;
   }
   function lojas() {
     var l = [];
@@ -83,7 +99,9 @@
       '.ntz-wheel canvas{width:100%;height:100%;display:block;border-radius:50%;transition:transform 4.6s cubic-bezier(.12,.75,.1,1);box-shadow:0 0 0 5px #2a0710,0 0 0 8px #ffc94d,0 10px 34px rgba(255,201,77,.4)}' +
       '.ntz-wheel .pt{position:absolute;top:-13px;left:50%;transform:translateX(-50%);width:0;height:0;z-index:3;border-left:12px solid transparent;border-right:12px solid transparent;border-top:24px solid #ffc94d;filter:drop-shadow(0 3px 3px rgba(0,0,0,.6))}' +
       '.ntz-wheel .hb{position:absolute;top:50%;left:50%;width:22%;height:22%;transform:translate(-50%,-50%);border-radius:50%;z-index:2;background:radial-gradient(circle at 35% 30%,#fff3c4,#ffc94d 55%,#ff8a00);box-shadow:0 0 0 4px #2a0710;display:flex;align-items:center;justify-content:center;font-size:17px}' +
-      '.ntz-cd{display:inline-block;margin-top:6px;font-size:11px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:#3a0a0a;background:linear-gradient(90deg,#ffc94d,#ffe08a);padding:4px 11px;border-radius:999px}' +
+      '.ntz-cd{margin-top:2px}.ntz-cd .l{font-size:10px;font-weight:800;letter-spacing:1.8px;text-transform:uppercase;color:#ffd9a0}.ntz-cd .l.fim{font-size:15px;color:#ffc94d}' +
+      '.ntz-tm{display:flex;justify-content:center;gap:7px;margin-top:6px}.ntz-tm .u{min-width:56px;background:rgba(0,0,0,.38);border:1px solid rgba(255,201,77,.6);border-radius:11px;padding:6px 4px 5px;box-shadow:inset 0 0 12px rgba(255,201,77,.12)}' +
+      '.ntz-tm .u b{display:block;font:900 23px/1 Inter,"Segoe UI",sans-serif;color:#ffc94d;font-variant-numeric:tabular-nums}.ntz-tm .u i{display:block;margin-top:3px;font:700 9px/1 Inter,sans-serif;font-style:normal;letter-spacing:1px;text-transform:uppercase;color:#ffe9d6}' +
       '.ntz-box h3{font-size:23px;line-height:1.2;margin:10px 0 6px;font-weight:800}.ntz-box .tx{font-size:14px;line-height:1.5;color:#ffe9d6}' +
       '.ntz-box ul{list-style:none;text-align:left;margin:12px 0 14px;padding:0}.ntz-box li{font-size:13px;line-height:1.45;background:rgba(0,0,0,.22);border-radius:10px;padding:8px 10px;margin-bottom:6px}' +
       '.ntz-box li.bn{background:rgba(255,201,77,.18);border:1px solid rgba(255,201,77,.55);font-weight:700}' +
@@ -92,7 +110,7 @@
       '.ntz-nao{background:none;border:0;color:#ffd9bd;font:13px Inter,sans-serif;text-decoration:underline;cursor:pointer;margin-top:12px;width:100%}' +
       '@media(max-height:880px){.ntz-box{padding:20px 18px 14px}.ntz-box li.ex2{display:none}.ntz-wheel{margin:14px auto 10px}.ntz-box ul{margin:10px 0 12px}}' +
       '@media(max-height:760px){.ntz-box li.ex1{display:none}.ntz-box h3{font-size:22px}}' +
-      '@media(max-height:660px){.ntz-box p.tx{display:none}.ntz-btn{padding:12px}.ntz-wheel{margin:12px auto 8px}}' +
+      '@media(max-height:660px){.ntz-tm .u{min-width:50px;padding:4px 3px}.ntz-tm .u b{font-size:19px}.ntz-box p.tx{display:none}.ntz-btn{padding:12px}.ntz-wheel{margin:12px auto 8px}}' +
       '@media(max-width:600px){.ntz-bar{font-size:12px;padding:6px 8px;gap:6px}.ntz-bar .go{padding:5px 10px}}' +
       '@media(prefers-reduced-motion:reduce){.ntz-snow,.ntz-tree{animation:none!important;display:none}}';
     document.head.appendChild(s);
@@ -156,10 +174,11 @@
     var ov = el('div', 'ntz-over'), box = el('div', 'ntz-box');
     ov.setAttribute('role', 'dialog'); ov.setAttribute('aria-modal', 'true'); ov.setAttribute('aria-label', 'Natal Premiado Zippa, Show de Descontos');
     var sn = el('div', 'ntz-snow'); neve(sn, 24); box.appendChild(sn);
-    box.appendChild(el('div', 'ntz-cd', dias()));
+    var parar = [];
+    box.appendChild(cronometro(parar));
     box.appendChild(el('h3', 'ntz-ttl', '🎄 ' + (natal.titulo || ('Natal Premiado ' + empresa))));
     box.appendChild(el('div', 'ntz-sub', 'Show de Descontos'));
-    var seg = segmentos(), parar = [];
+    var seg = segmentos();
     if (seg) {
       var rb = el('div', 'ntz-wheel'); rb.setAttribute('aria-hidden', 'true');
       var cv = document.createElement('canvas'); cv.width = 680; cv.height = 680;
@@ -237,15 +256,9 @@
     var clicou = ls(K_CLICK) === '1' && !teste;
     if (clicou) return;
 
-    // entrada: 1x por dia, depois do aviso de cookies (para não empilhar avisos)
+    // entrada: 1x por dia, uns segundos depois de abrir (não espera o banner de cookies: o aviso fica por cima dele)
     if (teste || ls(K_IN) !== hoje()) {
-      var espera = 0;
-      var t = setInterval(function () {
-        espera += 500;
-        var ck = document.getElementById('cookieBanner');
-        if (!ck && espera >= 2000) { clearInterval(t); ls(K_IN, hoje()); abrir('s_entrada'); }
-        else if (espera >= 25000) clearInterval(t);
-      }, 500);
+      setTimeout(function () { ls(K_IN, hoje()); abrir('s_entrada'); }, 2500);
     }
     // saída: 1x por visita. Computador: mouse saindo pelo topo. Celular: primeiro toque em "voltar".
     var saida = function () { if (!teste && (saiu || ss('zp_nt_out') === '1')) return; saiu = true; ss('zp_nt_out', '1'); abrir('s_saida'); };
@@ -258,13 +271,27 @@
     }
   }
 
+  function usar(r, desvio) { cfg = r.config; natal = cfg.natal; empresa = r.empresa || 'Zippa'; off = desvio || 0; }
+  function desligar() {
+    natal = null; document.body.classList.remove('ntz-on');
+    var b = document.getElementById('ntzBar'); if (b) b.remove();
+    var o = document.querySelector('.ntz-over'); if (o && o._fim) o._fim();
+  }
   function carregar() {
+    // repetindo a visita, o aviso aparece na hora com a última configuração guardada (e é atualizado logo depois)
+    var cache = null, usouCache = false;
+    try { cache = JSON.parse(ls(K_CFG) || 'null'); } catch (e) {}
+    if (cache && cache.r && cache.r.ok && cache.r.config && cache.r.config.natal && Date.now() - cache.t < 6 * 3600e3) {
+      usar(cache.r, cache.off); usouCache = true; iniciar();
+    }
     fetch(API + 'config?slug=' + SLUG, { method: 'GET' })
       .then(function (r) { return r.json(); })
       .then(function (r) {
-        if (!r || !r.ok || !r.config || !r.config.natal) return;
-        cfg = r.config; natal = cfg.natal; empresa = r.empresa || 'Zippa';
-        iniciar();
+        if (!r || !r.ok || !r.config || !r.config.natal) { ls(K_CFG, ''); if (usouCache) desligar(); return; }
+        var desvio = r.config.natal.agora_ms ? r.config.natal.agora_ms - Date.now() : 0;
+        ls(K_CFG, JSON.stringify({ t: Date.now(), r: r, off: desvio }));
+        usar(r, desvio);
+        if (!usouCache) iniciar();
       })
       .catch(function () { /* sem conexão ou API fora do ar: o site segue normal */ });
   }

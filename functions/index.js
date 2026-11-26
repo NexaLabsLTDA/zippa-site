@@ -44,6 +44,11 @@ exports.capi = onRequest({ region: "southamerica-east1", cors: ORIGENS }, async 
   const fbc = lerCookie("_fbc");
   if (fbp) evento.user_data.fbp = fbp;
   if (fbc) evento.user_data.fbc = fbc;
+  // Sem aceite de cookie o pixel não roda e não existe _fbc: o fbclid vindo do
+  // anúncio é a única forma de amarrar o contato ao clique que o trouxe.
+  if (!fbc && corpo.fbclid) {
+    evento.user_data.fbc = "fb.1." + Date.now() + "." + String(corpo.fbclid).slice(0, 400);
+  }
 
   try {
     const url = "https://graph.facebook.com/v27.0/" + PIXEL_ID + "/events";

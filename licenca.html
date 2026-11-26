@@ -873,6 +873,36 @@
       });
     }
 
+    // Avisa a Meta do contato sem depender de cookie: o clique no WhatsApp é
+    // o sinal que a campanha precisa e não carrega dado pessoal nenhum.
+    try {
+      var p = new URLSearchParams(location.search);
+      fetch('https://southamerica-east1-zippa-web-official.cloudfunctions.net/capi', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        keepalive: true,
+        body: JSON.stringify({
+          evento: 'Contact',
+          id: 'wa-' + Date.now() + '-' + Math.random().toString(36).slice(2, 8),
+          url: location.href.split('#')[0],
+          fbclid: p.get('fbclid') || '',
+          dados: {
+            content_name: 'licenca_' + st.cidade.trim().toLowerCase().replace(/\s+/g, '_'),
+            content_category: 'licenca_operacao',
+            cidade: st.cidade.trim(),
+            valor_licenca: st.valor || 0,
+            faixa_investimento: ROTULOS.inv[st.inv] || '',
+            empresa: ROTULOS.emp[st.emp] || '',
+            prazo: ROTULOS.prazo[st.prazo] || '',
+            qualificado: qualificado() ? 'sim' : 'nao',
+            utm_source: p.get('utm_source') || '',
+            utm_campaign: p.get('utm_campaign') || '',
+            utm_content: p.get('utm_content') || ''
+          }
+        })
+      }).catch(function () {});
+    } catch (e) {}
+
     var url = 'https://wa.me/5544999934543?text=' + encodeURIComponent(linhas.join('\n'));
     window.open(url, '_blank', 'noopener');
   });

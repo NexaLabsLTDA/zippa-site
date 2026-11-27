@@ -108,8 +108,18 @@
         "instagram",
         "facebook"
       ],
-      "publicado": false,
-      "legenda": "Leve a Zippa pra sua cidade.\n\nMarca conhecida, app pronto e exclusividade no território. São 17 cidades à venda na região de Campo Mourão.\n\n🏙️ Conheça a licença: zippa.com.br/licenca\n\n#Zippa #Franquia #CampoMourao"
+      "publicado": true,
+      "legenda": "Leve a Zippa pra sua cidade.\n\nMarca conhecida, app pronto e exclusividade no território. São 17 cidades à venda na região de Campo Mourão.\n\n🏙️ Conheça a licença: zippa.com.br/licenca\n\n#Zippa #Franquia #CampoMourao",
+      "resultado": {
+        "instagram": {
+          "media_id": "18094688042296939",
+          "link": "https://www.instagram.com/p/DgQm21iEqEF/"
+        },
+        "facebook": {
+          "post_id": "635483882987608_122225489852892143",
+          "link": "https://www.facebook.com/635483882987608_122225489852892143"
+        }
+      }
     },
     {
       "id": "grid-06-prova",

@@ -7,11 +7,11 @@ on:
       - "instagram/agenda.py"
       - ".github/workflows/instagram-agenda.yml"
   schedule:
-    # 14:00 UTC = 11:00 em Brasília (o cron do Actions é sempre UTC)
-    - cron: "0 14 * * *"
-    # rede de seguranca: 17:00 UTC = 14h em Brasilia. Se a execucao das 11h
-    # nao acontecer (o Actions falha sem avisar), esta publica o que venceu.
-    - cron: "0 17 * * *"
+    # O cron do GitHub não garante horário: em 25 e 26/11 as execuções
+    # atrasaram 7 a 9 horas. Então: várias tentativas ao longo do dia.
+    # O agenda.py publica só o que venceu e ainda não saiu, então repetir
+    # é inofensivo — e o atraso máximo cai de horas para ~20 minutos.
+    - cron: "*/20 11-23 * * *"   # 08h às 20h de Brasília, a cada 20 min
   workflow_dispatch:
     inputs:
       simular:

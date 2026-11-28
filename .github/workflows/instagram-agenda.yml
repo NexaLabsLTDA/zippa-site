@@ -6,12 +6,10 @@ on:
       - "instagram/fila.json"
       - "instagram/agenda.py"
       - ".github/workflows/instagram-agenda.yml"
-  schedule:
-    # O cron do GitHub não garante horário: em 25 e 26/11 as execuções
-    # atrasaram 7 a 9 horas. Então: várias tentativas ao longo do dia.
-    # O agenda.py publica só o que venceu e ainda não saiu, então repetir
-    # é inofensivo — e o atraso máximo cai de horas para ~20 minutos.
-    - cron: "*/20 11-23 * * *"   # 08h às 20h de Brasília, a cada 20 min
+  # Agendamento desligado em 28/11/2026. O cron do GitHub atrasou 7 a 9 h
+  # e em 28/11 entregou uma unica execucao (03:30Z), fora de qualquer slot.
+  # A publicacao no horario passou para um gatilho do Google Apps Script
+  # (a cada 15 min) que le esta mesma fila. Aqui fica so o disparo manual.
   workflow_dispatch:
     inputs:
       simular:
